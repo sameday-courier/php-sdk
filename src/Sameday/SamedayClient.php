@@ -145,9 +145,7 @@ class SamedayClient implements SamedayClientInterface
     }
 
     /**
-     * @return bool
-     *
-     * @throws Exceptions\SamedaySDKException
+     * @inheritdoc
      */
     public function login()
     {

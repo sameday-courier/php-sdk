@@ -23,7 +23,9 @@ class SamedayGuzzleHttpClient implements SamedayHttpClientInterface
     protected $client;
 
     /**
-     * @param \GuzzleHttp\Client|null The Guzzle client.
+     * SamedayGuzzleHttpClient constructor.
+     *
+     * @param Client|null $client The Guzzle client.
      */
     public function __construct(Client $client = null)
     {

@@ -18,7 +18,9 @@ class SamedayStreamHttpClient implements SamedayHttpClientInterface
     protected $stream;
 
     /**
-     * @param SamedayStream|null Procedural stream wrapper as object.
+     * SamedayStreamHttpClient constructor.
+     *
+     * @param SamedayStream|null $stream Procedural stream wrapper as object.
      */
     public function __construct(SamedayStream $stream = null)
     {

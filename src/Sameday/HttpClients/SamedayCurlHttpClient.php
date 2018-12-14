@@ -33,7 +33,9 @@ class SamedayCurlHttpClient implements SamedayHttpClientInterface
     protected $curl;
 
     /**
-     * @param SamedayCurl|null Procedural curl as object.
+     * SamedayCurlHttpClient constructor.
+     *
+     * @param SamedayCurl|null $curl Procedural curl as object.
      */
     public function __construct(SamedayCurl $curl = null)
     {

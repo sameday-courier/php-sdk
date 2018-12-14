@@ -30,6 +30,8 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
      *
      * @param SamedayAuthenticateRequest $request
      * @param SamedayRawResponse $rawResponse
+     *
+     * @throws \Exception
      */
     public function __construct(SamedayAuthenticateRequest $request, SamedayRawResponse $rawResponse)
     {
@@ -39,6 +41,10 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
         $json = json_decode($this->rawResponse->getBody(), true);
         $this->token = $json['token'];
         $this->expiresAt = \DateTime::createFromFormat('Y-m-d H:i', $json['expire_at']);
+
+        if (!$this->expiresAt instanceof \DateTime) {
+            $this->expiresAt = new \DateTime('+10 minute');
+        }
     }
 
     /**

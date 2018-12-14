@@ -4,7 +4,6 @@ namespace Sameday;
 
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Http\SamedayRequest;
-use Sameday\Responses\SamedayAuthenticateResponse;
 
 /**
  * Interface that encapsulates http client requests.
@@ -33,7 +32,7 @@ interface SamedayClientInterface
     /**
      * Attempt to authenticate to api.
      *
-     * @return SamedayAuthenticateResponse
+     * @return bool
      *
      * @throws Exceptions\SamedaySDKException
      * @throws Exceptions\SamedayAuthenticationException
