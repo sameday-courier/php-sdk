@@ -125,8 +125,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
      * @param string|null $priceObservation
      * @param string|null $clientObservation
      */
-    public function __construct
-    (
+    public function __construct(
         $pickupPointId,
         $contactPersonId,
         PackageType $packageType,

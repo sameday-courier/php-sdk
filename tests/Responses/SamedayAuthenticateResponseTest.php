@@ -16,7 +16,6 @@ class SamedayAuthenticateResponseTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($request, $response->getRequest());
         $this->assertEquals($rawResponse, $response->getRawResponse());
-
     }
 
     public function testResponse()

@@ -49,7 +49,7 @@ class SamedayBadRequestExceptionTest extends \PHPUnit_Framework_TestCase
     }
 }
 ERRORS
-);
+        );
         $exception = new SamedayBadRequestException($samedayRequest, $rawResponse, 'message');
 
         $this->assertEquals('message', $exception->getMessage());
