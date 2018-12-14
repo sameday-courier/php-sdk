@@ -4,7 +4,7 @@
     "keywords": ["sameday", "courier", "sdk"],
     "type": "library",
     "homepage": "https://github.com/sameday-courier/php-sdk",
-    "license": "Sameday Courier Platform",
+    "license": "MIT",
     "authors": [
         {
             "name": "Sameday Courier",
