@@ -1,0 +1,37 @@
+{
+    "name": "sameday/php-sdk",
+    "description": "Sameday SDK for PHP",
+    "keywords": ["sameday", "sdk"],
+    "type": "library",
+    "homepage": "https://github.com/sameday-courier/php-sdk",
+    "license": "Sameday Platform",
+    "authors": [
+        {
+            "name": "Sameday",
+            "homepage": "https://github.com/sameday-courier/php-sdk/contributors"
+        }
+    ],
+    "require": {
+        "ext-json": "*",
+        "php": "^5.4|^7.0"
+    },
+    "require-dev": {
+        "ext-curl": "*",
+        "phpunit/phpunit": "~4.0",
+        "mockery/mockery": "~0.8",
+        "guzzlehttp/guzzle": "~5.0"
+    },
+    "suggest": {
+        "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sameday\\": "src/Sameday/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sameday\\Tests\\": "tests/"
+        }
+    }
+}

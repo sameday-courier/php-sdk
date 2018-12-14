@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+    php:
+        build:
+            context: .
+            args:
+                UID: "${UID:-1000}"
+                GID: "${GID:-1000}"
+        tty: true
+        volumes:
+            - .:/var/www/php-sdk:rw
+        user: "${UID:-1000}:${GID:-1000}"
+        environment:
+            PHP_IDE_CONFIG: "serverName=SAMEDAY"
