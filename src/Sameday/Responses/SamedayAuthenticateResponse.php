@@ -40,9 +40,11 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
 
         $json = json_decode($this->rawResponse->getBody(), true);
         $this->token = $json['token'];
-        $this->expiresAt = \DateTime::createFromFormat('Y-m-d H:i', $json['expire_at']);
+        $expiresAt = \DateTime::createFromFormat('Y-m-d H:i', $json['expire_at']);
 
-        if (!$this->expiresAt instanceof \DateTime) {
+        if ($expiresAt instanceof \DateTime) {
+            $this->expiresAt = $expiresAt;
+        } else {
             $this->expiresAt = new \DateTime('+10 minute');
         }
     }

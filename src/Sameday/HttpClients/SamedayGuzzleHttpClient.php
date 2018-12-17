@@ -50,7 +50,7 @@ class SamedayGuzzleHttpClient implements SamedayHttpClientInterface
         } catch (RequestException $e) {
             $rawResponse = $e->getResponse();
 
-            if (!$rawResponse instanceof ResponseInterface || $e->getPrevious() instanceof RingException) {
+            if (!$rawResponse || $e->getPrevious() instanceof RingException) {
                 throw new SamedaySDKException($e->getMessage(), $e->getCode());
             }
         }
