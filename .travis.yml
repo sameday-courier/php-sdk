@@ -1,5 +1,8 @@
 language: php
 
+notifications:
+  slack: sameday-courier:gHBJLQA8RcXIF65tci3o6Z46
+
 php:
   - 5.4
   - 5.5
