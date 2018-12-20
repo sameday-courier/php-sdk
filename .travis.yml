@@ -28,5 +28,4 @@ install:
 
 script:
   - vendor/bin/phpcs
-  - vendor/bin/phpcs --config-show
   - vendor/bin/phpunit --coverage-text --exclude-group integration

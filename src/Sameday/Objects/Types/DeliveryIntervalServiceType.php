@@ -9,7 +9,7 @@ namespace Sameday\Objects\Types;
  */
 class DeliveryIntervalServiceType
 {
-    static protected $intervals = [
+    protected static $intervals = [
         '3H' => [
             1 => [
                 'startHour' => 10,
