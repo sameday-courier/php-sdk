@@ -140,6 +140,25 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    public function testGetCounties()
+    {
+        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $request = $this->mockRequest('Sameday\Requests\SamedayGetCountiesRequest', $samedayRequest);
+
+        $rawResponse = new SamedayRawResponse([], '');
+        $this->client
+            ->shouldReceive('sendRequest')
+            ->once()
+            ->with($samedayRequest)
+            ->andReturn($rawResponse);
+
+        $response = $this->sameday->getCounties($request);
+
+        $this->assertInstanceOf('Sameday\Responses\SamedayGetCountiesResponse', $response);
+        $this->assertEquals($request, $response->getRequest());
+        $this->assertEquals($rawResponse, $response->getRawResponse());
+    }
+
     /**
      * @param string $class
      * @param SamedayRequest $buildReturn

@@ -2,6 +2,7 @@
 
 namespace Sameday\Objects\PickupPoint;
 
+use Sameday\Objects\CountyObject;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 
 /**

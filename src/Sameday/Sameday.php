@@ -3,12 +3,14 @@
 namespace Sameday;
 
 use Sameday\Requests\SamedayDeleteAwbRequest;
+use Sameday\Requests\SamedayGetCountiesRequest;
 use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
 use Sameday\Requests\SamedayPostAwbRequest;
 use Sameday\Requests\SamedayPutParcelSizeRequest;
 use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayDeleteAwbResponse;
+use Sameday\Responses\SamedayGetCountiesResponse;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 use Sameday\Responses\SamedayGetPickupPointsResponse;
 use Sameday\Responses\SamedayPostAwbResponse;
@@ -134,5 +136,21 @@ class Sameday
     public function postAwb(SamedayPostAwbRequest $request)
     {
         return new SamedayPostAwbResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayGetCountiesRequest $request
+     *
+     * @return SamedayGetCountiesResponse
+     *
+     * @throws Exceptions\SamedayAuthenticationException
+     * @throws Exceptions\SamedayAuthorizationException
+     * @throws Exceptions\SamedayBadRequestException
+     * @throws Exceptions\SamedaySDKException
+     * @throws Exceptions\SamedayServerException
+     */
+    public function getCounties(SamedayGetCountiesRequest $request)
+    {
+        return new SamedayGetCountiesResponse($request, $this->client->sendRequest($request->buildRequest()));
     }
 }

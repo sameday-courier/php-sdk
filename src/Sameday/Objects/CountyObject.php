@@ -1,12 +1,12 @@
 <?php
 
-namespace Sameday\Objects\PickupPoint;
+namespace Sameday\Objects;
 
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
 
 /**
- * County for pickup point.
+ * County.
  *
  * @package Sameday
  */
