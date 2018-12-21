@@ -101,10 +101,10 @@ class SamedayClient implements SamedayClientInterface
     public function sendRequest(SamedayRequest $request)
     {
         $headers = $request->getHeaders();
-        $headers['User-Agent'] = 'PHP-SDK / ' . self::VERSION;
+        $headers['User-Agent'] = 'PHP-SDK/' . self::VERSION;
 
         if ($this->platformName !== null && $this->platformVersion !== null) {
-            $headers['X-Platform'] = "{$this->platformName} / {$this->platformVersion}";
+            $headers['X-Platform'] = "{$this->platformName}/{$this->platformVersion}";
         }
 
         $try = 0;

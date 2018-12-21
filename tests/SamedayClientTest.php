@@ -27,7 +27,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                 '',
                 [
                     'X-AUTH-TOKEN' => 'foo',
-                    'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                    'User-Agent' => 'PHP-SDK/' . SamedayClient::VERSION,
                 ]
             )
             ->willReturn(new SamedayRawResponse([], '', 200));
@@ -55,8 +55,8 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                 'GET',
                 '',
                 [
-                    'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
-                    'X-Platform' => 'foo / bar',
+                    'User-Agent' => 'PHP-SDK/' . SamedayClient::VERSION,
+                    'X-Platform' => 'foo/bar',
                 ]
             )
             ->willReturn(new SamedayRawResponse([], '', 200));
@@ -301,7 +301,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     '',
                     [
                         'X-AUTH-TOKEN' => 'foo',
-                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                        'User-Agent' => 'PHP-SDK/' . SamedayClient::VERSION,
                     ],
                 ]
             )
@@ -339,7 +339,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     '',
                     [
                         'X-AUTH-TOKEN' => 'foo',
-                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                        'User-Agent' => 'PHP-SDK/' . SamedayClient::VERSION,
                     ],
                 ],
                 [
@@ -352,7 +352,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     '',
                     [
                         'X-AUTH-TOKEN' => 'bar',
-                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                        'User-Agent' => 'PHP-SDK/' . SamedayClient::VERSION,
                     ],
                 ]
             )
@@ -399,7 +399,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     '',
                     [
                         'X-AUTH-TOKEN' => 'bar',
-                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                        'User-Agent' => 'PHP-SDK/' . SamedayClient::VERSION,
                     ],
                 ]
             )
