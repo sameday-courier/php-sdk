@@ -24,6 +24,7 @@ use Sameday\Responses\SamedayAuthenticateResponse;
  */
 class SamedayClient implements SamedayClientInterface
 {
+    const VERSION = '0.0.0';
     const API_HOST = 'https://api.sameday.ro';
     const KEY_TOKEN = 'token';
     const KEY_TOKEN_EXPIRES = 'expires_at';
@@ -44,6 +45,16 @@ class SamedayClient implements SamedayClientInterface
     protected $host;
 
     /**
+     * @var string|null
+     */
+    protected $platformName;
+
+    /**
+     * @var string|null
+     */
+    protected $platformVersion;
+
+    /**
      * @var SamedayHttpClientInterface
      */
     protected $httpClientHandler;
@@ -59,16 +70,27 @@ class SamedayClient implements SamedayClientInterface
      * @param string $username
      * @param string $password
      * @param string|null $host
+     * @param string|null $platformName
+     * @param string|null $platformVersion
      * @param SamedayHttpClientInterface|string|null $httpClientHandler
      * @param SamedayPersistentDataInterface|string|null $persistentDataHandler
      *
      * @throws Exceptions\SamedaySDKException
      */
-    public function __construct($username, $password, $host = null, $httpClientHandler = null, $persistentDataHandler = null)
-    {
+    public function __construct(
+        $username,
+        $password,
+        $host = null,
+        $platformName = null,
+        $platformVersion = null,
+        $httpClientHandler = null,
+        $persistentDataHandler = null
+    ) {
         $this->username = $username;
         $this->password = $password;
         $this->host = $host ?: self::API_HOST;
+        $this->platformName = $platformName;
+        $this->platformVersion = $platformVersion;
         $this->httpClientHandler = HttpClientsFactory::createHttpClient($httpClientHandler);
         $this->persistentDataHandler = PersistentDataFactory::createPersistentDataHandler($persistentDataHandler);
     }
@@ -79,6 +101,12 @@ class SamedayClient implements SamedayClientInterface
     public function sendRequest(SamedayRequest $request)
     {
         $headers = $request->getHeaders();
+        $headers['User-Agent'] = 'PHP-SDK / ' . self::VERSION;
+
+        if ($this->platformName !== null && $this->platformVersion !== null) {
+            $headers['X-Platform'] = "{$this->platformName} / {$this->platformVersion}";
+        }
+
         $try = 0;
         /** @var SamedayRawResponse $rawResponse */
         $rawResponse = null;

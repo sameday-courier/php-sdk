@@ -25,7 +25,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                 'https://foo.com/endpoint',
                 'GET',
                 '',
-                ['X-AUTH-TOKEN' => 'foo']
+                [
+                    'X-AUTH-TOKEN' => 'foo',
+                    'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                ]
             )
             ->willReturn(new SamedayRawResponse([], '', 200));
 
@@ -33,9 +36,34 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
         $persistentDataHandler->set('token', 'foo');
         $persistentDataHandler->set('expires_at', (new \DateTime('+1 day'))->format('Y-m-d H:i:s'));
 
-        $client = new SamedayClient('username', 'password', 'https://foo.com', $httpClientHandler, $persistentDataHandler);
+        $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $client->sendRequest(new SamedayRequest(
             true,
+            'GET',
+            '/endpoint'
+        ));
+    }
+
+    public function testAddPlatformHeader()
+    {
+        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler
+            ->expects($this->once())
+            ->method('send')
+            ->with(
+                'https://foo.com/endpoint',
+                'GET',
+                '',
+                [
+                    'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                    'X-Platform' => 'foo / bar',
+                ]
+            )
+            ->willReturn(new SamedayRawResponse([], '', 200));
+
+        $client = new SamedayClient('username', 'password', 'https://foo.com', 'foo', 'bar', $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client->sendRequest(new SamedayRequest(
+            false,
             'GET',
             '/endpoint'
         ));
@@ -64,7 +92,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             )
             ->willReturn(new SamedayRawResponse([], '', 200));
 
-        $client = new SamedayClient('username', 'password', 'https://foo.com', $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
 
         $client->sendRequest(new SamedayRequest(
             false,
@@ -100,7 +128,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], 'body', 200));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $response = $client->sendRequest(new SamedayRequest(
             false,
             'GET',
@@ -126,7 +154,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], '', 500));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $client->sendRequest(new SamedayRequest(
             false,
             'GET',
@@ -150,7 +178,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], '', 401));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $client->sendRequest(new SamedayRequest(
             false,
             'GET',
@@ -173,7 +201,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], '', 403));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $client->sendRequest(new SamedayRequest(
             false,
             'GET',
@@ -196,7 +224,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], '', 400));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $client->sendRequest(new SamedayRequest(
             false,
             'GET',
@@ -219,7 +247,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], '', 404));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $client->sendRequest(new SamedayRequest(
             false,
             'GET',
@@ -242,7 +270,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], '', 300));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $client->sendRequest(new SamedayRequest(
             false,
             'GET',
@@ -271,7 +299,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     'https://foo.com/endpoint',
                     'GET',
                     '',
-                    ['X-AUTH-TOKEN' => 'foo'],
+                    [
+                        'X-AUTH-TOKEN' => 'foo',
+                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                    ],
                 ]
             )
             ->willReturnOnConsecutiveCalls(
@@ -279,7 +310,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                 new SamedayRawResponse([], 'body', 200)
             );
 
-        $client = new SamedayClient('username', 'password', 'https://foo.com', $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $response = $client->sendRequest(new SamedayRequest(
             true,
             'GET',
@@ -306,7 +337,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     'https://foo.com/endpoint',
                     'GET',
                     '',
-                    ['X-AUTH-TOKEN' => 'foo'],
+                    [
+                        'X-AUTH-TOKEN' => 'foo',
+                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                    ],
                 ],
                 [
                     'https://foo.com/api/authenticate',
@@ -316,7 +350,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     'https://foo.com/endpoint',
                     'GET',
                     '',
-                    ['X-AUTH-TOKEN' => 'bar'],
+                    [
+                        'X-AUTH-TOKEN' => 'bar',
+                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                    ],
                 ]
             )
             ->willReturnOnConsecutiveCalls(
@@ -329,7 +366,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
         $persistentDataHandler->set('token', 'foo');
         $persistentDataHandler->set('expires_at', (new \DateTime('+1 day'))->format('Y-m-d H:i:s'));
 
-        $client = new SamedayClient('username', 'password', 'https://foo.com', $httpClientHandler, $persistentDataHandler);
+        $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $response = $client->sendRequest(new SamedayRequest(
             true,
             'GET',
@@ -360,7 +397,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                     'https://foo.com/endpoint',
                     'GET',
                     '',
-                    ['X-AUTH-TOKEN' => 'bar'],
+                    [
+                        'X-AUTH-TOKEN' => 'bar',
+                        'User-Agent' => 'PHP-SDK / ' . SamedayClient::VERSION,
+                    ],
                 ]
             )
             ->willReturnOnConsecutiveCalls(
@@ -372,7 +412,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
         $persistentDataHandler->set('token', 'foo');
         $persistentDataHandler->set('expires_at', (new \DateTime('-1 day'))->format('Y-m-d H:i:s'));
 
-        $client = new SamedayClient('username', 'password', 'https://foo.com', $httpClientHandler, $persistentDataHandler);
+        $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $response = $client->sendRequest(new SamedayRequest(
             true,
             'GET',
@@ -402,7 +442,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
         $persistentDataHandler->shouldNotReceive('get');
         $persistentDataHandler->shouldNotReceive('set');
 
-        $client = new SamedayClient('username', 'password', 'https://foo.com', $httpClientHandler, $persistentDataHandler);
+        $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $this->assertTrue($client->login());
     }
 
@@ -418,7 +458,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             ->method('send')
             ->willReturn(new SamedayRawResponse([], '', 403));
 
-        $client = new SamedayClient('username', 'password', 'https://foo.com', $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $this->assertFalse($client->login());
     }
 
@@ -437,7 +477,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
         $persistentDataHandler->set('token', 'foo');
         $persistentDataHandler->set('expires_at', (new \DateTime('+1 day'))->format('Y-m-d H:i:s'));
 
-        $client = new SamedayClient('username', 'password', null, $httpClientHandler, $persistentDataHandler);
+        $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, $persistentDataHandler);
         $client->logout();
 
         $this->assertNull($persistentDataHandler->get('token'));
