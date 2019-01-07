@@ -31,4 +31,4 @@ install:
 
 script:
   - vendor/bin/phpcs
-  - vendor/bin/phpunit --coverage-text --exclude-group integration
+  - vendor/bin/phpunit --coverage-text
