@@ -4,7 +4,7 @@
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/sameday-courier/php-sdk.svg)](https://scrutinizer-ci.com/g/sameday-courier/php-sdk/?branch=master)
 [![Latest Stable Version](https://img.shields.io/packagist/v/sameday-courier/php-sdk.svg)](https://packagist.org/packages/sameday-courier/php-sdk)
 
-This repository contains the open source PHP SDK that allows you to access the Sameday Courier Platform from your PHP app.
+This repository contains the open source PHP SDK that allows you to access the Sameday Courier Platform from your PHP app. It was inspired by Facebook PHP-SDK.
 
 ## Installation
 

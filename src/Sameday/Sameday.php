@@ -42,6 +42,14 @@ class Sameday
     }
 
     /**
+     * @return SamedayClientInterface
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
      * @param SamedayGetServicesRequest $request
      *
      * @return SamedayGetServicesResponse
