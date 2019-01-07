@@ -3,6 +3,7 @@
 namespace Sameday\Tests\Responses;
 
 use Sameday\Http\SamedayRawResponse;
+use Sameday\Objects\CountyObject;
 use Sameday\Requests\SamedayGetCountiesRequest;
 use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayGetCountiesResponse;
@@ -54,11 +55,7 @@ JSON
         $this->assertEquals(3, $response->getPages());
         $this->assertEquals(4, $response->getPerPage());
 
-        $this->assertEquals(1, $counties[0]->getId());
-        $this->assertEquals('foo', $counties[0]->getName());
-        $this->assertEquals('code_foo', $counties[0]->getCode());
-        $this->assertEquals(2, $counties[1]->getId());
-        $this->assertEquals('bar', $counties[1]->getName());
-        $this->assertEquals('code_bar', $counties[1]->getCode());
+        $this->assertEquals(new CountyObject(1, 'foo', 'code_foo'), $counties[0]);
+        $this->assertEquals(new CountyObject(2, 'bar', 'code_bar'), $counties[1]);
     }
 }

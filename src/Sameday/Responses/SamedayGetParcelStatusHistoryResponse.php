@@ -3,6 +3,7 @@
 namespace Sameday\Responses;
 
 use Sameday\Http\SamedayRawResponse;
+use Sameday\Objects\ParcelStatusHistory\ExpeditionObject;
 use Sameday\Objects\ParcelStatusHistory\HistoryObject;
 use Sameday\Objects\ParcelStatusHistory\SummaryObject;
 use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
@@ -67,7 +68,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             $this->history[] = $this->parseHistory($history);
         }
 
-        $this->expeditionStatus = $this->parseHistory($json['expeditionStatus']);
+        $this->expeditionStatus = $this->parseExpedition($json['expeditionStatus']);
     }
 
     /**
@@ -89,7 +90,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
     /**
      * @return HistoryObject
      */
-    public function getExpeditionStatu()
+    public function getExpeditionStatus()
     {
         return $this->expeditionStatus;
     }
@@ -112,6 +113,28 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             $json['county'],
             $json['reason'],
             $json['transitLocation']
+        );
+    }
+
+    /**
+     * @param array $json
+     *
+     * @return HistoryObject
+     *
+     * @throws \Exception
+     */
+    private function parseExpedition(array $json)
+    {
+        return new ExpeditionObject(
+            $json['statusId'],
+            $json['status'],
+            $json['statusLabel'],
+            $json['statusState'],
+            new \DateTime($json['statusDate']),
+            $json['county'],
+            $json['reason'],
+            $json['transitLocation'],
+            $json['expeditionDetails']
         );
     }
 }

@@ -8,6 +8,9 @@ use Sameday\Responses\SamedayAuthenticateResponse;
 
 class SamedayAuthenticateResponseTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testConstructorParameters()
     {
         $request = new SamedayAuthenticateRequest('username', 'password');
@@ -18,6 +21,9 @@ class SamedayAuthenticateResponseTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testResponse()
     {
         $request = new SamedayAuthenticateRequest('username', 'password');

@@ -3,11 +3,17 @@
 namespace Sameday\Tests\Responses;
 
 use Sameday\Http\SamedayRawResponse;
+use Sameday\Objects\ParcelStatusHistory\ExpeditionObject;
+use Sameday\Objects\ParcelStatusHistory\HistoryObject;
+use Sameday\Objects\ParcelStatusHistory\SummaryObject;
 use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 
 class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function testConstructorParameters()
     {
         $request = new SamedayGetParcelStatusHistoryRequest('foo');
@@ -18,6 +24,9 @@ class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestC
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws \Exception
+     */
     public function testResponse()
     {
         $request = new SamedayGetParcelStatusHistoryRequest('foo');
@@ -64,7 +73,7 @@ class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestC
         "statusDate": "2018-10-23T18:52:39+0300",
         "county": "Bucuresti",
         "reason": "",
-        "expeditionDetails": "https://sameday-api.demo.zitec.com/api/client/awb/1SDY241065761/status",
+        "expeditionDetails": "https://foo.com/api/client/awb/1SDY241065761/status",
         "transitLocation": ""
     }
 }
@@ -72,27 +81,63 @@ JSON
             , 200);
         $response = new SamedayGetParcelStatusHistoryResponse($request, $rawResponse);
 
-        $summary = $response->getSummary();
-        $this->assertInstanceOf('Sameday\Objects\ParcelStatusHistory\SummaryObject', $summary);
-        $this->assertEquals('2018-10-23 18:52:39', $summary->getDeliveredAt()->format('Y-m-d H:i:s'));
-        $this->assertEquals('2018-10-23 18:52:39', $summary->getLastDeliveryAttempt()->format('Y-m-d H:i:s'));
-        $this->assertTrue($summary->isDelivered());
-        $this->assertFalse($summary->isCanceled());
-        $this->assertEquals(1, $summary->getDeliveryAttempts());
-        $this->assertEquals('1SDY241065761001', $summary->getParcelAwbNumber());
-        $this->assertEquals(1.1, $summary->getParcelWeight());
-        $this->assertTrue($summary->isPickedUp());
-        $this->assertEquals('2018-10-23 18:52:16', $summary->getPickedUpAt()->format('Y-m-d H:i:s'));
+        $this->assertEquals(
+            new SummaryObject(
+                true,
+                false,
+                1,
+                '1SDY241065761001',
+                1.1,
+                true,
+                new \DateTime('2018-10-23T18:52:39+0300'),
+                new \DateTime('2018-10-23T18:52:39+0300'),
+                new \DateTime('2018-10-23T18:52:16+0300')
+            ),
+            $response->getSummary()
+        );
 
         $history = $response->getHistory();
         $this->assertCount(2, $history);
-        $this->assertEquals(1, $history[0]->getId());
-        $this->assertEquals('AWB Emis', $history[0]->getName());
-        $this->assertEquals('Document de transport emis', $history[0]->getLabel());
-        $this->assertEquals('Comanda curier primita', $history[0]->getState());
-        $this->assertEquals('2018-10-23 18:46:44', $history[0]->getDate()->format('Y-m-d H:i:s'));
-        $this->assertEquals('Bucuresti', $history[0]->getCounty());
-        $this->assertEquals('reason', $history[0]->getReason());
-        $this->assertEquals('location1', $history[0]->getTransitLocation());
+        $this->assertEquals(
+            new HistoryObject(
+                1,
+                'AWB Emis',
+                'Document de transport emis',
+                'Comanda curier primita',
+                new \DateTime('2018-10-23T18:46:44+0300'),
+                'Bucuresti',
+                'reason',
+                'location1'
+            ),
+            $history[0]
+        );
+        $this->assertEquals(
+            new HistoryObject(
+                33,
+                'In livrare la curier',
+                'In livrare la curier',
+                'Colete in curs de livrare',
+                new \DateTime('2018-10-23T18:46:58+0300'),
+                'Bucuresti',
+                'reason',
+                'location2'
+            ),
+            $history[1]
+        );
+
+        $this->assertEquals(
+            new ExpeditionObject(
+                9,
+                'Livrata cu succes',
+                'Colet livrat',
+                'Colete livrate',
+                new \DateTime('2018-10-23T18:52:39+0300'),
+                'Bucuresti',
+                '',
+                '',
+                'https://foo.com/api/client/awb/1SDY241065761/status'
+            ),
+            $response->getExpeditionStatus()
+        );
     }
 }

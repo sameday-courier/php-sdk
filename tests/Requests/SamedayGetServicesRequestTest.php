@@ -6,18 +6,33 @@ use Sameday\Requests\SamedayGetServicesRequest;
 
 class SamedayGetServicesRequestTest extends \PHPUnit_Framework_TestCase
 {
-    public function testBuildRequest()
+    public function testConstructor()
+    {
+        $request = new SamedayGetServicesRequest();
+
+        $this->assertEquals(1, $request->getPage());
+        $this->assertEquals(50, $request->getCountPerPage());
+    }
+
+    public function testSetGet()
     {
         $request = new SamedayGetServicesRequest();
         $request->setPage(2);
         $request->setCountPerPage(10);
 
+        $this->assertEquals(2, $request->getPage());
+        $this->assertEquals(10, $request->getCountPerPage());
+    }
+
+    public function testBuildRequest()
+    {
+        $request = new SamedayGetServicesRequest();
         $samedayRequest = $request->buildRequest();
 
         $this->assertInstanceOf('Sameday\Http\SamedayRequest', $samedayRequest);
         $this->assertTrue($samedayRequest->isNeedAuth());
         $this->assertEquals('GET', $samedayRequest->getMethod());
         $this->assertEquals('/api/client/services', $samedayRequest->getEndpoint());
-        $this->assertEquals(['page' => 2, 'countPerPage' => 10], $samedayRequest->getQueryParams());
+        $this->assertEquals(['page' => 1, 'countPerPage' => 50], $samedayRequest->getQueryParams());
     }
 }

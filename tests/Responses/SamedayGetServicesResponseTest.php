@@ -3,6 +3,11 @@
 namespace Sameday\Tests\Responses;
 
 use Sameday\Http\SamedayRawResponse;
+use Sameday\Objects\Service\DeliveryTypeObject;
+use Sameday\Objects\Service\OptionalTaxObject;
+use Sameday\Objects\Service\ServiceObject;
+use Sameday\Objects\Types\CostType;
+use Sameday\Objects\Types\PackageType;
 use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayGetServicesResponse;
 
@@ -79,31 +84,31 @@ JSON
         $this->assertEquals(3, $response->getPages());
         $this->assertEquals(4, $response->getPerPage());
 
+        $this->assertEquals(
+            new ServiceObject(
+                1,
+                'foo',
+                'code_foo',
+                new DeliveryTypeObject(10, 'foo_delivery'),
+                false,
+                []
+            ),
+            $services[0]
+        );
 
-        $this->assertEquals('foo', $services[0]->getName());
-        $this->assertEquals('code_foo', $services[0]->getCode());
-        $this->assertFalse($services[0]->isDefault());
-        $this->assertInstanceOf('Sameday\Objects\Service\DeliveryTypeObject', $services[0]->getDeliveryType());
-        $this->assertEquals(10, $services[0]->getDeliveryType()->getId());
-        $this->assertEquals('foo_delivery', $services[0]->getDeliveryType()->getName());
-        $this->assertCount(0, $services[0]->getOptionalTaxes());
-
-        $this->assertEquals('bar', $services[1]->getName());
-        $this->assertEquals('code_bar', $services[1]->getCode());
-        $this->assertTrue($services[1]->isDefault());
-        $this->assertInstanceOf('Sameday\Objects\Service\DeliveryTypeObject', $services[1]->getDeliveryType());
-        $this->assertEquals(20, $services[1]->getDeliveryType()->getId());
-        $this->assertEquals('bar_delivery', $services[1]->getDeliveryType()->getName());
-        $this->assertCount(2, $services[1]->getOptionalTaxes());
-        $this->assertEquals(201, $services[1]->getOptionalTaxes()[0]->getId());
-        $this->assertEquals('tax1', $services[1]->getOptionalTaxes()[0]->getName());
-        $this->assertEquals('Fix', $services[1]->getOptionalTaxes()[0]->getCostType()->getType());
-        $this->assertEquals(1, $services[1]->getOptionalTaxes()[0]->getTax());
-        $this->assertEquals(0, $services[1]->getOptionalTaxes()[0]->getPackageType()->getType());
-        $this->assertEquals(202, $services[1]->getOptionalTaxes()[1]->getId());
-        $this->assertEquals('tax2', $services[1]->getOptionalTaxes()[1]->getName());
-        $this->assertEquals('Percent', $services[1]->getOptionalTaxes()[1]->getCostType()->getType());
-        $this->assertEquals(1.1, $services[1]->getOptionalTaxes()[1]->getTax());
-        $this->assertEquals(1, $services[1]->getOptionalTaxes()[1]->getPackageType()->getType());
+        $this->assertEquals(
+            new ServiceObject(
+                2,
+                'bar',
+                'code_bar',
+                new DeliveryTypeObject(20, 'bar_delivery'),
+                true,
+                [
+                    new OptionalTaxObject(201, 'tax1', new CostType('Fix'), 1, new PackageType(0)),
+                    new OptionalTaxObject(202, 'tax2', new CostType('Percent'), 1.1, new PackageType(1)),
+                ]
+            ),
+            $services[1]
+        );
     }
 }

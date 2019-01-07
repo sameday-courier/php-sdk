@@ -12,12 +12,12 @@ use Sameday\Requests\SamedayPaginatedRequestInterface;
 trait SamedayResponsePaginationTrait
 {
     /**
-     * @var int Total number of elements.
+     * @var int|null Total number of elements.
      */
     protected $total = 0;
 
     /**
-     * @var int Current page.
+     * @var int|null Current page.
      */
     protected $currentPage;
 
@@ -78,9 +78,9 @@ trait SamedayResponsePaginationTrait
             return;
         }
 
-        $this->total = $data['total'];
+        $this->total = array_key_exists('total', $data) ? $data['total'] : null;
         $this->currentPage = $data['currentPage'];
-        $this->pages = $data['pages'];
+        $this->pages = array_key_exists('pages', $data) ? $data['pages'] : null;
         $this->perPage = $data['perPage'];
     }
 }
