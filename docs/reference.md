@@ -49,13 +49,13 @@ These are the core exceptions that the SDK will throw when an error occurs.
 
 | Class name | Description |
 | ------------- | ------------- |
-| [`Sameday\Exceptions\SamedayAuthenticationException`](reference/SamedayAuthenticationException.md) | Thrown when unable to authenticate current user and password. |
-| [`Sameday\Exceptions\SamedayAuthorizationException`](reference/SamedayAuthorizationException.md) | Thrown when the level of authorization is insufficient for current request. |
-| [`Sameday\Exceptions\SamedayBadRequestException`](reference/SamedayBadRequestException.md) | Thrown when the request is invalid. |
-| [`Sameday\Exceptions\SamedayNotFoundException`](reference/SamedayNotFoundException.md) | Thrown when the request endpoint or required data is not found. |
-| [`Sameday\Exceptions\SamedayOtherException`](reference/SamedayOtherException.md) | Thrown when the response has an unknown http status code. |
-| [`Sameday\Exceptions\SamedaySDKException`](reference/SamedaySDKException.md) | Thrown when there is an internal exception. |
-| [`Sameday\Exceptions\SamedayServerException`](reference/SamedayServerException.md) | Thrown when there is a server exception. |
+| `Sameday\Exceptions\SamedayAuthenticationException` | Thrown when unable to authenticate current user and password. |
+| `Sameday\Exceptions\SamedayAuthorizationException` | Thrown when the level of authorization is insufficient for current request. |
+| `Sameday\Exceptions\SamedayBadRequestException` | Thrown when the request is invalid. |
+| `Sameday\Exceptions\SamedayNotFoundException` | Thrown when the request endpoint or required data is not found. |
+| `Sameday\Exceptions\SamedayOtherException` | Thrown when the response has an unknown http status code. |
+| `Sameday\Exceptions\SamedaySDKException` | Thrown when there is an internal exception. |
+| `Sameday\Exceptions\SamedayServerException` | Thrown when there is a server exception. |
 
 # Extensibility
 
@@ -65,4 +65,4 @@ You can overwrite certain functionality of the SDK by coding to an interface and
 | ------------- | ------------- |
 | `Sameday\HttpClients\SamedayHttpClientInterface` | An interface to code your own HTTP client implementation. |
 | `Sameday\Http\SamedayRawResponse` | An entity that represents a raw HTTP response from the API. |
-| [`Sameday\PersistentData\SamedayPersistentDataInterface`](reference/SamedayPersistentDataInterface.md) | An interface to code your own persistent data storage implementation.  |
+| `Sameday\PersistentData\SamedayPersistentDataInterface` | An interface to code your own persistent data storage implementation.  |

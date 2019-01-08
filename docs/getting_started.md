@@ -92,7 +92,7 @@ $sameday = new Sameday\Sameday($samedayClient);
 
 The SDK will automatically handle obtaining and storing of access token for current php session.
 
-## Graph API
+## Sameday Courier API
 
 Once you have an instance of the `Sameday\Sameday` service, you can begin making calls to the Sameday Courier API.
 
