@@ -29,7 +29,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
     protected $history = [];
 
     /**
-     * @var HistoryObject
+     * @var ExpeditionObject
      */
     protected $expeditionStatus;
 
@@ -88,7 +88,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
     }
 
     /**
-     * @return HistoryObject
+     * @return ExpeditionObject
      */
     public function getExpeditionStatus()
     {
@@ -119,7 +119,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
     /**
      * @param array $json
      *
-     * @return HistoryObject
+     * @return ExpeditionObject
      *
      * @throws \Exception
      */
