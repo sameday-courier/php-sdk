@@ -35,41 +35,41 @@ class SamedayGetServicesResponseTest extends \PHPUnit_Framework_TestCase
     "data": [
         {
             "id": 1,
-            "name": "foo",
-            "serviceCode": "code_foo",
+            "name": "2H",
+            "serviceCode": "2H_code",
             "deliveryType": {
-                "id": 10,
-                "name": "foo_delivery"
+                "id": 1,
+                "name": "Sameday"
             },
-            "defaultService": false,
+            "defaultServices": true,
             "serviceOptionalTaxes": []
         },
         {
-            "id": 2,
-            "name": "bar",
-            "serviceCode": "code_bar",
+            "id": 7,
+            "name": "24H",
+            "serviceCode": "24",
             "deliveryType": {
-                "id": 20,
-                "name": "bar_delivery"
+                "id": 2,
+                "name": "NextDay"
             },
-            "defaultService": true,
+            "defaultServices": false,
             "serviceOptionalTaxes": [
                 {
-                    "id": 201,
-                    "name": "tax1",
                     "costType": "Fix",
-                    "tax": 1,
-                    "packageType": 0
+                    "id": 20,
+                    "name": "Reambalare",
+                    "tax": 6,
+                    "packageType": 1
                 },
                 {
-                    "id": 202,
-                    "name": "tax2",
-                    "costType": "Percent",
+                    "costType": "Procentual",
+                    "id": 23,
+                    "name": "Deschidere Colet",
                     "tax": 1.1,
-                    "packageType": 1
+                    "packageType": 2
                 }
             ]
-        }        
+        }
     ]
 }
 JSON
@@ -87,10 +87,10 @@ JSON
         $this->assertEquals(
             new ServiceObject(
                 1,
-                'foo',
-                'code_foo',
-                new DeliveryTypeObject(10, 'foo_delivery'),
-                false,
+                '2H',
+                '2H_code',
+                new DeliveryTypeObject(1, 'Sameday'),
+                true,
                 []
             ),
             $services[0]
@@ -98,14 +98,14 @@ JSON
 
         $this->assertEquals(
             new ServiceObject(
-                2,
-                'bar',
-                'code_bar',
-                new DeliveryTypeObject(20, 'bar_delivery'),
-                true,
+                7,
+                '24H',
+                '24',
+                new DeliveryTypeObject(2, 'NextDay'),
+                false,
                 [
-                    new OptionalTaxObject(201, 'tax1', new CostType('Fix'), 1, new PackageType(0)),
-                    new OptionalTaxObject(202, 'tax2', new CostType('Percent'), 1.1, new PackageType(1)),
+                    new OptionalTaxObject(20, 'Reambalare', new CostType('Fix'), 6, new PackageType(1)),
+                    new OptionalTaxObject(23, 'Deschidere Colet', new CostType('Procentual'), 1.1, new PackageType(2)),
                 ]
             ),
             $services[1]

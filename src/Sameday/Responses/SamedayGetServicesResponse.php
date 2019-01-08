@@ -51,7 +51,7 @@ class SamedayGetServicesResponse implements SamedayPaginatedResponseInterface
                 $data['name'],
                 $data['serviceCode'],
                 new DeliveryTypeObject($data['deliveryType']['id'], $data['deliveryType']['name']),
-                $data['defaultService'],
+                $data['defaultServices'],
                 array_map(
                     function ($entry) {
                         return new OptionalTaxObject(
