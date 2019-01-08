@@ -1,8 +1,6 @@
-# Sameday service class for the Sameday Courier SDK for PHP
+# Sameday\Sameday
 
 The `Sameday\Sameday` service class provides an easy interface for interacting with a client and make requests.
-
-## Sameday\Sameday
 
 To instantiate a new `Sameday\Sameday` service, pass an instance of `Sameday\SamedayClientInterface` to the constructor.
 

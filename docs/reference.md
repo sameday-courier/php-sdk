@@ -20,7 +20,7 @@ These classes are used as an API request.
 | [`Sameday\SamedayAuthenticateRequest`](reference/SamedayAuthenticateRequest.md) | An entity that represents an authentication request. |
 | [`Sameday\SamedayDeleteAwbRequest`](reference/SamedayDeleteAwbRequest.md) | An entity that represents a request to delete an AWB. |
 | [`Sameday\SamedayGetCountiesRequest`](reference/SamedayGetCountiesRequest.md) | An entity that represents a request to get all counties (paginated). |
-| [`Sameday\SamedayGetParcelStatusHistoryRequest`](reference/SamedayGetParcelStatusHistoryRequest.md) | An entity that represents a request to get history for a parcel. |
+| [`Sameday\SamedayGetParcelStatusHistoryRequest`](reference/SamedayGetParcelStatusHistoryRequest.md) | An entity that represents a request to get status history for a parcel. |
 | [`Sameday\SamedayGetPickupPointsRequest`](reference/SamedayGetPickupPointsRequest.md) | An entity that represents a request to get pickup points for current user (paginated). |
 | [`Sameday\SamedayGetServicesRequest`](reference/SamedayGetServicesRequest.md) | An entity that represents a request to get available delivery services for current user (paginated). |
 | [`Sameday\SamedayGetStatusSyncRequest`](reference/SamedayGetStatusSyncRequest.md) | An entity that represents a request to get all status updates that happened between two timestamps (paginated). |

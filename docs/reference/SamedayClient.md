@@ -1,12 +1,10 @@
-# Sameday service class for the Sameday Courier SDK for PHP
+# Sameday\SamedayClient
 
 The `Sameday\SamedayClient` service class juggles the dependencies needed to make requests to the API. It automatically handles retrying and token refreshing for the requests.
 
-## Sameday\SamedayClient
-
 To instantiate a new `Sameday\SamedayClient` service, you will need the assigned user and password for your Sameday Courier account.
 
-### Parameters
+## Constructor parameters
 
 - `string $username` specifies the user to be used when making API calls
 - `string $password` specifies the password for user to be used when making API calls
