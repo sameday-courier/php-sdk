@@ -6,7 +6,4 @@ This entity represents a response to get all status updated between two given UN
 
 | Method | Description |
 | ------------- | ------------- |
-| `string getAwbNumber()` | Get the AWB number |
-| `float getCost()` | Get the cost for AWB |
-| `Sameday\Objects\PostAwb\ParcelObject[] getParcels()` | Get the generated parcels for AWB |
-| `string getPdfLink()` | Get the pdf link for AWB |
+| `Sameday\Objects\StatusSync\StatusObject[] getStatuses()` | Get the array of status updates |
