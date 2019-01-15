@@ -25,6 +25,7 @@ These classes are used as an API request.
 | [`Sameday\SamedayGetServicesRequest`](reference/SamedayGetServicesRequest.md) | An entity that represents a request to get available delivery services for current user (paginated). |
 | [`Sameday\SamedayGetStatusSyncRequest`](reference/SamedayGetStatusSyncRequest.md) | An entity that represents a request to get all status updates that happened between two timestamps (paginated). |
 | [`Sameday\SamedayPostAwbRequest`](reference/SamedayPostAwbRequest.md) | An entity that represents a request to create a new AWB. |
+| [`Sameday\SamedayPostParcelRequest`](reference/SamedayPostParcelRequest.md) | An entity that represents a request to create a new parcel for an existing AWB. |
 | [`Sameday\SamedayPutParcelSizeRequest`](reference/SamedayPutParcelSizeRequest.md) | An entity that represents a request to update size for an existing parcel. |
 
 # Responses
@@ -41,6 +42,7 @@ These classes are used as an API response.
 | [`Sameday\SamedayGetServicesResponse`](reference/SamedayGetServicesResponse.md) | An entity that represents a response to get available delivery services for current user (paginated). |
 | [`Sameday\SamedayGetStatusSyncResponse`](reference/SamedayGetStatusSyncResponse.md) | An entity that represents a response to get all status updates that happened between two timestamps (paginated). |
 | [`Sameday\SamedayPostAwbResponse`](reference/SamedayPostAwbResponse.md) | An entity that represents a response to create a new AWB. |
+| [`Sameday\SamedayPostParcelResponse`](reference/SamedayPostParcelResponse.md) | An entity that represents a response to create a new parcel for an existing AWB. |
 | [`Sameday\SamedayPutParcelSizeResponse`](reference/SamedayPutParcelSizeResponse.md) | An entity that represents a response to update size for an existing parcel. |
 
 # Core Exceptions
