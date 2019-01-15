@@ -2,9 +2,9 @@
 
 namespace Sameday\Tests\Requests;
 
+use Sameday\Objects\ParcelDimensionsObject;
 use Sameday\Objects\PostAwb\Request\AwbRecipientEntityObject;
 use Sameday\Objects\PostAwb\Request\CompanyEntityObject;
-use Sameday\Objects\PostAwb\Request\ParcelObject;
 use Sameday\Objects\PostAwb\Request\ThirdPartyPickupEntityObject;
 use Sameday\Objects\Types\AwbPaymentType;
 use Sameday\Objects\Types\CodCollectorType;
@@ -28,8 +28,8 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
             2,
             $packageType,
             [
-                new ParcelObject(1),
-                new ParcelObject(1, 2, 3, 4),
+                new ParcelDimensionsObject(1),
+                new ParcelDimensionsObject(1, 2, 3, 4),
             ],
             3,
             $awbPaymentType,
@@ -49,7 +49,7 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, $request->getPickupPointId());
         $this->assertEquals(2, $request->getContactPersonId());
         $this->assertEquals($packageType, $request->getPackageType());
-        $this->assertCount(2, $request->getParcels());
+        $this->assertCount(2, $request->getParcelsDimensions());
         $this->assertEquals(3, $request->getServiceId());
         $this->assertEquals($awbPaymentType, $request->getAwbPayment());
         $this->assertEquals($awbRecipient, $request->getAwbRecipient());
@@ -71,7 +71,7 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
             1,
             2,
             new PackageType(PackageType::LARGE),
-            [new ParcelObject(1)],
+            [new ParcelDimensionsObject(1)],
             3,
             new AwbPaymentType(AwbPaymentType::CLIENT),
             new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email'),
@@ -88,7 +88,7 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
         $request->setPickupPointId(10);
         $request->setContactPersonId(20);
         $request->setPackageType($packageType);
-        $request->setParcels([]);
+        $request->setParcelsDimensions([]);
         $request->setServiceId(30);
         $request->setAwbPayment($awbPaymentType);
         $request->setAwbRecipient($awbRecipient);
@@ -106,7 +106,7 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(10, $request->getPickupPointId());
         $this->assertEquals(20, $request->getContactPersonId());
         $this->assertEquals($packageType, $request->getPackageType());
-        $this->assertCount(0, $request->getParcels());
+        $this->assertCount(0, $request->getParcelsDimensions());
         $this->assertEquals(30, $request->getServiceId());
         $this->assertEquals($awbPaymentType, $request->getAwbPayment());
         $this->assertEquals($awbRecipient, $request->getAwbRecipient());
@@ -136,8 +136,8 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
             2,
             $packageType,
             [
-                new ParcelObject(1),
-                new ParcelObject(1, 2, 3, 4),
+                new ParcelDimensionsObject(1),
+                new ParcelDimensionsObject(1, 2, 3, 4),
             ],
             3,
             $awbPaymentType,

@@ -4,8 +4,8 @@ namespace Sameday\Requests;
 
 use Sameday\Http\RequestBodyUrlEncoded;
 use Sameday\Http\SamedayRequest;
+use Sameday\Objects\ParcelDimensionsObject;
 use Sameday\Objects\PostAwb\Request\AwbRecipientEntityObject;
-use Sameday\Objects\PostAwb\Request\ParcelObject;
 use Sameday\Objects\PostAwb\Request\ThirdPartyPickupEntityObject;
 use Sameday\Objects\Types\AwbPaymentType;
 use Sameday\Objects\Types\CodCollectorType;
@@ -35,9 +35,9 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     protected $packageType;
 
     /**
-     * @var ParcelObject[]
+     * @var ParcelDimensionsObject[]
      */
-    protected $parcels;
+    protected $parcelsDimensions;
 
     /**
      * @var int
@@ -110,7 +110,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
      * @param int $pickupPointId
      * @param int|null $contactPersonId
      * @param PackageType $packageType
-     * @param ParcelObject[] $parcels
+     * @param ParcelDimensionsObject[] $parcelsDimensions
      * @param int $serviceId
      * @param AwbPaymentType $awbPayment
      * @param AwbRecipientEntityObject $awbRecipient
@@ -129,7 +129,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $pickupPointId,
         $contactPersonId,
         PackageType $packageType,
-        array $parcels,
+        array $parcelsDimensions,
         $serviceId,
         AwbPaymentType $awbPayment,
         AwbRecipientEntityObject $awbRecipient,
@@ -147,7 +147,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $this->pickupPointId = $pickupPointId;
         $this->contactPersonId = $contactPersonId;
         $this->packageType = $packageType;
-        $this->parcels = $parcels;
+        $this->parcelsDimensions = $parcelsDimensions;
         $this->serviceId = $serviceId;
         $this->awbPayment = $awbPayment;
         $this->awbRecipient = $awbRecipient;
@@ -171,17 +171,17 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         // Calculate weight for all parcels.
         $weight = 0;
         array_map(
-            function (ParcelObject $parcel) use (&$weight) {
-                $weight += $parcel->getWeight();
+            function (ParcelDimensionsObject $parcelDimensions) use (&$weight) {
+                $weight += $parcelDimensions->getWeight();
             },
-            $this->parcels
+            $this->parcelsDimensions
         );
 
         $body = [
             'pickupPoint' => $this->pickupPointId,
             'contactPerson' => $this->contactPersonId,
             'packageType' => $this->packageType->getType(),
-            'packageNumber' => count($this->parcels),
+            'packageNumber' => count($this->parcelsDimensions),
             'packageWeight' => $weight,
             'service' => $this->serviceId,
             'awbPayment' => $this->awbPayment->getType(),
@@ -201,16 +201,16 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
             'deliveryInterval' => $this->deliveryIntervalServiceType ? $this->deliveryIntervalServiceType->getType() : null,
             'awbRecipient' => $this->awbRecipient->getFields(),
             'parcels' => array_map(
-                // Build parcel fields from ParcelObject.
-                function (ParcelObject $parcel) {
+                // Build parcel fields from ParcelDimensionsObject.
+                function (ParcelDimensionsObject $parcelDimensions) {
                     return [
-                        'weight' => $parcel->getWeight(),
-                        'width' => $parcel->getWidth(),
-                        'length' => $parcel->getLength(),
-                        'height' => $parcel->getHeight(),
+                        'weight' => $parcelDimensions->getWeight(),
+                        'width' => $parcelDimensions->getWidth(),
+                        'length' => $parcelDimensions->getLength(),
+                        'height' => $parcelDimensions->getHeight(),
                     ];
                 },
-                $this->parcels
+                $this->parcelsDimensions
             ),
             'observation' => $this->observation,
             'priceObservation' => $this->priceObservation,
@@ -288,21 +288,21 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     }
 
     /**
-     * @return ParcelObject[]
+     * @return ParcelDimensionsObject[]
      */
-    public function getParcels()
+    public function getParcelsDimensions()
     {
-        return $this->parcels;
+        return $this->parcelsDimensions;
     }
 
     /**
-     * @param ParcelObject[] $parcels
+     * @param ParcelDimensionsObject[] $parcelsDimensions
      *
      * @return $this
      */
-    public function setParcels($parcels)
+    public function setParcelsDimensions($parcelsDimensions)
     {
-        $this->parcels = $parcels;
+        $this->parcelsDimensions = $parcelsDimensions;
 
         return $this;
     }

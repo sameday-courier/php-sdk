@@ -7,7 +7,7 @@ This entity represents a request to create a new AWB.
 - `int $pickupPointId` specifies the pickup point id as returned by [`Sameday\Requests\SamedayGetPickupPointsRequest`](SamedayGetPickupPointsRequest.md)
 - `int|null $contactPersonId` specifies the contact person id as returned by [`Sameday\Requests\SamedayGetPickupPointsRequest`](SamedayGetPickupPointsRequest.md)
 - `Sameday\Objects\Types\PackageType $packageType` specifies the package type to be used
-- `Sameday\Objects\PostAwb\Request\ParcelObject[] $parcels` specifies an array with parcels to be used
+- `Sameday\Objects\PostAwb\Request\ParcelDimensionsObject[] $parcelsDimensions` specifies an array with parcels to be used
 - `int $serviceId` specifies the service id as returned by [`Sameday\Requests\SamedayGetServicesRequest`](SamedayGetServicesRequest.md)
 - `Sameday\Objects\Types\AwbPaymentType $awbPayment` specifies who will pay for the AWB 
 - `Sameday\Objects\PostAwb\Request\AwbRecipientEntityObject` specifies the receiver of the package
