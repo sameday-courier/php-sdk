@@ -18,5 +18,5 @@ $services = $sameday->getServices(new Sameday\Requests\SamedayGetServicesRequest
 $response = $sameday->getPickupPoints(new Sameday\Requests\SamedayGetPickupPointsRequest());
 
 // Delete an AWB.
-$response = $sameday->deleteAwb(new Sameday\SamedayDeleteAwbRequest('{awb_number}'));
+$response = $sameday->deleteAwb(new Sameday\Requests\SamedayDeleteAwbRequest('{awb_number}'));
 ```
