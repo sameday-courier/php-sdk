@@ -6,7 +6,6 @@ use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\ParcelStatusHistory\ExpeditionObject;
 use Sameday\Objects\ParcelStatusHistory\HistoryObject;
 use Sameday\Objects\ParcelStatusHistory\SummaryObject;
-use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 
 class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestCase
@@ -16,7 +15,7 @@ class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestC
      */
     public function testConstructorParameters()
     {
-        $request = new SamedayGetParcelStatusHistoryRequest('foo');
+        $request = \Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayGetParcelStatusHistoryResponse($request, $rawResponse);
 
@@ -29,7 +28,7 @@ class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestC
      */
     public function testResponse()
     {
-        $request = new SamedayGetParcelStatusHistoryRequest('foo');
+        $request = \Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "parcelSummary": {

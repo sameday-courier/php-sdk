@@ -3,7 +3,6 @@
 namespace Sameday\Tests\Responses;
 
 use Sameday\Http\SamedayRawResponse;
-use Sameday\Requests\SamedayAuthenticateRequest;
 use Sameday\Responses\SamedayAuthenticateResponse;
 
 class SamedayAuthenticateResponseTest extends \PHPUnit_Framework_TestCase
@@ -13,7 +12,7 @@ class SamedayAuthenticateResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructorParameters()
     {
-        $request = new SamedayAuthenticateRequest('username', 'password');
+        $request = \Mockery::mock('Sameday\Requests\SamedayAuthenticateRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayAuthenticateResponse($request, $rawResponse);
 
@@ -26,7 +25,7 @@ class SamedayAuthenticateResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testResponse()
     {
-        $request = new SamedayAuthenticateRequest('username', 'password');
+        $request = \Mockery::mock('Sameday\Requests\SamedayAuthenticateRequest');
         $rawResponse = new SamedayRawResponse([], '{"token":"foo","expire_at":"2010-01-02 12:23"}', 200);
         $response = new SamedayAuthenticateResponse($request, $rawResponse);
 

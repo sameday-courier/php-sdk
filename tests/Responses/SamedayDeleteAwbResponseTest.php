@@ -3,16 +3,13 @@
 namespace Sameday\Tests\Responses;
 
 use Sameday\Http\SamedayRawResponse;
-use Sameday\Requests\SamedayDeleteAwbRequest;
-use Sameday\Requests\SamedayPutParcelSizeRequest;
 use Sameday\Responses\SamedayDeleteAwbResponse;
-use Sameday\Responses\SamedayPutParcelSizeResponse;
 
 class SamedayDeleteAwbResponseTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructorParameters()
     {
-        $request = new SamedayDeleteAwbRequest('foo');
+        $request = \Mockery::mock('Sameday\Requests\SamedayDeleteAwbRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayDeleteAwbResponse($request, $rawResponse);
 

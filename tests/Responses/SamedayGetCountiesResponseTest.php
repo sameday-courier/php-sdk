@@ -5,9 +5,7 @@ namespace Sameday\Tests\Responses;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\CountyObject;
 use Sameday\Requests\SamedayGetCountiesRequest;
-use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayGetCountiesResponse;
-use Sameday\Responses\SamedayGetServicesResponse;
 
 class SamedayGetCountiesResponseTest extends \PHPUnit_Framework_TestCase
 {

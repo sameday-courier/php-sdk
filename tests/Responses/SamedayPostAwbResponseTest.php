@@ -9,9 +9,7 @@ class SamedayPostAwbResponseTest extends \PHPUnit_Framework_TestCase
 {
     public function testConstructorParameters()
     {
-        $request = $this->getMockBuilder('Sameday\Requests\SamedayPostAwbRequest')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $request = \Mockery::mock('Sameday\Requests\SamedayPostAwbRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayPostAwbResponse($request, $rawResponse);
 
@@ -21,9 +19,7 @@ class SamedayPostAwbResponseTest extends \PHPUnit_Framework_TestCase
 
     public function testResponse()
     {
-        $request = $this->getMockBuilder('Sameday\Requests\SamedayPostAwbRequest')
-            ->disableOriginalConstructor()
-            ->getMock();
+        $request = \Mockery::mock('Sameday\Requests\SamedayPostAwbRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "awbNumber": "foo",

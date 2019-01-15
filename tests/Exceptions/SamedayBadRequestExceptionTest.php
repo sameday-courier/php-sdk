@@ -5,14 +5,13 @@ namespace Sameday\Tests\Exceptions;
 use Sameday\Exceptions\SamedayBadRequestException;
 use Sameday\Exceptions\SamedayServerException;
 use Sameday\Http\SamedayRawResponse;
-use Sameday\Http\SamedayRequest;
 
 class SamedayBadRequestExceptionTest extends \PHPUnit_Framework_TestCase
 {
     public function testReturnsRawResponse()
     {
-        $samedayRequest = new SamedayRequest(false, 'GET', '/endpoint');
-        $rawResponse = new SamedayRawResponse([], '');
+        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $rawResponse = \Mockery::mock('Sameday\Http\SamedayRawResponse');
         $exception = new SamedayServerException($samedayRequest, $rawResponse);
 
         $this->assertEquals($rawResponse, $exception->getRawResponse());
@@ -21,7 +20,7 @@ class SamedayBadRequestExceptionTest extends \PHPUnit_Framework_TestCase
 
     public function testErrors()
     {
-        $samedayRequest = new SamedayRequest(false, 'GET', '/endpoint');
+        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
         $rawResponse = new SamedayRawResponse([], <<<ERRORS
 {
     "code": 400,
@@ -64,7 +63,7 @@ ERRORS
 
     public function testEmptyErrors()
     {
-        $samedayRequest = new SamedayRequest(false, 'GET', '/endpoint');
+        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
         $rawResponse = new SamedayRawResponse([], <<<ERRORS
 {
     "code": 400,
