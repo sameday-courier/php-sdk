@@ -32,11 +32,6 @@ class SamedayPostAwbResponse implements SamedayResponseInterface
     protected $parcels;
 
     /**
-     * @var string
-     */
-    protected $pdfLink;
-
-    /**
      * SamedayPostAwbResponse constructor.
      *
      * @param SamedayPostAwbRequest $request
@@ -55,7 +50,6 @@ class SamedayPostAwbResponse implements SamedayResponseInterface
 
         $this->awbNumber = $json['awbNumber'];
         $this->cost = $json['awbCost'];
-        $this->pdfLink = $json['pdfLink'];
 
         $this->parcels = array_map(
             function (array $parcel) {
@@ -87,13 +81,5 @@ class SamedayPostAwbResponse implements SamedayResponseInterface
     public function getParcels()
     {
         return $this->parcels;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPdfLink()
-    {
-        return $this->pdfLink;
     }
 }
