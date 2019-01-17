@@ -9,6 +9,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 - Download PDF for an existing AWB
 
+### Changed
+
+- Removed `pdfLink` from `Sameday\Responses\SamedayPostAwbResponse`
+
 ## [1.1.0](https://github.com/sameday-courier/php-sdk/compare/1.0.0...1.1.0) - 2019-01-15
 
 ### Fixed
