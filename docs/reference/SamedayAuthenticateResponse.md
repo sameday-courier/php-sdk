@@ -1,4 +1,4 @@
-# Sameday\Requests\SamedayAuthenticateResponse
+# Sameday\Responses\SamedayAuthenticateResponse
 
 This entity represents an authentication response.
 

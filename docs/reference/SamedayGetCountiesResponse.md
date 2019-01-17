@@ -1,4 +1,4 @@
-# Sameday\Requests\SamedayGetCountiesResponse
+# Sameday\Responses\SamedayGetCountiesResponse
 
 This entity represents a response to get list of available counties (paginated).
 

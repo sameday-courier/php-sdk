@@ -1,4 +1,4 @@
-# Sameday\Requests\SamedayGetStatusSyncResponse
+# Sameday\Responses\SamedayGetStatusSyncResponse
 
 This entity represents a response to get all status updated between two given UNIX timestamps (paginated).
 

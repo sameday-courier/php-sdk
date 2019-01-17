@@ -1,4 +1,4 @@
-# Sameday\Requests\SamedayGetPickupPointsResponse
+# Sameday\Responses\SamedayGetPickupPointsResponse
 
 This entity represents a response to get list of available pickup points (paginated).
 

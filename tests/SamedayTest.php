@@ -202,6 +202,25 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    public function testGetAwbPdf()
+    {
+        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $request = $this->mockRequest('Sameday\Requests\SamedayGetAwbPdfRequest', $samedayRequest);
+
+        $rawResponse = new SamedayRawResponse([], '');
+        $this->client
+            ->shouldReceive('sendRequest')
+            ->once()
+            ->with($samedayRequest)
+            ->andReturn($rawResponse);
+
+        $response = $this->sameday->getAwbPdf($request);
+
+        $this->assertInstanceOf('Sameday\Responses\SamedayGetAwbPdfResponse', $response);
+        $this->assertEquals($request, $response->getRequest());
+        $this->assertEquals($rawResponse, $response->getRawResponse());
+    }
+
     /**
      * @param string $class
      * @param SamedayRequest $buildReturn

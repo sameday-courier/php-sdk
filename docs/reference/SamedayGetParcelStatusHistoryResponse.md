@@ -1,4 +1,4 @@
-# Sameday\Requests\SamedayGetParcelStatusHistoryResponse
+# Sameday\Responses\SamedayGetParcelStatusHistoryResponse
 
 This entity represents a response to get status history for a parcel.
 

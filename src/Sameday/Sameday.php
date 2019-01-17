@@ -3,6 +3,7 @@
 namespace Sameday;
 
 use Sameday\Requests\SamedayDeleteAwbRequest;
+use Sameday\Requests\SamedayGetAwbPdfRequest;
 use Sameday\Requests\SamedayGetCountiesRequest;
 use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
@@ -12,6 +13,7 @@ use Sameday\Requests\SamedayPostParcelRequest;
 use Sameday\Requests\SamedayPutParcelSizeRequest;
 use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayDeleteAwbResponse;
+use Sameday\Responses\SamedayGetAwbPdfResponse;
 use Sameday\Responses\SamedayGetCountiesResponse;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 use Sameday\Responses\SamedayGetPickupPointsResponse;
@@ -199,5 +201,22 @@ class Sameday
     public function postParcel(SamedayPostParcelRequest $request)
     {
         return new SamedayPostParcelResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayGetAwbPdfRequest $request
+     *
+     * @return SamedayGetAwbPdfResponse
+     *
+     * @throws Exceptions\SamedayAuthenticationException
+     * @throws Exceptions\SamedayAuthorizationException
+     * @throws Exceptions\SamedayBadRequestException
+     * @throws Exceptions\SamedayNotFoundException
+     * @throws Exceptions\SamedaySDKException
+     * @throws Exceptions\SamedayServerException
+     */
+    public function getAwbPdf(SamedayGetAwbPdfRequest $request)
+    {
+        return new SamedayGetAwbPdfResponse($request, $this->client->sendRequest($request->buildRequest()));
     }
 }

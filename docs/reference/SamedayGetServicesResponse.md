@@ -1,4 +1,4 @@
-# Sameday\Requests\SamedayGetServicesResponse
+# Sameday\Responses\SamedayGetServicesResponse
 
 This entity represents a response to get list of available services (paginated).
 

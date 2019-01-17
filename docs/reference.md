@@ -17,16 +17,17 @@ These classes are used as an API request.
 
 | Class name | Description |
 | ------------- | ------------- |
-| [`Sameday\SamedayAuthenticateRequest`](reference/SamedayAuthenticateRequest.md) | An entity that represents an authentication request. |
-| [`Sameday\SamedayDeleteAwbRequest`](reference/SamedayDeleteAwbRequest.md) | An entity that represents a request to delete an AWB. |
-| [`Sameday\SamedayGetCountiesRequest`](reference/SamedayGetCountiesRequest.md) | An entity that represents a request to get all counties (paginated). |
-| [`Sameday\SamedayGetParcelStatusHistoryRequest`](reference/SamedayGetParcelStatusHistoryRequest.md) | An entity that represents a request to get status history for a parcel. |
-| [`Sameday\SamedayGetPickupPointsRequest`](reference/SamedayGetPickupPointsRequest.md) | An entity that represents a request to get pickup points for current user (paginated). |
-| [`Sameday\SamedayGetServicesRequest`](reference/SamedayGetServicesRequest.md) | An entity that represents a request to get available delivery services for current user (paginated). |
-| [`Sameday\SamedayGetStatusSyncRequest`](reference/SamedayGetStatusSyncRequest.md) | An entity that represents a request to get all status updates that happened between two timestamps (paginated). |
-| [`Sameday\SamedayPostAwbRequest`](reference/SamedayPostAwbRequest.md) | An entity that represents a request to create a new AWB. |
-| [`Sameday\SamedayPostParcelRequest`](reference/SamedayPostParcelRequest.md) | An entity that represents a request to create a new parcel for an existing AWB. |
-| [`Sameday\SamedayPutParcelSizeRequest`](reference/SamedayPutParcelSizeRequest.md) | An entity that represents a request to update size for an existing parcel. |
+| [`Sameday\Requests\SamedayAuthenticateRequest`](reference/SamedayAuthenticateRequest.md) | An entity that represents an authentication request. |
+| [`Sameday\Requests\SamedayDeleteAwbRequest`](reference/SamedayDeleteAwbRequest.md) | An entity that represents a request to delete an AWB. |
+| [`Sameday\Requests\SamedayGetAwbPdfRequest`](reference/SamedayGetAwbPdfRequest.md) | An entity that represents a request to download an PDF for an existing AWB. |
+| [`Sameday\Requests\SamedayGetCountiesRequest`](reference/SamedayGetCountiesRequest.md) | An entity that represents a request to get all counties (paginated). |
+| [`Sameday\Requests\SamedayGetParcelStatusHistoryRequest`](reference/SamedayGetParcelStatusHistoryRequest.md) | An entity that represents a request to get status history for a parcel. |
+| [`Sameday\Requests\SamedayGetPickupPointsRequest`](reference/SamedayGetPickupPointsRequest.md) | An entity that represents a request to get pickup points for current user (paginated). |
+| [`Sameday\Requests\SamedayGetServicesRequest`](reference/SamedayGetServicesRequest.md) | An entity that represents a request to get available delivery services for current user (paginated). |
+| [`Sameday\Requests\SamedayGetStatusSyncRequest`](reference/SamedayGetStatusSyncRequest.md) | An entity that represents a request to get all status updates that happened between two timestamps (paginated). |
+| [`Sameday\Requests\SamedayPostAwbRequest`](reference/SamedayPostAwbRequest.md) | An entity that represents a request to create a new AWB. |
+| [`Sameday\Requests\SamedayPostParcelRequest`](reference/SamedayPostParcelRequest.md) | An entity that represents a request to create a new parcel for an existing AWB. |
+| [`Sameday\Requests\SamedayPutParcelSizeRequest`](reference/SamedayPutParcelSizeRequest.md) | An entity that represents a request to update size for an existing parcel. |
 
 # Responses
 
@@ -34,16 +35,17 @@ These classes are used as an API response.
 
 | Class name | Description |
 | ------------- | ------------- |
-| [`Sameday\SamedayAuthenticateResponse`](reference/SamedayAuthenticateResponse.md) | An entity that represents an authentication response. |
-| [`Sameday\SamedayDeleteAwbResponse`](reference/SamedayDeleteAwbResponse.md) | An entity that represents a response to delete an AWB. |
-| [`Sameday\SamedayGetCountiesResponse`](reference/SamedayGetCountiesResponse.md) | An entity that represents a response to get all counties (paginated). |
-| [`Sameday\SamedayGetParcelStatusHistoryResponse`](reference/SamedayGetParcelStatusHistoryResponse.md) | An entity that represents a response to get history for a parcel. |
-| [`Sameday\SamedayGetPickupPointsResponse`](reference/SamedayGetPickupPointsResponse.md) | An entity that represents a response to get pickup points for current user (paginated). |
-| [`Sameday\SamedayGetServicesResponse`](reference/SamedayGetServicesResponse.md) | An entity that represents a response to get available delivery services for current user (paginated). |
-| [`Sameday\SamedayGetStatusSyncResponse`](reference/SamedayGetStatusSyncResponse.md) | An entity that represents a response to get all status updates that happened between two timestamps (paginated). |
-| [`Sameday\SamedayPostAwbResponse`](reference/SamedayPostAwbResponse.md) | An entity that represents a response to create a new AWB. |
-| [`Sameday\SamedayPostParcelResponse`](reference/SamedayPostParcelResponse.md) | An entity that represents a response to create a new parcel for an existing AWB. |
-| [`Sameday\SamedayPutParcelSizeResponse`](reference/SamedayPutParcelSizeResponse.md) | An entity that represents a response to update size for an existing parcel. |
+| [`Sameday\Responses\SamedayAuthenticateResponse`](reference/SamedayAuthenticateResponse.md) | An entity that represents an authentication response. |
+| [`Sameday\Responses\SamedayDeleteAwbResponse`](reference/SamedayDeleteAwbResponse.md) | An entity that represents a response to delete an AWB. |
+| [`Sameday\Responses\SamedayGetAwbPdfResponse`](reference/SamedayGetAwbPdfResponse.md) | An entity that represents a response to download an PDF for an existing AWB. |
+| [`Sameday\Responses\SamedayGetCountiesResponse`](reference/SamedayGetCountiesResponse.md) | An entity that represents a response to get all counties (paginated). |
+| [`Sameday\Responses\SamedayGetParcelStatusHistoryResponse`](reference/SamedayGetParcelStatusHistoryResponse.md) | An entity that represents a response to get history for a parcel. |
+| [`Sameday\Responses\SamedayGetPickupPointsResponse`](reference/SamedayGetPickupPointsResponse.md) | An entity that represents a response to get pickup points for current user (paginated). |
+| [`Sameday\Responses\SamedayGetServicesResponse`](reference/SamedayGetServicesResponse.md) | An entity that represents a response to get available delivery services for current user (paginated). |
+| [`Sameday\Responses\SamedayGetStatusSyncResponse`](reference/SamedayGetStatusSyncResponse.md) | An entity that represents a response to get all status updates that happened between two timestamps (paginated). |
+| [`Sameday\Responses\SamedayPostAwbResponse`](reference/SamedayPostAwbResponse.md) | An entity that represents a response to create a new AWB. |
+| [`Sameday\Responses\SamedayPostParcelResponse`](reference/SamedayPostParcelResponse.md) | An entity that represents a response to create a new parcel for an existing AWB. |
+| [`Sameday\Responses\SamedayPutParcelSizeResponse`](reference/SamedayPutParcelSizeResponse.md) | An entity that represents a response to update size for an existing parcel. |
 
 # Core Exceptions
 
