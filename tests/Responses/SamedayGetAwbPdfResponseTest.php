@@ -21,11 +21,11 @@ class SamedayGetAwbPdfResponseTest extends \PHPUnit_Framework_TestCase
     {
         $request = \Mockery::mock('Sameday\Requests\SamedayGetAwbPdfRequest');
         $rawResponse = new SamedayRawResponse([], <<<PDF
-PDF CONTENT
+CONTENT
 PDF
             , 200);
         $response = new SamedayGetAwbPdfResponse($request, $rawResponse);
 
-        $this->assertEquals('PDF CONTENT', $response->getPdf());
+        $this->assertEquals('CONTENT', $response->getPdf());
     }
 }
