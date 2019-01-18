@@ -47,6 +47,5 @@ JSON
         $this->assertEquals('parcel_foo', $response->getParcels()[0]->getAwbNumber());
         $this->assertEquals(2, $response->getParcels()[1]->getPosition());
         $this->assertEquals('parcel_bar', $response->getParcels()[1]->getAwbNumber());
-        $this->assertEquals('https://foo.com/awb', $response->getPdfLink());
     }
 }
