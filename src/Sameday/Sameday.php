@@ -209,7 +209,7 @@ class Sameday
         // Get old parcels.
         $parcelsResponse = $this->getAwbStatusHistory($parcelsRequest);
         $oldParcels = array_map(
-            function(ParcelObject $parcel) {
+            function (ParcelObject $parcel) {
                 return $parcel->getParcelAwbNumber();
             },
             $parcelsResponse->getParcels()
@@ -221,7 +221,7 @@ class Sameday
         // Get new parcels.
         $parcelsResponse = $this->getAwbStatusHistory($parcelsRequest);
         $newParcels = array_map(
-            function(ParcelObject $parcel) {
+            function (ParcelObject $parcel) {
                 return $parcel->getParcelAwbNumber();
             },
             $parcelsResponse->getParcels()
