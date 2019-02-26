@@ -187,6 +187,35 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
     {
         $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayPostParcelRequest', $samedayRequest);
+        $request
+            ->shouldReceive('getAwbNumber')
+            ->andReturn('foo');
+
+        $parcel1 = \Mockery::mock('Sameday\Objects\AwbStatusHistory\ParcelObject');
+        $parcel1
+            ->shouldReceive('getParcelAwbNumber')
+            ->andReturn('parcel1');
+
+        $response1 = \Mockery::mock('Sameday\Responses\SamedayGetAwbStatusHistoryResponse');
+        $response1
+            ->shouldReceive('getParcels')
+            ->andReturn([$parcel1]);
+
+        $parcel2 = \Mockery::mock('Sameday\Objects\AwbStatusHistory\ParcelObject');
+        $parcel2
+            ->shouldReceive('getParcelAwbNumber')
+            ->andReturn('parcel2');
+
+        $response2 = \Mockery::mock('Sameday\Responses\SamedayGetAwbStatusHistoryResponse');
+        $response2
+            ->shouldReceive('getParcels')
+            ->andReturn([$parcel1, $parcel2]);
+
+        $sameday = \Mockery::mock('Sameday\Sameday', [$this->client])->makePartial();
+        $sameday
+            ->shouldReceive('getAwbStatusHistory')
+            ->twice()
+            ->andReturn($response1, $response2);
 
         $rawResponse = new SamedayRawResponse([], '');
         $this->client
@@ -195,11 +224,12 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
             ->with($samedayRequest)
             ->andReturn($rawResponse);
 
-        $response = $this->sameday->postParcel($request);
+        $response = $sameday->postParcel($request);
 
         $this->assertInstanceOf('Sameday\Responses\SamedayPostParcelResponse', $response);
         $this->assertEquals($request, $response->getRequest());
         $this->assertEquals($rawResponse, $response->getRawResponse());
+        $this->assertEquals('parcel2', $response->getParcelAwbNumber());
     }
 
     public function testGetAwbPdf()

@@ -2,6 +2,7 @@
 
 namespace Sameday;
 
+use Sameday\Objects\AwbStatusHistory\ParcelObject;
 use Sameday\Requests\SamedayDeleteAwbRequest;
 use Sameday\Requests\SamedayGetAwbPdfRequest;
 use Sameday\Requests\SamedayGetAwbStatusHistoryRequest;
@@ -199,10 +200,36 @@ class Sameday
      * @throws Exceptions\SamedayOtherException
      * @throws Exceptions\SamedaySDKException
      * @throws Exceptions\SamedayServerException
+     * @throws \Exception
      */
     public function postParcel(SamedayPostParcelRequest $request)
     {
-        return new SamedayPostParcelResponse($request, $this->client->sendRequest($request->buildRequest()));
+        $parcelsRequest = new SamedayGetAwbStatusHistoryRequest($request->getAwbNumber());
+
+        // Get old parcels.
+        $parcelsResponse = $this->getAwbStatusHistory($parcelsRequest);
+        $oldParcels = array_map(
+            function (ParcelObject $parcel) {
+                return $parcel->getParcelAwbNumber();
+            },
+            $parcelsResponse->getParcels()
+        );
+
+        // Create new parcel.
+        $response = $this->client->sendRequest($request->buildRequest());
+
+        // Get new parcels.
+        $parcelsResponse = $this->getAwbStatusHistory($parcelsRequest);
+        $newParcels = array_map(
+            function (ParcelObject $parcel) {
+                return $parcel->getParcelAwbNumber();
+            },
+            $parcelsResponse->getParcels()
+        );
+
+        $newParcel = array_values(array_diff($newParcels, $oldParcels));
+
+        return new SamedayPostParcelResponse($request, $response, $newParcel[0]);
     }
 
     /**
