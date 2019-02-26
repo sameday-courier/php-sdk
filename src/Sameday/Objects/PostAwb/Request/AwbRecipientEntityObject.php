@@ -17,8 +17,8 @@ class AwbRecipientEntityObject extends EntityObject
     /**
      * AwbRecipientEntityObject constructor.
      *
-     * @param string $city
-     * @param string $county
+     * @param string|int $city
+     * @param string|int $county
      * @param string $address
      * @param string $name
      * @param string $phone

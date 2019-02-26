@@ -12,12 +12,12 @@ use Sameday\Objects\Types\PersonType;
 class EntityObject
 {
     /**
-     * @var string
+     * @var string|int
      */
     protected $city;
 
     /**
-     * @var string
+     * @var string|int
      */
     protected $county;
 
@@ -78,10 +78,20 @@ class EntityObject
             'name' => $this->name,
             'phoneNumber' => $this->phone,
             'address' => $this->address,
-            'cityString' => $this->city,
-            'countyString' => $this->county,
             'personType' => PersonType::INDIVIDUAL, // Default to INDIVIDUAL person type.
         ];
+
+        if (is_int($this->city)) {
+            $fields['city'] = $this->city;
+        } else {
+            $fields['cityString'] = $this->city;
+        }
+
+        if (is_int($this->county)) {
+            $fields['county'] = $this->county;
+        } else {
+            $fields['countyString'] = $this->county;
+        }
 
         if ($this->company) {
             $fields = array_merge($fields, [
@@ -98,7 +108,7 @@ class EntityObject
     }
 
     /**
-     * @return string
+     * @return string|int
      */
     public function getCity()
     {
@@ -106,7 +116,7 @@ class EntityObject
     }
 
     /**
-     * @param string $city
+     * @param string|int $city
      *
      * @return $this
      */
@@ -118,7 +128,7 @@ class EntityObject
     }
 
     /**
-     * @return string
+     * @return string|int
      */
     public function getCounty()
     {
@@ -126,7 +136,7 @@ class EntityObject
     }
 
     /**
-     * @param string $county
+     * @param string|int $county
      *
      * @return $this
      */
