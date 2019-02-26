@@ -28,6 +28,8 @@ These classes are used as an API request.
 | [`Sameday\Requests\SamedayPostAwbRequest`](reference/SamedayPostAwbRequest.md) | An entity that represents a request to create a new AWB. |
 | [`Sameday\Requests\SamedayPostParcelRequest`](reference/SamedayPostParcelRequest.md) | An entity that represents a request to create a new parcel for an existing AWB. |
 | [`Sameday\Requests\SamedayPutParcelSizeRequest`](reference/SamedayPutParcelSizeRequest.md) | An entity that represents a request to update size for an existing parcel. |
+| [`Sameday\Requests\SamedayGetAwbPdfRequest`](reference/SamedayGetAwbPdfRequest.md) | An entity that represents a request to get pdf for an awb. |
+| [`Sameday\Requests\SamedayGetAwbStatusHistoryRequest`](reference/SamedayGetAwbStatusHistoryRequest.md) | An entity that represents a request to get status history for an awb. |
 
 # Responses
 
@@ -46,6 +48,8 @@ These classes are used as an API response.
 | [`Sameday\Responses\SamedayPostAwbResponse`](reference/SamedayPostAwbResponse.md) | An entity that represents a response to create a new AWB. |
 | [`Sameday\Responses\SamedayPostParcelResponse`](reference/SamedayPostParcelResponse.md) | An entity that represents a response to create a new parcel for an existing AWB. |
 | [`Sameday\Responses\SamedayPutParcelSizeResponse`](reference/SamedayPutParcelSizeResponse.md) | An entity that represents a response to update size for an existing parcel. |
+| [`Sameday\Responses\SamedayGetAwbPdfResponse`](reference/SamedayGetAwbPdfResponse.md) | An entity that represents a response to get pdf for an awb. |
+| [`Sameday\Responses\SamedayGetAwbStatusHistoryResponse`](reference/SamedayGetAwbStatusHistoryResponse.md) | An entity that represents a response to get history for an awb. |
 
 # Core Exceptions
 
@@ -68,5 +72,4 @@ You can overwrite certain functionality of the SDK by coding to an interface and
 | Interface name | Description |
 | ------------- | ------------- |
 | `Sameday\HttpClients\SamedayHttpClientInterface` | An interface to code your own HTTP client implementation. |
-| `Sameday\Http\SamedayRawResponse` | An entity that represents a raw HTTP response from the API. |
 | `Sameday\PersistentData\SamedayPersistentDataInterface` | An interface to code your own persistent data storage implementation.  |
