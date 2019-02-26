@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+
+## [1.3.0](https://github.com/sameday-courier/php-sdk/compare/1.2.0...1.3.0)
+
+### Added
+
+- AWB status history
+- Update post parcel response
+
+### Changed
+
+- City and county now accepts ids
+
 ## [1.2.0](https://github.com/sameday-courier/php-sdk/compare/1.1.0...1.2.0)
 
 ### Added
