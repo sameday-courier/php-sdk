@@ -283,6 +283,30 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
      * @throws \Sameday\Exceptions\SamedayAuthorizationException
      * @throws \Sameday\Exceptions\SamedaySDKException
      * @throws \Exception
+     *
+     * @expectedException \Sameday\Exceptions\SamedaySDKException
+     * @expectedExceptionMessage Username or password not set.
+     */
+    public function testAuthBeforeRequestWithoutUsernamePassword()
+    {
+        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler
+            ->expects($this->never())
+            ->method('send');
+
+        $client = new SamedayClient('', '', 'https://foo.com', null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
+        $client->sendRequest(new SamedayRequest(
+            true,
+            'GET',
+            '/endpoint'
+        ));
+    }
+
+    /**
+     * @throws \Sameday\Exceptions\SamedayAuthenticationException
+     * @throws \Sameday\Exceptions\SamedayAuthorizationException
+     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws \Exception
      */
     public function testAuthBeforeRequest()
     {

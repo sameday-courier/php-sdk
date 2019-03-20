@@ -7,6 +7,7 @@ use Sameday\Exceptions\SamedayAuthorizationException;
 use Sameday\Exceptions\SamedayBadRequestException;
 use Sameday\Exceptions\SamedayNotFoundException;
 use Sameday\Exceptions\SamedayOtherException;
+use Sameday\Exceptions\SamedaySDKException;
 use Sameday\Exceptions\SamedayServerException;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Http\SamedayRequest;
@@ -200,7 +201,7 @@ class SamedayClient implements SamedayClientInterface
      *
      * @return string
      *
-     * @throws Exceptions\SamedaySDKException
+     * @throws SamedaySDKException
      * @throws SamedayAuthenticationException
      * @throws \Exception
      */
@@ -219,7 +220,12 @@ class SamedayClient implements SamedayClientInterface
             }
         }
 
-        // If no token is found or expired, try to get new one.
+        // Check if username and password are set.
+        if ((string) $this->username === '' || (string) $this->password === '') {
+            throw new SamedaySDKException('Username or password not set.');
+        }
+
+        // No token found or expired, try to get new one.
         $authenticateRequest = new SamedayAuthenticateRequest($this->username, $this->password);
         $rawResponse = $this->sendRequest($authenticateRequest->buildRequest());
         $response = new SamedayAuthenticateResponse($authenticateRequest, $rawResponse);
