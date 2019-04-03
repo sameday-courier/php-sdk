@@ -159,7 +159,9 @@ class Sameday
 
     /**
      * @param SamedayPostAwbEstimationRequest $request
+     *
      * @return SamedayPostAwbEstimationResponse
+     *
      * @throws Exceptions\SamedayAuthenticationException
      * @throws Exceptions\SamedayAuthorizationException
      * @throws Exceptions\SamedayBadRequestException

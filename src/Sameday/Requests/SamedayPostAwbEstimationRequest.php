@@ -33,6 +33,11 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
     protected $packageType;
 
     /**
+     * @var ParcelDimensionsObject[]
+     */
+    protected $parcelsDimensions;
+
+    /**
      * @var int
      */
     protected $serviceId;
@@ -70,17 +75,12 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
     protected $serviceTaxIds;
 
     /**
-     * @var ParcelDimensionsObject[]
-     */
-    protected $parcelsDimensions;
-
-    /**
      * SamedayPostAwbEstimationRequest constructor.
      *
      * @param int $pickupPointId
-     * @param int $contactPersonId
+     * @param int|null $contactPersonId
      * @param PackageType $packageType
-     * @param array $parcelsDimensions
+     * @param ParcelDimensionsObject[] $parcelsDimensions
      * @param int $serviceId
      * @param AwbPaymentType $awbPayment
      * @param AwbRecipientEntityObject $awbRecipient
@@ -101,8 +101,7 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
         $cashOnDeliveryAmount = .0,
         ThirdPartyPickupEntityObject $thirdPartyPickup = null,
         array $serviceTaxIds = []
-    )
-    {
+    ) {
         $this->pickupPointId = $pickupPointId;
         $this->contactPersonId = $contactPersonId;
         $this->packageType = $packageType;
@@ -183,7 +182,8 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
     }
 
     /**
-     * @param int|null $pickupPointId
+     * @param int $pickupPointId
+     *
      * @return $this
      */
     public function setPickupPointId($pickupPointId)
@@ -222,13 +222,33 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
     }
 
     /**
-     * @param PackageType
+     * @param PackageType $packageType
      *
      * @return $this
      */
-    public function setPackageType($packageType)
+    public function setPackageType(PackageType $packageType)
     {
         $this->packageType = $packageType;
+
+        return $this;
+    }
+
+    /**
+     * @return ParcelDimensionsObject[]
+     */
+    public function getParcelsDimensions()
+    {
+        return $this->parcelsDimensions;
+    }
+
+    /**
+     * @param ParcelDimensionsObject[] $parcelsDimensions
+     *
+     * @return $this
+     */
+    public function setParcelsDimensions($parcelsDimensions)
+    {
+        $this->parcelsDimensions = $parcelsDimensions;
 
         return $this;
     }
@@ -269,6 +289,26 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
     public function setAwbPayment(AwbPaymentType $awbPayment)
     {
         $this->awbPayment = $awbPayment;
+
+        return $this;
+    }
+
+    /**
+     * @return AwbRecipientEntityObject
+     */
+    public function getAwbRecipient()
+    {
+        return $this->awbRecipient;
+    }
+
+    /**
+     * @param AwbRecipientEntityObject $awbRecipient
+     *
+     * @return $this
+     */
+    public function setAwbRecipient(AwbRecipientEntityObject $awbRecipient)
+    {
+        $this->awbRecipient = $awbRecipient;
 
         return $this;
     }

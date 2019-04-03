@@ -6,6 +6,11 @@ use Sameday\Http\SamedayRawResponse;
 use Sameday\Requests\SamedayPostAwbEstimationRequest;
 use Sameday\Responses\Traits\SamedayResponseTrait;
 
+/**
+ * Response for creating a new AWB estimation request.
+ *
+ * @package Sameday
+ */
 class SamedayPostAwbEstimationResponse implements SamedayResponseInterface
 {
     use SamedayResponseTrait;
@@ -13,7 +18,7 @@ class SamedayPostAwbEstimationResponse implements SamedayResponseInterface
     /**
      * @var float
      */
-    protected $amount;
+    protected $cost;
 
     /**
      * @var string
@@ -42,7 +47,7 @@ class SamedayPostAwbEstimationResponse implements SamedayResponseInterface
             return;
         }
 
-        $this->amount = $json['amount'];
+        $this->cost = $json['amount'];
         $this->currency = $json['currency'];
         $this->time = $json['time'];
     }
@@ -50,9 +55,9 @@ class SamedayPostAwbEstimationResponse implements SamedayResponseInterface
     /**
      * @return float
      */
-    public function getAmount()
+    public function getCost()
     {
-        return $this->amount;
+        return $this->cost;
     }
 
     /**
