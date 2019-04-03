@@ -19,9 +19,7 @@ class SamedayPostAwbEstimationRequestTest extends \PHPUnit_Framework_TestCase
         $packageType = new PackageType(PackageType::LARGE);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
         $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email');
-        $codCollectorType = new CodCollectorType(CodCollectorType::CLIENT);
         $thirdPartyEntity = new ThirdPartyPickupEntityObject('city', 'county', 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
-        $deliveryIntervalServiceType = new DeliveryIntervalServiceType(1000);
 
         $request = new SamedayPostAwbEstimationRequest(
             1,
@@ -70,7 +68,6 @@ class SamedayPostAwbEstimationRequestTest extends \PHPUnit_Framework_TestCase
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
         $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email');
         $thirdPartyEntity = new ThirdPartyPickupEntityObject('city', 'county', 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
-        $deliveryIntervalServiceType = new DeliveryIntervalServiceType(1000);
 
         $request->setPickupPointId(10);
         $request->setContactPersonId(20);
