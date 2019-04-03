@@ -11,6 +11,7 @@ use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
 use Sameday\Requests\SamedayGetStatusSyncRequest;
 use Sameday\Requests\SamedayPostAwbRequest;
+use Sameday\Requests\SamedayPostAwbEstimationRequest;
 use Sameday\Requests\SamedayPostParcelRequest;
 use Sameday\Requests\SamedayPutParcelSizeRequest;
 use Sameday\Requests\SamedayGetServicesRequest;
@@ -21,6 +22,7 @@ use Sameday\Responses\SamedayGetCountiesResponse;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 use Sameday\Responses\SamedayGetPickupPointsResponse;
 use Sameday\Responses\SamedayGetStatusSyncResponse;
+use Sameday\Responses\SamedayPostAwbEstimationResponse;
 use Sameday\Responses\SamedayPostAwbResponse;
 use Sameday\Responses\SamedayPostParcelResponse;
 use Sameday\Responses\SamedayPutParcelSizeResponse;
@@ -153,6 +155,24 @@ class Sameday
     public function postAwb(SamedayPostAwbRequest $request)
     {
         return new SamedayPostAwbResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayPostAwbEstimationRequest $request
+     *
+     * @return SamedayPostAwbEstimationResponse
+     *
+     * @throws Exceptions\SamedayAuthenticationException
+     * @throws Exceptions\SamedayAuthorizationException
+     * @throws Exceptions\SamedayBadRequestException
+     * @throws Exceptions\SamedayNotFoundException
+     * @throws Exceptions\SamedayOtherException
+     * @throws Exceptions\SamedaySDKException
+     * @throws Exceptions\SamedayServerException
+     */
+    public function postAwbEstimation(SamedayPostAwbEstimationRequest $request)
+    {
+        return new SamedayPostAwbEstimationResponse($request, $this->client->sendRequest($request->buildRequest()));
     }
 
     /**

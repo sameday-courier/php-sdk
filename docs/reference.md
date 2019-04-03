@@ -26,6 +26,7 @@ These classes are used as an API request.
 | [`Sameday\Requests\SamedayGetServicesRequest`](reference/SamedayGetServicesRequest.md) | An entity that represents a request to get available delivery services for current user (paginated). |
 | [`Sameday\Requests\SamedayGetStatusSyncRequest`](reference/SamedayGetStatusSyncRequest.md) | An entity that represents a request to get all status updates that happened between two timestamps (paginated). |
 | [`Sameday\Requests\SamedayPostAwbRequest`](reference/SamedayPostAwbRequest.md) | An entity that represents a request to create a new AWB. |
+| [`Sameday\Requests\SamedayPostAwbEstimationRequest`](reference/SamedayPostAwbEstimationRequest.md) | An entity that represents a request to calculate estimation cost for a new AWB. |
 | [`Sameday\Requests\SamedayPostParcelRequest`](reference/SamedayPostParcelRequest.md) | An entity that represents a request to create a new parcel for an existing AWB. |
 | [`Sameday\Requests\SamedayPutParcelSizeRequest`](reference/SamedayPutParcelSizeRequest.md) | An entity that represents a request to update size for an existing parcel. |
 | [`Sameday\Requests\SamedayGetAwbPdfRequest`](reference/SamedayGetAwbPdfRequest.md) | An entity that represents a request to get pdf for an awb. |
@@ -46,6 +47,7 @@ These classes are used as an API response.
 | [`Sameday\Responses\SamedayGetServicesResponse`](reference/SamedayGetServicesResponse.md) | An entity that represents a response to get available delivery services for current user (paginated). |
 | [`Sameday\Responses\SamedayGetStatusSyncResponse`](reference/SamedayGetStatusSyncResponse.md) | An entity that represents a response to get all status updates that happened between two timestamps (paginated). |
 | [`Sameday\Responses\SamedayPostAwbResponse`](reference/SamedayPostAwbResponse.md) | An entity that represents a response to create a new AWB. |
+| [`Sameday\Responses\SamedayPostAwbEstimationResponse`](reference/SamedayPostAwbEstimationResponse.md) | An entity that represents a response to calculate estimation cost for a new AWB. |
 | [`Sameday\Responses\SamedayPostParcelResponse`](reference/SamedayPostParcelResponse.md) | An entity that represents a response to create a new parcel for an existing AWB. |
 | [`Sameday\Responses\SamedayPutParcelSizeResponse`](reference/SamedayPutParcelSizeResponse.md) | An entity that represents a response to update size for an existing parcel. |
 | [`Sameday\Responses\SamedayGetAwbPdfResponse`](reference/SamedayGetAwbPdfResponse.md) | An entity that represents a response to get pdf for an awb. |
