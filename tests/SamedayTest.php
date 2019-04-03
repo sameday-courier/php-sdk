@@ -157,7 +157,7 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
             ->with($samedayRequest)
             ->andReturn($rawResponse);
 
-        $response = $this->sameday->postAwb($request);
+        $response = $this->sameday->postAwbEstimation($request);
 
         $this->assertInstanceOf('Sameday\Responses\SamedayPostAwbEstimationResponse', $response);
         $this->assertEquals($request, $response->getRequest());
