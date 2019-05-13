@@ -105,6 +105,11 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     protected $clientObservation;
 
     /**
+     * @var int|null
+     */
+    protected $lockerId;
+
+    /**
      * SamedayPostAwbRequest constructor.
      *
      * @param int $pickupPointId
@@ -124,6 +129,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
      * @param string|null $observation
      * @param string|null $priceObservation
      * @param string|null $clientObservation
+     * @param int|null $lockerId
      */
     public function __construct(
         $pickupPointId,
@@ -142,7 +148,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $reference = null,
         $observation = null,
         $priceObservation = null,
-        $clientObservation = null
+        $clientObservation = null,
+        $lockerId = null
     ) {
         $this->pickupPointId = $pickupPointId;
         $this->contactPersonId = $contactPersonId;
@@ -161,6 +168,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $this->observation = $observation;
         $this->priceObservation = $priceObservation;
         $this->clientObservation = $clientObservation;
+        $this->lockerId = $lockerId;
     }
 
     /**
@@ -217,6 +225,10 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
             'clientInternalReference' => $this->reference,
             'clientObservation' => $this->clientObservation,
         ]);
+
+        if ($this->lockerId !== null) {
+            $body = array_merge($body, ['lockerId' => $this->lockerId]);
+        }
 
         return new SamedayRequest(
             true,
@@ -563,6 +575,26 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     public function setClientObservation($clientObservation)
     {
         $this->clientObservation = $clientObservation;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getLockerId()
+    {
+        return $this->lockerId;
+    }
+
+    /**
+     * @param int|null $lockerId
+     *
+     * @return $this
+     */
+    public function setLockerId($lockerId)
+    {
+        $this->lockerId = $lockerId;
 
         return $this;
     }
