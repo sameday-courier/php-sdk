@@ -43,7 +43,8 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
             'reference',
             'observation',
             'priceObservation',
-            'clientObservation'
+            'clientObservation',
+            10
         );
 
         $this->assertEquals(1, $request->getPickupPointId());
@@ -63,6 +64,7 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('observation', $request->getObservation());
         $this->assertEquals('priceObservation', $request->getPriceObservation());
         $this->assertEquals('clientObservation', $request->getClientObservation());
+        $this->assertEquals(10, $request->getLockerId());
     }
 
     public function testSetGet()
@@ -102,6 +104,7 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
         $request->setObservation('observation');
         $request->setPriceObservation('priceObservation');
         $request->setClientObservation('clientObservation');
+        $request->setLockerId(10);
 
         $this->assertEquals(10, $request->getPickupPointId());
         $this->assertEquals(20, $request->getContactPersonId());
@@ -120,9 +123,10 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('observation', $request->getObservation());
         $this->assertEquals('priceObservation', $request->getPriceObservation());
         $this->assertEquals('clientObservation', $request->getClientObservation());
+        $this->assertEquals(10, $request->getLockerId());
     }
 
-    public function testBuildRequest()
+    public function testBuildRequestWithoutLockerId()
     {
         $packageType = new PackageType(PackageType::LARGE);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
@@ -160,5 +164,46 @@ class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('POST', $samedayRequest->getMethod());
         $this->assertEquals('/api/awb', $samedayRequest->getEndpoint());
         $this->assertEquals('pickupPoint=1&contactPerson=2&packageType=2&packageNumber=2&packageWeight=2&service=3&awbPayment=1&cashOnDelivery=110&cashOnDeliveryReturns=1&insuredValue=100&thirdPartyPickup=1&thirdParty%5Bname%5D=name&thirdParty%5BphoneNumber%5D=phone&thirdParty%5Baddress%5D=address&thirdParty%5BpersonType%5D=1&thirdParty%5Bcity%5D=1&thirdParty%5Bcounty%5D=2&thirdParty%5BcompanyName%5D=name&thirdParty%5BcompanyCui%5D=cui&thirdParty%5BcompanyOnrcNumber%5D=onrc&thirdParty%5BcompanyIban%5D=iban&thirdParty%5BcompanyBank%5D=bank&serviceTaxes%5B0%5D=11&serviceTaxes%5B1%5D=12&serviceTaxes%5B2%5D=13&deliveryInterval=1000&awbRecipient%5Bname%5D=name&awbRecipient%5BphoneNumber%5D=phone&awbRecipient%5Baddress%5D=address&awbRecipient%5BpersonType%5D=0&awbRecipient%5BcityString%5D=city&awbRecipient%5BcountyString%5D=county&awbRecipient%5Bemail%5D=email&parcels%5B0%5D%5Bweight%5D=1&parcels%5B1%5D%5Bweight%5D=1&parcels%5B1%5D%5Bwidth%5D=2&parcels%5B1%5D%5Blength%5D=3&parcels%5B1%5D%5Bheight%5D=4&observation=observation&priceObservation=priceObservation&clientInternalReference=reference&clientObservation=clientObservation', $samedayRequest->getBody()->getBody());
+    }
+
+    public function testBuildRequest()
+    {
+        $packageType = new PackageType(PackageType::LARGE);
+        $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email');
+        $codCollectorType = new CodCollectorType(CodCollectorType::CLIENT);
+        $thirdPartyEntity = new ThirdPartyPickupEntityObject(1, 2, 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
+        $deliveryIntervalServiceType = new DeliveryIntervalServiceType(1000);
+
+        $request = new SamedayPostAwbRequest(
+            1,
+            2,
+            $packageType,
+            [
+                new ParcelDimensionsObject(1),
+                new ParcelDimensionsObject(1, 2, 3, 4),
+            ],
+            3,
+            $awbPaymentType,
+            $awbRecipient,
+            100,
+            110,
+            $codCollectorType,
+            $thirdPartyEntity,
+            [11, 12, 13],
+            $deliveryIntervalServiceType,
+            'reference',
+            'observation',
+            'priceObservation',
+            'clientObservation',
+            10
+        );
+        $samedayRequest = $request->buildRequest();
+
+        $this->assertInstanceOf('Sameday\Http\SamedayRequest', $samedayRequest);
+        $this->assertTrue($samedayRequest->isNeedAuth());
+        $this->assertEquals('POST', $samedayRequest->getMethod());
+        $this->assertEquals('/api/awb', $samedayRequest->getEndpoint());
+        $this->assertEquals('pickupPoint=1&contactPerson=2&packageType=2&packageNumber=2&packageWeight=2&service=3&awbPayment=1&cashOnDelivery=110&cashOnDeliveryReturns=1&insuredValue=100&thirdPartyPickup=1&thirdParty%5Bname%5D=name&thirdParty%5BphoneNumber%5D=phone&thirdParty%5Baddress%5D=address&thirdParty%5BpersonType%5D=1&thirdParty%5Bcity%5D=1&thirdParty%5Bcounty%5D=2&thirdParty%5BcompanyName%5D=name&thirdParty%5BcompanyCui%5D=cui&thirdParty%5BcompanyOnrcNumber%5D=onrc&thirdParty%5BcompanyIban%5D=iban&thirdParty%5BcompanyBank%5D=bank&serviceTaxes%5B0%5D=11&serviceTaxes%5B1%5D=12&serviceTaxes%5B2%5D=13&deliveryInterval=1000&awbRecipient%5Bname%5D=name&awbRecipient%5BphoneNumber%5D=phone&awbRecipient%5Baddress%5D=address&awbRecipient%5BpersonType%5D=0&awbRecipient%5BcityString%5D=city&awbRecipient%5BcountyString%5D=county&awbRecipient%5Bemail%5D=email&parcels%5B0%5D%5Bweight%5D=1&parcels%5B1%5D%5Bweight%5D=1&parcels%5B1%5D%5Bwidth%5D=2&parcels%5B1%5D%5Blength%5D=3&parcels%5B1%5D%5Bheight%5D=4&observation=observation&priceObservation=priceObservation&clientInternalReference=reference&clientObservation=clientObservation&lockerId=10', $samedayRequest->getBody()->getBody());
     }
 }

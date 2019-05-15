@@ -17,7 +17,7 @@ class SamedayGetCountiesRequest implements SamedayPaginatedRequestInterface
     /**
      * @var string|null
      */
-    private $name;
+    protected $name;
 
     /**
      * SamedayGetCountiesRequest constructor.

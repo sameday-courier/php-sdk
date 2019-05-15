@@ -7,6 +7,7 @@ use Sameday\Requests\SamedayDeleteAwbRequest;
 use Sameday\Requests\SamedayGetAwbPdfRequest;
 use Sameday\Requests\SamedayGetAwbStatusHistoryRequest;
 use Sameday\Requests\SamedayGetCountiesRequest;
+use Sameday\Requests\SamedayGetLockersRequest;
 use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
 use Sameday\Requests\SamedayGetStatusSyncRequest;
@@ -19,6 +20,7 @@ use Sameday\Responses\SamedayDeleteAwbResponse;
 use Sameday\Responses\SamedayGetAwbPdfResponse;
 use Sameday\Responses\SamedayGetAwbStatusHistoryResponse;
 use Sameday\Responses\SamedayGetCountiesResponse;
+use Sameday\Responses\SamedayGetLockersResponse;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 use Sameday\Responses\SamedayGetPickupPointsResponse;
 use Sameday\Responses\SamedayGetStatusSyncResponse;
@@ -286,5 +288,21 @@ class Sameday
     public function getAwbStatusHistory(SamedayGetAwbStatusHistoryRequest $request)
     {
         return new SamedayGetAwbStatusHistoryResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayGetLockersRequest $request
+     *
+     * @return SamedayGetLockersResponse
+     *
+     * @throws Exceptions\SamedaySDKException
+     * @throws Exceptions\SamedayAuthenticationException
+     * @throws Exceptions\SamedayAuthorizationException
+     * @throws Exceptions\SamedayServerException
+     * @throws Exceptions\SamedayBadRequestException
+     */
+    public function getLockers(SamedayGetLockersRequest $request)
+    {
+        return new SamedayGetLockersResponse($request, $this->client->sendRequest($request->buildRequest()));
     }
 }
