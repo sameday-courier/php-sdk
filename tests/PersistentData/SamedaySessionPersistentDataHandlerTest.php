@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\PersistentData;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\PersistentData\SamedaySessionPersistentDataHandler;
 
-class SamedaySessionPersistentDataHandlerTest extends \PHPUnit_Framework_TestCase
+class SamedaySessionPersistentDataHandlerTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @expectedException \Sameday\Exceptions\SamedaySDKException

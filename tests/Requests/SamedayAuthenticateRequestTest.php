@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Requests\SamedayAuthenticateRequest;
 
-class SamedayAuthenticateRequestTest extends \PHPUnit_Framework_TestCase
+class SamedayAuthenticateRequestTest extends PHPUnit_Framework_TestCase
 {
     public function testBuildRequest()
     {

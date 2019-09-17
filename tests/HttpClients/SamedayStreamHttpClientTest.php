@@ -2,7 +2,9 @@
 
 namespace Sameday\Tests\HttpClients;
 
+use Mockery;
 use Mockery\MockInterface;
+use Sameday\Exceptions\SamedaySDKException;
 use Sameday\HttpClients\SamedayStreamHttpClient;
 
 class SamedayStreamHttpClientTest extends AbstractTestHttpClient
@@ -19,7 +21,7 @@ class SamedayStreamHttpClientTest extends AbstractTestHttpClient
 
     protected function setUp()
     {
-        $this->stream = \Mockery::mock('Sameday\HttpClients\SamedayStream');
+        $this->stream = Mockery::mock('Sameday\HttpClients\SamedayStream');
         $this->client = new SamedayStreamHttpClient($this->stream);
     }
 
@@ -34,12 +36,15 @@ class SamedayStreamHttpClientTest extends AbstractTestHttpClient
         $this->assertEquals("X-foo: bar\r\nX-bar: faz", $header);
     }
 
+    /**
+     * @throws SamedaySDKException
+     */
     public function testCanSendNormalRequest()
     {
         $this->stream
             ->shouldReceive('streamContextCreate')
             ->once()
-            ->with(\Mockery::on(function ($arg) {
+            ->with(Mockery::on(function ($arg) {
                 if (!isset($arg['http'], $arg['ssl'])) {
                     return false;
                 }

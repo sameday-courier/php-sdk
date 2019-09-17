@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
 
-class SamedayGetPickupPointsRequestTest extends \PHPUnit_Framework_TestCase
+class SamedayGetPickupPointsRequestTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

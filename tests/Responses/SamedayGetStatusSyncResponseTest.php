@@ -2,12 +2,14 @@
 
 namespace Sameday\Tests\Responses;
 
+use DateTime;
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\StatusSync\StatusObject;
 use Sameday\Requests\SamedayGetStatusSyncRequest;
 use Sameday\Responses\SamedayGetStatusSyncResponse;
 
-class SamedayGetStatusSyncResponseTest extends \PHPUnit_Framework_TestCase
+class SamedayGetStatusSyncResponseTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @throws \Exception
@@ -103,7 +105,7 @@ JSON
                 '1SDY241066690001',
                 'Colet livrat',
                 'Colete livrate',
-                new \DateTime('2018-12-20T17:20:13+0200'),
+                new DateTime('2018-12-20T17:20:13+0200'),
                 null,
                 '',
                 'https://foo.com/api/client/parcel/1SDY241066690001/status-history'
@@ -118,7 +120,7 @@ JSON
                 '1SDY241066690001',
                 'In livrare la curier',
                 'Colete in curs de livrare',
-                new \DateTime('2018-12-20T17:19:41+0200'),
+                new DateTime('2018-12-20T17:19:41+0200'),
                 1,
                 'foo',
                 'https://foo.com/api/client/parcel/1SDY241066690001/status-history'
@@ -133,7 +135,7 @@ JSON
                 '1SDY241066690001',
                 'Document de transport emis',
                 'Comanda curier primita',
-                new \DateTime('2018-12-20T17:19:15+0200'),
+                new DateTime('2018-12-20T17:19:15+0200'),
                 null,
                 '',
                 'https://foo.com/api/client/parcel/1SDY241066690001/status-history'
@@ -148,7 +150,7 @@ JSON
                 '1SDY2H1066666001',
                 'Colet livrat',
                 'Colete livrate',
-                new \DateTime('2018-12-20T17:17:58+0200'),
+                new DateTime('2018-12-20T17:17:58+0200'),
                 null,
                 '',
                 'https://foo.com/api/client/parcel/1SDY2H1066666001/status-history'

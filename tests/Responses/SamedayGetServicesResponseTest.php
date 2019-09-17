@@ -2,6 +2,7 @@
 
 namespace Sameday\Tests\Responses;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\Service\DeliveryTypeObject;
 use Sameday\Objects\Service\OptionalTaxObject;
@@ -11,7 +12,7 @@ use Sameday\Objects\Types\PackageType;
 use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayGetServicesResponse;
 
-class SamedayGetServicesResponseTest extends \PHPUnit_Framework_TestCase
+class SamedayGetServicesResponseTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructorParameters()
     {

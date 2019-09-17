@@ -2,6 +2,8 @@
 
 namespace Sameday\Responses;
 
+use DateTime;
+use Exception;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\AwbStatusHistory\ExpeditionObject;
 use Sameday\Objects\AwbStatusHistory\HistoryObject;
@@ -45,7 +47,7 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
      * @param SamedayGetAwbStatusHistoryRequest $request
      * @param SamedayRawResponse $rawResponse
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(SamedayGetAwbStatusHistoryRequest $request, SamedayRawResponse $rawResponse)
     {
@@ -67,8 +69,8 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
             $json['expeditionSummary']['servicePayment'],
             $json['expeditionSummary']['cashOnDelivery'],
             $json['expeditionSummary']['redirectionsAttempts'],
-            $json['expeditionSummary']['deliveredAt'] ? new \DateTime($json['expeditionSummary']['deliveredAt']) : null,
-            $json['expeditionSummary']['lastDeliveryAttempt'] ? new \DateTime($json['expeditionSummary']['lastDeliveryAttempt']) : null
+            $json['expeditionSummary']['deliveredAt'] ? new DateTime($json['expeditionSummary']['deliveredAt']) : null,
+            $json['expeditionSummary']['lastDeliveryAttempt'] ? new DateTime($json['expeditionSummary']['lastDeliveryAttempt']) : null
         );
 
         foreach ($json['expeditionHistory'] as $history) {
@@ -119,7 +121,7 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
      *
      * @return HistoryObject
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function parseHistory(array $json)
     {
@@ -128,7 +130,7 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
             $json['status'],
             $json['statusLabel'],
             $json['statusState'],
-            new \DateTime($json['statusDate']),
+            new DateTime($json['statusDate']),
             $json['county'],
             $json['reason'],
             $json['transitLocation']
@@ -140,7 +142,7 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
      *
      * @return ExpeditionObject
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function parseExpedition(array $json)
     {
@@ -149,7 +151,7 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
             $json['status'],
             $json['statusLabel'],
             $json['statusState'],
-            new \DateTime($json['statusDate']),
+            new DateTime($json['statusDate']),
             $json['county'],
             $json['reason'],
             $json['transitLocation']
@@ -161,7 +163,7 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
      *
      * @return ParcelObject
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function parseParcel(array $json)
     {
@@ -170,7 +172,7 @@ class SamedayGetAwbStatusHistoryResponse implements SamedayResponseInterface
             $json['status'],
             $json['statusLabel'],
             $json['statusState'],
-            new \DateTime($json['statusDate']),
+            new DateTime($json['statusDate']),
             $json['county'],
             $json['reason'],
             $json['transitLocation'],

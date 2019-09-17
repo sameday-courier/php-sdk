@@ -2,14 +2,16 @@
 
 namespace Sameday\Tests\Responses;
 
+use Mockery;
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Responses\SamedayGetAwbPdfResponse;
 
-class SamedayGetAwbPdfResponseTest extends \PHPUnit_Framework_TestCase
+class SamedayGetAwbPdfResponseTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructorParameters()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayGetAwbPdfRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayGetAwbPdfRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayGetAwbPdfResponse($request, $rawResponse);
 
@@ -19,7 +21,7 @@ class SamedayGetAwbPdfResponseTest extends \PHPUnit_Framework_TestCase
 
     public function testResponse()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayGetAwbPdfRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayGetAwbPdfRequest');
         $rawResponse = new SamedayRawResponse([], <<<PDF
 CONTENT
 PDF

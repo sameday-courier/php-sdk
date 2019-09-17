@@ -2,7 +2,9 @@
 
 namespace Sameday\Tests\HttpClients;
 
+use Mockery;
 use Mockery\MockInterface;
+use Sameday\Exceptions\SamedaySDKException;
 use Sameday\HttpClients\SamedayGuzzleHttpClient;
 use GuzzleHttp\Message\Request;
 use GuzzleHttp\Message\Response;
@@ -23,10 +25,13 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
 
     protected function setUp()
     {
-        $this->guzzle = \Mockery::mock('GuzzleHttp\Client');
+        $this->guzzle = Mockery::mock('GuzzleHttp\Client');
         $this->client = new SamedayGuzzleHttpClient($this->guzzle);
     }
 
+    /**
+     * @throws SamedaySDKException
+     */
     public function testCanSendNormalRequest()
     {
         $request = new Request('GET', 'http://foo.com');
@@ -37,7 +42,7 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
         $this->guzzle
             ->shouldReceive('createRequest')
             ->once()
-            ->with('GET', 'http://foo.com/', \Mockery::on(function ($arg) {
+            ->with('GET', 'http://foo.com/', Mockery::on(function ($arg) {
                 // array_diff_assoc() will sometimes trigger error on child-arrays
                 if (['X-foo' => 'bar'] !== $arg['headers']) {
                     return false;
@@ -77,7 +82,7 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
         $this->guzzle
             ->shouldReceive('createRequest')
             ->once()
-            ->with('GET', 'http://foo.com/', \Mockery::on(function ($arg) {
+            ->with('GET', 'http://foo.com/', Mockery::on(static function ($arg) {
                 // array_diff_assoc() will sometimes trigger error on child-arrays
                 if ([] !== $arg['headers']) {
                     return false;

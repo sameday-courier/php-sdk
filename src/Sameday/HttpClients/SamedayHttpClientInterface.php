@@ -2,6 +2,9 @@
 
 namespace Sameday\HttpClients;
 
+use Sameday\Exceptions\SamedaySDKException;
+use Sameday\Http\SamedayRawResponse;
+
 /**
  * Interface that encapsulates a HTTP client.
  *
@@ -18,9 +21,9 @@ interface SamedayHttpClientInterface
      * @param array $headers The request headers.
      * @param int $timeOut The timeout in seconds for the request.
      *
-     * @return \Sameday\Http\SamedayRawResponse Raw response from the server.
+     * @return SamedayRawResponse Raw response from the server.
      *
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedaySDKException
      */
     public function send($url, $method, $body, array $headers, $timeOut);
 }

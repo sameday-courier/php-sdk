@@ -2,6 +2,7 @@
 
 namespace Sameday\Tests\Responses;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\CountyObject;
 use Sameday\Objects\PickupPoint\CityObject;
@@ -10,7 +11,7 @@ use Sameday\Objects\PickupPoint\PickupPointObject;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
 use Sameday\Responses\SamedayGetPickupPointsResponse;
 
-class SamedayGetPickupPointsResponseTest extends \PHPUnit_Framework_TestCase
+class SamedayGetPickupPointsResponseTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructorParameters()
     {

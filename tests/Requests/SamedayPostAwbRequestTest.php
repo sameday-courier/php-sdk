@@ -2,6 +2,7 @@
 
 namespace Sameday\Tests\Requests;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Objects\ParcelDimensionsObject;
 use Sameday\Objects\PostAwb\Request\AwbRecipientEntityObject;
 use Sameday\Objects\PostAwb\Request\CompanyEntityObject;
@@ -12,7 +13,7 @@ use Sameday\Objects\Types\DeliveryIntervalServiceType;
 use Sameday\Objects\Types\PackageType;
 use Sameday\Requests\SamedayPostAwbRequest;
 
-class SamedayPostAwbRequestTest extends \PHPUnit_Framework_TestCase
+class SamedayPostAwbRequestTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\Http;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\RequestBodyJson;
 
-class RequestBodyJsonTest extends \PHPUnit_Framework_TestCase
+class RequestBodyJsonTest extends PHPUnit_Framework_TestCase
 {
     public function testCanProperlyEncodeAnArrayOfParams()
     {

@@ -2,11 +2,13 @@
 
 namespace Sameday\Exceptions;
 
+use Exception;
+
 /**
  * Class SamedaySDKException
  *
  * @package Sameday
  */
-class SamedaySDKException extends \Exception
+class SamedaySDKException extends Exception
 {
 }

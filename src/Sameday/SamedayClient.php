@@ -2,6 +2,8 @@
 
 namespace Sameday;
 
+use DateTime;
+use Exception;
 use Sameday\Exceptions\SamedayAuthenticationException;
 use Sameday\Exceptions\SamedayAuthorizationException;
 use Sameday\Exceptions\SamedayBadRequestException;
@@ -25,7 +27,7 @@ use Sameday\Responses\SamedayAuthenticateResponse;
  */
 class SamedayClient implements SamedayClientInterface
 {
-    const VERSION = '1.0.0';
+    const VERSION = '1.6.0';
     const API_HOST = 'https://api.sameday.ro';
     const KEY_TOKEN = 'token';
     const KEY_TOKEN_EXPIRES = 'expires_at';
@@ -203,7 +205,7 @@ class SamedayClient implements SamedayClientInterface
      *
      * @throws SamedaySDKException
      * @throws SamedayAuthenticationException
-     * @throws \Exception
+     * @throws Exception
      */
     protected function getToken($usePersistentData = true)
     {
@@ -213,8 +215,8 @@ class SamedayClient implements SamedayClientInterface
 
             // Check if token is valid and not expired.
             if ($token && $expiresAt) {
-                $expiresAt = new \DateTime($expiresAt);
-                if ($expiresAt > new \DateTime()) {
+                $expiresAt = new DateTime($expiresAt);
+                if ($expiresAt > new DateTime()) {
                     return $token;
                 }
             }

@@ -2,10 +2,11 @@
 
 namespace Sameday\Tests\Requests;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Objects\ParcelDimensionsObject;
 use Sameday\Requests\SamedayPostParcelRequest;
 
-class SamedayPostParcelRequestTest extends \PHPUnit_Framework_TestCase
+class SamedayPostParcelRequestTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

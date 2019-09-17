@@ -2,6 +2,8 @@
 
 namespace Sameday\Objects\ParcelStatusHistory;
 
+use DateTime;
+
 /**
  * Summary for parcel status.
  *
@@ -10,12 +12,12 @@ namespace Sameday\Objects\ParcelStatusHistory;
 class SummaryObject
 {
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $deliveredAt;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $lastDeliveryAttempt;
 
@@ -50,7 +52,7 @@ class SummaryObject
     protected $pickedUp;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $pickedUpAt;
 
@@ -63,9 +65,9 @@ class SummaryObject
      * @param string $parcelAwbNumber
      * @param float $parcelWeight
      * @param bool $pickedUp
-     * @param \DateTime|null $deliveredAt
-     * @param \DateTime|null $lastDeliveryAttempt
-     * @param \DateTime|null $pickedUpAt
+     * @param DateTime|null $deliveredAt
+     * @param DateTime|null $lastDeliveryAttempt
+     * @param DateTime|null $pickedUpAt
      */
     public function __construct(
         $delivered,
@@ -74,9 +76,9 @@ class SummaryObject
         $parcelAwbNumber,
         $parcelWeight,
         $pickedUp,
-        \DateTime $deliveredAt = null,
-        \DateTime $lastDeliveryAttempt = null,
-        \DateTime $pickedUpAt = null
+        DateTime $deliveredAt = null,
+        DateTime $lastDeliveryAttempt = null,
+        DateTime $pickedUpAt = null
     ) {
         $this->delivered = $delivered;
         $this->canceled = $canceled;
@@ -90,7 +92,7 @@ class SummaryObject
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getDeliveredAt()
     {
@@ -98,7 +100,7 @@ class SummaryObject
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getLastDeliveryAttempt()
     {
@@ -154,7 +156,7 @@ class SummaryObject
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getPickedUpAt()
     {

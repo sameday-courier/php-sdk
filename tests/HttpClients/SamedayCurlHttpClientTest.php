@@ -2,13 +2,16 @@
 
 namespace Sameday\Tests\HttpClients;
 
+use Mockery;
 use Mockery\MockInterface;
+use Sameday\Exceptions\SamedaySDKException;
+use Sameday\HttpClients\SamedayCurl;
 use Sameday\HttpClients\SamedayCurlHttpClient;
 
 class SamedayCurlHttpClientTest extends AbstractTestHttpClient
 {
     /**
-     * @var MockInterface|\Sameday\HttpClients\SamedayCurl
+     * @var MockInterface|SamedayCurl
      */
     protected $curl;
 
@@ -23,7 +26,7 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
             $this->markTestSkipped('cURL must be installed to test cURL client handler.');
         }
 
-        $this->curl = \Mockery::mock('Sameday\HttpClients\SamedayCurl');
+        $this->curl = Mockery::mock('Sameday\HttpClients\SamedayCurl');
         $this->client = new SamedayCurlHttpClient($this->curl);
     }
 
@@ -35,7 +38,7 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
             ->andReturn(null);
         $this->curl
             ->shouldReceive('setoptArray')
-            ->with(\Mockery::on(function ($arg) {
+            ->with(Mockery::on(static function ($arg) {
                 // array_diff() will sometimes trigger error on child-arrays
                 if (['X-Foo-Header: X-Bar'] !== $arg[CURLOPT_HTTPHEADER]) {
                     return false;
@@ -69,7 +72,7 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
             ->andReturn(null);
         $this->curl
             ->shouldReceive('setoptArray')
-            ->with(\Mockery::on(function ($arg) {
+            ->with(Mockery::on(static function ($arg) {
                 // array_diff() will sometimes trigger error on child-arrays
                 if ([] !== $arg[CURLOPT_HTTPHEADER]) {
                     return false;
@@ -165,6 +168,9 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
         $this->assertEquals($rawBody, $this->fakeRawBody);
     }
 
+    /**
+     * @throws SamedaySDKException
+     */
     public function testCanSendNormalRequest()
     {
         $this->curl

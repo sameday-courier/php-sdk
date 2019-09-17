@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\PersistentData;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\PersistentData\SamedayMemoryPersistentDataHandler;
 
-class SamedayMemoryPersistentDataHandlerTest extends \PHPUnit_Framework_TestCase
+class SamedayMemoryPersistentDataHandlerTest extends PHPUnit_Framework_TestCase
 {
     public function testCanGetAndSetAVirtualValue()
     {

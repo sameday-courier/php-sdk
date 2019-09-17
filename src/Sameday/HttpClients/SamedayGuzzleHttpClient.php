@@ -18,7 +18,7 @@ use GuzzleHttp\Exception\RequestException;
 class SamedayGuzzleHttpClient implements SamedayHttpClientInterface
 {
     /**
-     * @var \GuzzleHttp\Client The Guzzle client.
+     * @var Client The Guzzle client.
      */
     protected $client;
 

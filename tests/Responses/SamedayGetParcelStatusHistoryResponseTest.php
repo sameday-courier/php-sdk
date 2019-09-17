@@ -2,20 +2,23 @@
 
 namespace Sameday\Tests\Responses;
 
+use DateTime;
+use Mockery;
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\ParcelStatusHistory\ExpeditionObject;
 use Sameday\Objects\ParcelStatusHistory\HistoryObject;
 use Sameday\Objects\ParcelStatusHistory\SummaryObject;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 
-class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestCase
+class SamedayGetParcelStatusHistoryResponseTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @throws \Exception
      */
     public function testConstructorParameters()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayGetParcelStatusHistoryResponse($request, $rawResponse);
 
@@ -28,7 +31,7 @@ class SamedayGetParcelStatusHistoryResponseTest extends \PHPUnit_Framework_TestC
      */
     public function testResponse()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "parcelSummary": {
@@ -88,9 +91,9 @@ JSON
                 '1SDY241065761001',
                 1.1,
                 true,
-                new \DateTime('2018-10-23T18:52:39+0300'),
-                new \DateTime('2018-10-23T18:52:39+0300'),
-                new \DateTime('2018-10-23T18:52:16+0300')
+                new DateTime('2018-10-23T18:52:39+0300'),
+                new DateTime('2018-10-23T18:52:39+0300'),
+                new DateTime('2018-10-23T18:52:16+0300')
             ),
             $response->getSummary()
         );
@@ -103,7 +106,7 @@ JSON
                 'AWB Emis',
                 'Document de transport emis',
                 'Comanda curier primita',
-                new \DateTime('2018-10-23T18:46:44+0300'),
+                new DateTime('2018-10-23T18:46:44+0300'),
                 'Bucuresti',
                 'reason',
                 'location1'
@@ -116,7 +119,7 @@ JSON
                 'In livrare la curier',
                 'In livrare la curier',
                 'Colete in curs de livrare',
-                new \DateTime('2018-10-23T18:46:58+0300'),
+                new DateTime('2018-10-23T18:46:58+0300'),
                 'Bucuresti',
                 'reason',
                 'location2'
@@ -130,7 +133,7 @@ JSON
                 'Livrata cu succes',
                 'Colet livrat',
                 'Colete livrate',
-                new \DateTime('2018-10-23T18:52:39+0300'),
+                new DateTime('2018-10-23T18:52:39+0300'),
                 'Bucuresti',
                 '',
                 '',
