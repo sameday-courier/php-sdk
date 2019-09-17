@@ -2,6 +2,7 @@
 
 namespace Sameday\Responses;
 
+use DateTime;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\StatusSync\StatusObject;
 use Sameday\Requests\SamedayGetStatusSyncRequest;
@@ -50,7 +51,7 @@ class SamedayGetStatusSyncResponse implements SamedayPaginatedResponseInterface
                 $data['parcelAwbNumber'],
                 $data['statusLabel'],
                 $data['statusState'],
-                new \DateTime($data['statusDate']),
+                new DateTime($data['statusDate']),
                 $data['reasonId'] === '' ? null : (int) $data['reasonId'],
                 $data['reason'],
                 $data['parcelDetails']

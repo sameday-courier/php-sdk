@@ -2,14 +2,16 @@
 
 namespace Sameday\Tests\Responses;
 
+use Mockery;
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Responses\SamedayPostAwbResponse;
 
-class SamedayPostAwbResponseTest extends \PHPUnit_Framework_TestCase
+class SamedayPostAwbResponseTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructorParameters()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayPostAwbRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayPostAwbRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayPostAwbResponse($request, $rawResponse);
 
@@ -19,7 +21,7 @@ class SamedayPostAwbResponseTest extends \PHPUnit_Framework_TestCase
 
     public function testResponse()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayPostAwbRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayPostAwbRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "awbNumber": "foo",

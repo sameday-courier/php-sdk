@@ -4,6 +4,7 @@ namespace Sameday\Exceptions;
 
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Http\SamedayRequest;
+use Throwable;
 
 /**
  * Class SamedayServerException
@@ -29,7 +30,7 @@ class SamedayServerException extends SamedaySDKException
      * @param SamedayRawResponse $rawResponse
      * @param string $message
      * @param int $code
-     * @param \Throwable|null $previous
+     * @param Throwable|null $previous
      */
     public function __construct(SamedayRequest $request, SamedayRawResponse $rawResponse, $message = '', $code = 0, $previous = null)
     {

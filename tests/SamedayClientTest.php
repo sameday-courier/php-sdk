@@ -2,18 +2,29 @@
 
 namespace Sameday\Tests;
 
+use DateTime;
+use Exception;
+use Mockery;
+use PHPUnit_Framework_TestCase;
+use Sameday\Exceptions\SamedayAuthenticationException;
+use Sameday\Exceptions\SamedayAuthorizationException;
+use Sameday\Exceptions\SamedayBadRequestException;
+use Sameday\Exceptions\SamedayNotFoundException;
+use Sameday\Exceptions\SamedayOtherException;
+use Sameday\Exceptions\SamedaySDKException;
+use Sameday\Exceptions\SamedayServerException;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Http\SamedayRequest;
 use Sameday\PersistentData\SamedayMemoryPersistentDataHandler;
 use Sameday\SamedayClient;
 
-class SamedayClientTest extends \PHPUnit_Framework_TestCase
+class SamedayClientTest extends PHPUnit_Framework_TestCase
 {
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws Exception
      */
     public function testAddAuthToken()
     {
@@ -34,7 +45,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
 
         $persistentDataHandler = new SamedayMemoryPersistentDataHandler();
         $persistentDataHandler->set('token', 'foo');
-        $persistentDataHandler->set('expires_at', (new \DateTime('+1 day'))->format('Y-m-d H:i:s'));
+        $persistentDataHandler->set('expires_at', (new DateTime('+1 day'))->format('Y-m-d H:i:s'));
 
         $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $client->sendRequest(new SamedayRequest(
@@ -44,6 +55,15 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
         ));
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedayServerException
+     */
     public function testAddPlatformHeader()
     {
         $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
@@ -70,9 +90,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      */
     public function testAddQueryString()
     {
@@ -116,9 +136,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      */
     public function testRawResult()
     {
@@ -140,9 +160,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      *
      * @expectedException \Sameday\Exceptions\SamedayServerException
      */
@@ -164,9 +184,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
 
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      *
      * @expectedException \Sameday\Exceptions\SamedayAuthorizationException
      */
@@ -187,9 +207,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      *
      * @expectedException \Sameday\Exceptions\SamedayAuthenticationException
      */
@@ -210,9 +230,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      *
      * @expectedException \Sameday\Exceptions\SamedayBadRequestException
      */
@@ -233,9 +253,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      *
      * @expectedException \Sameday\Exceptions\SamedayNotFoundException
      */
@@ -256,9 +276,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
      *
      * @expectedException \Sameday\Exceptions\SamedayOtherException
      */
@@ -279,10 +299,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws Exception
      *
      * @expectedException \Sameday\Exceptions\SamedaySDKException
      * @expectedExceptionMessage Username or password not set.
@@ -303,10 +323,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws Exception
      */
     public function testAuthBeforeRequest()
     {
@@ -330,7 +350,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                 ]
             )
             ->willReturnOnConsecutiveCalls(
-                new SamedayRawResponse([], '{"token":"foo","expire_at":"'. (new \DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200),
+                new SamedayRawResponse([], '{"token":"foo","expire_at":"'. (new DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200),
                 new SamedayRawResponse([], 'body', 200)
             );
 
@@ -345,10 +365,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws Exception
      */
     public function testRetryInvalidAuth()
     {
@@ -382,13 +402,13 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
             )
             ->willReturnOnConsecutiveCalls(
                 new SamedayRawResponse([], 'foo_body', 401),
-                new SamedayRawResponse([], '{"token":"bar","expire_at":"'. (new \DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200),
+                new SamedayRawResponse([], '{"token":"bar","expire_at":"'. (new DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200),
                 new SamedayRawResponse([], 'bar_body', 200)
             );
 
         $persistentDataHandler = new SamedayMemoryPersistentDataHandler();
         $persistentDataHandler->set('token', 'foo');
-        $persistentDataHandler->set('expires_at', (new \DateTime('+1 day'))->format('Y-m-d H:i:s'));
+        $persistentDataHandler->set('expires_at', (new DateTime('+1 day'))->format('Y-m-d H:i:s'));
 
         $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $response = $client->sendRequest(new SamedayRequest(
@@ -401,10 +421,10 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedayAuthenticationException
-     * @throws \Sameday\Exceptions\SamedayAuthorizationException
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws Exception
      */
     public function testRetryExpiredAuth()
     {
@@ -428,13 +448,13 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                 ]
             )
             ->willReturnOnConsecutiveCalls(
-                new SamedayRawResponse([], '{"token":"bar","expire_at":"'. (new \DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200),
+                new SamedayRawResponse([], '{"token":"bar","expire_at":"'. (new DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200),
                 new SamedayRawResponse([], 'bar_body', 200)
             );
 
         $persistentDataHandler = new SamedayMemoryPersistentDataHandler();
         $persistentDataHandler->set('token', 'foo');
-        $persistentDataHandler->set('expires_at', (new \DateTime('-1 day'))->format('Y-m-d H:i:s'));
+        $persistentDataHandler->set('expires_at', (new DateTime('-1 day'))->format('Y-m-d H:i:s'));
 
         $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $response = $client->sendRequest(new SamedayRequest(
@@ -447,8 +467,8 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedaySDKException
+     * @throws Exception
      */
     public function testLoginValid()
     {
@@ -460,9 +480,9 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
                 'https://foo.com/api/authenticate',
                 'POST'
             )
-            ->willReturn(new SamedayRawResponse([], '{"token":"bar","expire_at":"'. (new \DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200));
+            ->willReturn(new SamedayRawResponse([], '{"token":"bar","expire_at":"'. (new DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200));
 
-        $persistentDataHandler = \Mockery::mock('Sameday\PersistentData\SamedayPersistentDataInterface');
+        $persistentDataHandler = Mockery::mock('Sameday\PersistentData\SamedayPersistentDataInterface');
         $persistentDataHandler->shouldNotReceive('get');
         $persistentDataHandler->shouldNotReceive('set');
 
@@ -471,8 +491,8 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedaySDKException
+     * @throws Exception
      */
     public function testLoginInvalid()
     {
@@ -487,8 +507,8 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @throws \Sameday\Exceptions\SamedaySDKException
-     * @throws \Exception
+     * @throws SamedaySDKException
+     * @throws Exception
      */
     public function testLogout()
     {
@@ -499,7 +519,7 @@ class SamedayClientTest extends \PHPUnit_Framework_TestCase
 
         $persistentDataHandler = new SamedayMemoryPersistentDataHandler();
         $persistentDataHandler->set('token', 'foo');
-        $persistentDataHandler->set('expires_at', (new \DateTime('+1 day'))->format('Y-m-d H:i:s'));
+        $persistentDataHandler->set('expires_at', (new DateTime('+1 day'))->format('Y-m-d H:i:s'));
 
         $client = new SamedayClient('username', 'password', null, null, null, $httpClientHandler, $persistentDataHandler);
         $client->logout();

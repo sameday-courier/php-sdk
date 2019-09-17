@@ -2,6 +2,7 @@
 
 namespace Sameday\Objects\StatusSync;
 
+use DateTime;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
 
@@ -31,7 +32,7 @@ class StatusObject
     protected $state;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $date;
 
@@ -58,7 +59,7 @@ class StatusObject
      * @param string $parcelAwbNumber
      * @param string $label
      * @param string $state
-     * @param \DateTime $date
+     * @param DateTime $date
      * @param int $reasonId
      * @param string $reason
      * @param string $details
@@ -69,7 +70,7 @@ class StatusObject
         $parcelAwbNumber,
         $label,
         $state,
-        \DateTime $date,
+        DateTime $date,
         $reasonId,
         $reason,
         $details
@@ -110,7 +111,7 @@ class StatusObject
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDate()
     {

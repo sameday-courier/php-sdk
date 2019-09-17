@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Requests\SamedayGetAwbStatusHistoryRequest;
 
-class SamedayGetAwbStatusHistoryRequestTest extends \PHPUnit_Framework_TestCase
+class SamedayGetAwbStatusHistoryRequestTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

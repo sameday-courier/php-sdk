@@ -4,6 +4,7 @@ namespace Sameday\Exceptions;
 
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Http\SamedayRequest;
+use Throwable;
 
 /**
  * Class SamedayBadRequestException
@@ -20,7 +21,7 @@ class SamedayBadRequestException extends SamedayServerException
     /**
      * @inheritdoc
      */
-    public function __construct(SamedayRequest $request, SamedayRawResponse $rawResponse, $message = '', $code = 0, \Throwable $previous = null)
+    public function __construct(SamedayRequest $request, SamedayRawResponse $rawResponse, $message = '', $code = 0, Throwable $previous = null)
     {
         parent::__construct($request, $rawResponse, $message, $code, $previous);
 

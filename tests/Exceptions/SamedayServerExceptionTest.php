@@ -2,14 +2,16 @@
 
 namespace Sameday\Tests\Exceptions;
 
+use Mockery;
+use PHPUnit_Framework_TestCase;
 use Sameday\Exceptions\SamedayServerException;
 
-class SamedayServerExceptionTest extends \PHPUnit_Framework_TestCase
+class SamedayServerExceptionTest extends PHPUnit_Framework_TestCase
 {
     public function testReturnsRawResponse()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
-        $rawResponse = \Mockery::mock('Sameday\Http\SamedayRawResponse');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
+        $rawResponse = Mockery::mock('Sameday\Http\SamedayRawResponse');
         $exception = new SamedayServerException($samedayRequest, $rawResponse);
 
         $this->assertEquals($rawResponse, $exception->getRawResponse());

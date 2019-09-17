@@ -2,13 +2,22 @@
 
 namespace Sameday\Tests;
 
+use Mockery;
 use Mockery\MockInterface;
+use PHPUnit_Framework_TestCase;
+use Sameday\Exceptions\SamedayAuthenticationException;
+use Sameday\Exceptions\SamedayAuthorizationException;
+use Sameday\Exceptions\SamedayBadRequestException;
+use Sameday\Exceptions\SamedayNotFoundException;
+use Sameday\Exceptions\SamedayOtherException;
+use Sameday\Exceptions\SamedaySDKException;
+use Sameday\Exceptions\SamedayServerException;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Http\SamedayRequest;
 use Sameday\Sameday;
 use Sameday\SamedayClientInterface;
 
-class SamedayTest extends \PHPUnit_Framework_TestCase
+class SamedayTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @var MockInterface|SamedayClientInterface
@@ -22,7 +31,7 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->client = \Mockery::mock('Sameday\SamedayClientInterface');
+        $this->client = Mockery::mock('Sameday\SamedayClientInterface');
         $this->sameday = new Sameday($this->client);
     }
 
@@ -31,9 +40,15 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->client, $this->sameday->getClient());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testGetServices()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetServicesRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -52,7 +67,7 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
 
     public function testGetPickupPoints()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetPickupPointsRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -69,9 +84,16 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     * @throws SamedayBadRequestException
+     */
     public function testPutParcelSize()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayPutParcelSizeRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -88,9 +110,17 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     */
     public function testGetParcelStatusHistory()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetParcelStatusHistoryRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -107,9 +137,17 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testDeleteAwb()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayDeleteAwbRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -126,9 +164,18 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testPostAwb()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayPostAwbRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -145,9 +192,18 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testPostAwbEstimation()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayPostAwbEstimationRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -164,9 +220,16 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testGetCounties()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetCountiesRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -183,9 +246,16 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testGetCities()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetCitiesRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -202,9 +272,16 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testGetStatusSync()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetStatusSyncRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -223,33 +300,33 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
 
     public function testPostParcel()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayPostParcelRequest', $samedayRequest);
         $request
             ->shouldReceive('getAwbNumber')
             ->andReturn('foo');
 
-        $parcel1 = \Mockery::mock('Sameday\Objects\AwbStatusHistory\ParcelObject');
+        $parcel1 = Mockery::mock('Sameday\Objects\AwbStatusHistory\ParcelObject');
         $parcel1
             ->shouldReceive('getParcelAwbNumber')
             ->andReturn('parcel1');
 
-        $response1 = \Mockery::mock('Sameday\Responses\SamedayGetAwbStatusHistoryResponse');
+        $response1 = Mockery::mock('Sameday\Responses\SamedayGetAwbStatusHistoryResponse');
         $response1
             ->shouldReceive('getParcels')
             ->andReturn([$parcel1]);
 
-        $parcel2 = \Mockery::mock('Sameday\Objects\AwbStatusHistory\ParcelObject');
+        $parcel2 = Mockery::mock('Sameday\Objects\AwbStatusHistory\ParcelObject');
         $parcel2
             ->shouldReceive('getParcelAwbNumber')
             ->andReturn('parcel2');
 
-        $response2 = \Mockery::mock('Sameday\Responses\SamedayGetAwbStatusHistoryResponse');
+        $response2 = Mockery::mock('Sameday\Responses\SamedayGetAwbStatusHistoryResponse');
         $response2
             ->shouldReceive('getParcels')
             ->andReturn([$parcel1, $parcel2]);
 
-        $sameday = \Mockery::mock('Sameday\Sameday', [$this->client])->makePartial();
+        $sameday = Mockery::mock('Sameday\Sameday', [$this->client])->makePartial();
         $sameday
             ->shouldReceive('getAwbStatusHistory')
             ->twice()
@@ -270,9 +347,17 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('parcel2', $response->getParcelAwbNumber());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testGetAwbPdf()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetAwbPdfRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -289,9 +374,18 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testGetAwbStatusHistory()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetAwbStatusHistoryRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -308,9 +402,16 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($rawResponse, $response->getRawResponse());
     }
 
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
     public function testGetLockers()
     {
-        $samedayRequest = \Mockery::mock('Sameday\Http\SamedayRequest');
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
         $request = $this->mockRequest('Sameday\Requests\SamedayGetLockersRequest', $samedayRequest);
 
         $rawResponse = new SamedayRawResponse([], '');
@@ -335,7 +436,7 @@ class SamedayTest extends \PHPUnit_Framework_TestCase
      */
     protected function mockRequest($class, $buildReturn)
     {
-        $request = \Mockery::mock($class);
+        $request = Mockery::mock($class);
         $request
             ->shouldReceive('getPage')
             ->andReturn(1);

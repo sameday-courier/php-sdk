@@ -2,6 +2,8 @@
 
 namespace Sameday\Objects\AwbStatusHistory;
 
+use DateTime;
+
 /**
  * Parcel for awb status.
  *
@@ -21,7 +23,7 @@ class ParcelObject extends HistoryObject
      * @param string $name
      * @param string $label
      * @param string $state
-     * @param \DateTime $date
+     * @param DateTime $date
      * @param string $county
      * @param string $reason
      * @param string $transitLocation
@@ -32,7 +34,7 @@ class ParcelObject extends HistoryObject
         $name,
         $label,
         $state,
-        \DateTime $date,
+        DateTime $date,
         $county,
         $reason,
         $transitLocation,

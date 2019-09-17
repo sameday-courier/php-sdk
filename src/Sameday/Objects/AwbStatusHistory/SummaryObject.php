@@ -2,6 +2,8 @@
 
 namespace Sameday\Objects\AwbStatusHistory;
 
+use DateTime;
+
 /**
  * Summary for awb status.
  *
@@ -10,12 +12,12 @@ namespace Sameday\Objects\AwbStatusHistory;
 class SummaryObject
 {
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $deliveredAt;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      */
     protected $lastDeliveryAttempt;
 
@@ -70,8 +72,8 @@ class SummaryObject
      * @param float $servicePayment
      * @param float $cashOnDelivery
      * @param int $redirectionAttempts
-     * @param \DateTime|null $deliveredAt
-     * @param \DateTime|null $lastDeliveryAttempt
+     * @param DateTime|null $deliveredAt
+     * @param DateTime|null $lastDeliveryAttempt
      */
     public function __construct(
         $delivered,
@@ -82,8 +84,8 @@ class SummaryObject
         $servicePayment,
         $cashOnDelivery,
         $redirectionAttempts = 0,
-        \DateTime $deliveredAt = null,
-        \DateTime $lastDeliveryAttempt = null
+        DateTime $deliveredAt = null,
+        DateTime $lastDeliveryAttempt = null
     ) {
         $this->delivered = $delivered;
         $this->canceled = $canceled;
@@ -98,7 +100,7 @@ class SummaryObject
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getDeliveredAt()
     {
@@ -106,7 +108,7 @@ class SummaryObject
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
     public function getLastDeliveryAttempt()
     {

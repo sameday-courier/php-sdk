@@ -2,13 +2,14 @@
 
 namespace Sameday\Tests\HttpClients;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\HttpClients\SamedayCurlHttpClient;
 use Sameday\HttpClients\SamedayGuzzleHttpClient;
 use Sameday\HttpClients\SamedayStreamHttpClient;
 use Sameday\HttpClients\HttpClientsFactory;
 use GuzzleHttp\Client;
 
-class HttpClientsFactoryTest extends \PHPUnit_Framework_TestCase
+class HttpClientsFactoryTest extends PHPUnit_Framework_TestCase
 {
     const COMMON_NAMESPACE = 'Sameday\HttpClients\\';
     const COMMON_INTERFACE = 'Sameday\HttpClients\SamedayHttpClientInterface';

@@ -2,6 +2,9 @@
 
 namespace Sameday\Tests\Responses;
 
+use DateTime;
+use Mockery;
+use PHPUnit_Framework_TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\AwbStatusHistory\ExpeditionObject;
 use Sameday\Objects\AwbStatusHistory\HistoryObject;
@@ -9,14 +12,14 @@ use Sameday\Objects\AwbStatusHistory\ParcelObject;
 use Sameday\Objects\AwbStatusHistory\SummaryObject;
 use Sameday\Responses\SamedayGetAwbStatusHistoryResponse;
 
-class SamedayGetAwbStatusHistoryResponseTest extends \PHPUnit_Framework_TestCase
+class SamedayGetAwbStatusHistoryResponseTest extends PHPUnit_Framework_TestCase
 {
     /**
      * @throws \Exception
      */
     public function testConstructorParameters()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayGetAwbStatusHistoryResponse($request, $rawResponse);
 
@@ -29,7 +32,7 @@ class SamedayGetAwbStatusHistoryResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testResponse()
     {
-        $request = \Mockery::mock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
+        $request = Mockery::mock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "expeditionSummary": {
@@ -107,7 +110,7 @@ JSON
                 0,
                 54.6,
                 1,
-                new \DateTime('2019-02-26T12:37:28+0200'),
+                new DateTime('2019-02-26T12:37:28+0200'),
                 null
             ),
             $response->getSummary()
@@ -121,7 +124,7 @@ JSON
                 'AWB Emis',
                 'Document de transport emis',
                 'Comanda curier primita',
-                new \DateTime('2019-02-26T09:37:28+0200'),
+                new DateTime('2019-02-26T09:37:28+0200'),
                 'Bucuresti',
                 'reason',
                 'location1'
@@ -135,7 +138,7 @@ JSON
                 'AWB Emis',
                 'Document de transport emis',
                 'Comanda curier primita',
-                new \DateTime('2019-02-26T09:37:28+0200'),
+                new DateTime('2019-02-26T09:37:28+0200'),
                 'Bucuresti',
                 '',
                 ''
@@ -151,7 +154,7 @@ JSON
                 'AWB Emis',
                 'Document de transport emis',
                 'Comanda curier primita',
-                new \DateTime('2019-02-26T09:37:28+0200'),
+                new DateTime('2019-02-26T09:37:28+0200'),
                 '',
                 '',
                 '',
@@ -165,7 +168,7 @@ JSON
                 'AWB Emis',
                 'Document de transport emis',
                 'Comanda curier primita',
-                new \DateTime('2019-02-26T09:39:10+0200'),
+                new DateTime('2019-02-26T09:39:10+0200'),
                 '',
                 '',
                 '',

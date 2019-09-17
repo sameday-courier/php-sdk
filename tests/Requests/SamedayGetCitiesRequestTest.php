@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Requests\SamedayGetCitiesRequest;
 
-class SamedayGetCitiesRequestTest extends \PHPUnit_Framework_TestCase
+class SamedayGetCitiesRequestTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {

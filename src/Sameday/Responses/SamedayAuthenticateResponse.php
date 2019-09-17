@@ -2,6 +2,8 @@
 
 namespace Sameday\Responses;
 
+use DateTime;
+use Exception;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Requests\SamedayAuthenticateRequest;
 use Sameday\Responses\Traits\SamedayResponseTrait;
@@ -21,7 +23,7 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
     protected $token;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $expiresAt;
 
@@ -31,7 +33,7 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
      * @param SamedayAuthenticateRequest $request
      * @param SamedayRawResponse $rawResponse
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(SamedayAuthenticateRequest $request, SamedayRawResponse $rawResponse)
     {
@@ -40,12 +42,12 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
 
         $json = json_decode($this->rawResponse->getBody(), true);
         $this->token = $json['token'];
-        $expiresAt = \DateTime::createFromFormat('Y-m-d H:i', $json['expire_at']);
+        $expiresAt = DateTime::createFromFormat('Y-m-d H:i', $json['expire_at']);
 
-        if ($expiresAt instanceof \DateTime) {
+        if ($expiresAt instanceof DateTime) {
             $this->expiresAt = $expiresAt;
         } else {
-            $this->expiresAt = new \DateTime('+10 minute');
+            $this->expiresAt = new DateTime('+10 minute');
         }
     }
 
@@ -58,7 +60,7 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getExpiresAt()
     {

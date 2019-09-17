@@ -2,6 +2,7 @@
 
 namespace Sameday\Objects\AwbStatusHistory;
 
+use DateTime;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
 
@@ -26,7 +27,7 @@ class HistoryObject
     protected $state;
 
     /**
-     * @var \DateTime
+     * @var DateTime
      */
     protected $date;
 
@@ -52,7 +53,7 @@ class HistoryObject
      * @param string $name
      * @param string $label
      * @param string $state
-     * @param \DateTime $date
+     * @param DateTime $date
      * @param string $county
      * @param string $reason
      * @param string $transitLocation
@@ -62,7 +63,7 @@ class HistoryObject
         $name,
         $label,
         $state,
-        \DateTime $date,
+        DateTime $date,
         $county,
         $reason,
         $transitLocation
@@ -94,7 +95,7 @@ class HistoryObject
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
     public function getDate()
     {

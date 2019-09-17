@@ -2,9 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
+use PHPUnit_Framework_TestCase;
 use Sameday\Requests\SamedayDeleteAwbRequest;
 
-class SamedayDeleteAwbRequestTest extends \PHPUnit_Framework_TestCase
+class SamedayDeleteAwbRequestTest extends PHPUnit_Framework_TestCase
 {
     public function testConstructor()
     {
