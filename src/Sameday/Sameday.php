@@ -2,10 +2,12 @@
 
 namespace Sameday;
 
+use Exception;
 use Sameday\Objects\AwbStatusHistory\ParcelObject;
 use Sameday\Requests\SamedayDeleteAwbRequest;
 use Sameday\Requests\SamedayGetAwbPdfRequest;
 use Sameday\Requests\SamedayGetAwbStatusHistoryRequest;
+use Sameday\Requests\SamedayGetCitiesRequest;
 use Sameday\Requests\SamedayGetCountiesRequest;
 use Sameday\Requests\SamedayGetLockersRequest;
 use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
@@ -19,6 +21,7 @@ use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayDeleteAwbResponse;
 use Sameday\Responses\SamedayGetAwbPdfResponse;
 use Sameday\Responses\SamedayGetAwbStatusHistoryResponse;
+use Sameday\Responses\SamedayGetCitiesResponse;
 use Sameday\Responses\SamedayGetCountiesResponse;
 use Sameday\Responses\SamedayGetLockersResponse;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
@@ -117,7 +120,7 @@ class Sameday
      * @throws Exceptions\SamedayOtherException
      * @throws Exceptions\SamedaySDKException
      * @throws Exceptions\SamedayServerException
-     * @throws \Exception
+     * @throws Exception
      */
     public function getParcelStatusHistory(SamedayGetParcelStatusHistoryRequest $request)
     {
@@ -194,6 +197,22 @@ class Sameday
     }
 
     /**
+     * @param SamedayGetCitiesRequest $request
+     *
+     * @return SamedayGetCitiesResponse
+     *
+     * @throws Exceptions\SamedayAuthenticationException
+     * @throws Exceptions\SamedayAuthorizationException
+     * @throws Exceptions\SamedayBadRequestException
+     * @throws Exceptions\SamedaySDKException
+     * @throws Exceptions\SamedayServerException
+     */
+    public function getCities(SamedayGetCitiesRequest $request)
+    {
+        return new SamedayGetCitiesResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
      * @param SamedayGetStatusSyncRequest $request
      *
      * @return SamedayGetStatusSyncResponse
@@ -203,7 +222,7 @@ class Sameday
      * @throws Exceptions\SamedayBadRequestException
      * @throws Exceptions\SamedaySDKException
      * @throws Exceptions\SamedayServerException
-     * @throws \Exception
+     * @throws Exception
      */
     public function getStatusSync(SamedayGetStatusSyncRequest $request)
     {
@@ -222,7 +241,7 @@ class Sameday
      * @throws Exceptions\SamedayOtherException
      * @throws Exceptions\SamedaySDKException
      * @throws Exceptions\SamedayServerException
-     * @throws \Exception
+     * @throws Exception
      */
     public function postParcel(SamedayPostParcelRequest $request)
     {
@@ -283,7 +302,7 @@ class Sameday
      * @throws Exceptions\SamedayOtherException
      * @throws Exceptions\SamedaySDKException
      * @throws Exceptions\SamedayServerException
-     * @throws \Exception
+     * @throws Exception
      */
     public function getAwbStatusHistory(SamedayGetAwbStatusHistoryRequest $request)
     {
