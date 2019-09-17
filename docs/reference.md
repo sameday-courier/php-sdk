@@ -21,6 +21,7 @@ These classes are used as an API request.
 | [`Sameday\Requests\SamedayDeleteAwbRequest`](reference/SamedayDeleteAwbRequest.md) | An entity that represents a request to delete an AWB. |
 | [`Sameday\Requests\SamedayGetAwbPdfRequest`](reference/SamedayGetAwbPdfRequest.md) | An entity that represents a request to download an PDF for an existing AWB. |
 | [`Sameday\Requests\SamedayGetCountiesRequest`](reference/SamedayGetCountiesRequest.md) | An entity that represents a request to get all counties (paginated). |
+| [`Sameday\Requests\SamedayGetCitiesRequest`](reference/SamedayGetCitiesRequest.md) | An entity that represents a request to get all/filtered cities (paginated). |
 | [`Sameday\Requests\SamedayGetParcelStatusHistoryRequest`](reference/SamedayGetParcelStatusHistoryRequest.md) | An entity that represents a request to get status history for a parcel. |
 | [`Sameday\Requests\SamedayGetPickupPointsRequest`](reference/SamedayGetPickupPointsRequest.md) | An entity that represents a request to get pickup points for current user (paginated). |
 | [`Sameday\Requests\SamedayGetServicesRequest`](reference/SamedayGetServicesRequest.md) | An entity that represents a request to get available delivery services for current user (paginated). |
@@ -42,6 +43,7 @@ These classes are used as an API response.
 | [`Sameday\Responses\SamedayDeleteAwbResponse`](reference/SamedayDeleteAwbResponse.md) | An entity that represents a response to delete an AWB. |
 | [`Sameday\Responses\SamedayGetAwbPdfResponse`](reference/SamedayGetAwbPdfResponse.md) | An entity that represents a response to download an PDF for an existing AWB. |
 | [`Sameday\Responses\SamedayGetCountiesResponse`](reference/SamedayGetCountiesResponse.md) | An entity that represents a response to get all counties (paginated). |
+| [`Sameday\Responses\SamedayGetCitiesResponse`](reference/SamedayGetCitiesResponse.md) | An entity that represents a response to get all/filtered cities (paginated). |
 | [`Sameday\Responses\SamedayGetParcelStatusHistoryResponse`](reference/SamedayGetParcelStatusHistoryResponse.md) | An entity that represents a response to get history for a parcel. |
 | [`Sameday\Responses\SamedayGetPickupPointsResponse`](reference/SamedayGetPickupPointsResponse.md) | An entity that represents a response to get pickup points for current user (paginated). |
 | [`Sameday\Responses\SamedayGetServicesResponse`](reference/SamedayGetServicesResponse.md) | An entity that represents a response to get available delivery services for current user (paginated). |

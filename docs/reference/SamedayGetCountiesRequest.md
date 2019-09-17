@@ -4,7 +4,7 @@ This entity represents a request to get list of available counties (paginated).
 
 ## Constructor parameters
 
-- `string|null $awb` specifies a filter for county name
+- `string|null $name` specifies a filter for county name
 
 ## Pagination
 
