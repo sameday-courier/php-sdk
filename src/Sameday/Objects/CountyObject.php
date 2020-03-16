@@ -2,6 +2,7 @@
 
 namespace Sameday\Objects;
 
+use Sameday\Objects\Traits\SamedayObjectCodeTrait;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
 
@@ -14,11 +15,7 @@ class CountyObject
 {
     use SamedayObjectIdTrait;
     use SamedayObjectNameTrait;
-
-    /**
-     * @var string
-     */
-    protected $code;
+    use SamedayObjectCodeTrait;
 
     /**
      * CountyObject constructor.
@@ -32,13 +29,5 @@ class CountyObject
         $this->id = $id;
         $this->name = $name;
         $this->code = $code;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCode()
-    {
-        return $this->code;
     }
 }

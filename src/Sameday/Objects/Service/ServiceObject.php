@@ -2,6 +2,7 @@
 
 namespace Sameday\Objects\Service;
 
+use Sameday\Objects\Traits\SamedayObjectCodeTrait;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
 
@@ -14,11 +15,7 @@ class ServiceObject
 {
     use SamedayObjectIdTrait;
     use SamedayObjectNameTrait;
-
-    /**
-     * @var string
-     */
-    protected $code;
+    use SamedayObjectCodeTrait;
 
     /**
      * @var DeliveryTypeObject
@@ -53,14 +50,6 @@ class ServiceObject
         $this->deliveryType = $deliveryType;
         $this->default = $default;
         $this->optionalTaxes = $optionalTaxes;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
     }
 
     /**
