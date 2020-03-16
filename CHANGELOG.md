@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.0](https://github.com/sameday-courier/php-sdk/compare/v1.6.0...v1.7.0)
+
+### Added
+
+- Add optional tax codes
+- Use trait for code
+
 ## [1.6.0](https://github.com/sameday-courier/php-sdk/compare/v1.5.0...v1.6.0)
 
 ### Added
