@@ -60,14 +60,16 @@ class SamedayGetServicesResponseTest extends PHPUnit_Framework_TestCase
                     "id": 20,
                     "name": "Reambalare",
                     "tax": 6,
-                    "packageType": 1
+                    "packageType": 1,
+                    "taxCode": "RB"
                 },
                 {
                     "costType": "Procentual",
                     "id": 23,
                     "name": "Deschidere Colet",
                     "tax": 1.1,
-                    "packageType": 2
+                    "packageType": 2,
+                    "taxCode": "OPCG"
                 }
             ]
         }
@@ -105,8 +107,8 @@ JSON
                 new DeliveryTypeObject(2, 'NextDay'),
                 false,
                 [
-                    new OptionalTaxObject(20, 'Reambalare', new CostType('Fix'), 6, new PackageType(1)),
-                    new OptionalTaxObject(23, 'Deschidere Colet', new CostType('Procentual'), 1.1, new PackageType(2)),
+                    new OptionalTaxObject(20, 'Reambalare', 'RB', new CostType('Fix'), 6, new PackageType(1)),
+                    new OptionalTaxObject(23, 'Deschidere Colet', 'OPCG', new CostType('Procentual'), 1.1, new PackageType(2)),
                 ]
             ),
             $services[1]
