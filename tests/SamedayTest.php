@@ -429,6 +429,32 @@ class SamedayTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     * @throws SamedayBadRequestException
+     */
+    public function testPutAwbCODAmount()
+    {
+        $samedayRequest = Mockery::mock('Sameday\Http\SamedayRequest');
+        $request = $this->mockRequest('Sameday\Requests\SamedayPutAwbCODAmountRequest', $samedayRequest);
+
+        $rawResponse = new SamedayRawResponse([], '');
+        $this->client
+            ->shouldReceive('sendRequest')
+            ->once()
+            ->with($samedayRequest)
+            ->andReturn($rawResponse);
+
+        $response = $this->sameday->putAwbCODAmount($request);
+
+        $this->assertInstanceOf('Sameday\Responses\SamedayPutAwbCODAmountResponse', $response);
+        $this->assertEquals($request, $response->getRequest());
+        $this->assertEquals($rawResponse, $response->getRawResponse());
+    }
+
+    /**
      * @param string $class
      * @param SamedayRequest $buildReturn
      *

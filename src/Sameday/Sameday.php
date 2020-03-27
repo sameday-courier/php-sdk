@@ -16,6 +16,7 @@ use Sameday\Requests\SamedayGetStatusSyncRequest;
 use Sameday\Requests\SamedayPostAwbRequest;
 use Sameday\Requests\SamedayPostAwbEstimationRequest;
 use Sameday\Requests\SamedayPostParcelRequest;
+use Sameday\Requests\SamedayPutAwbCODAmountRequest;
 use Sameday\Requests\SamedayPutParcelSizeRequest;
 use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayDeleteAwbResponse;
@@ -30,6 +31,7 @@ use Sameday\Responses\SamedayGetStatusSyncResponse;
 use Sameday\Responses\SamedayPostAwbEstimationResponse;
 use Sameday\Responses\SamedayPostAwbResponse;
 use Sameday\Responses\SamedayPostParcelResponse;
+use Sameday\Responses\SamedayPutAwbCODAmountResponse;
 use Sameday\Responses\SamedayPutParcelSizeResponse;
 use Sameday\Responses\SamedayGetServicesResponse;
 
@@ -323,5 +325,21 @@ class Sameday
     public function getLockers(SamedayGetLockersRequest $request)
     {
         return new SamedayGetLockersResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayPutAwbCODAmountRequest $request
+     *
+     * @return SamedayPutAwbCODAmountResponse
+     *
+     * @throws Exceptions\SamedaySDKException
+     * @throws Exceptions\SamedayAuthenticationException
+     * @throws Exceptions\SamedayAuthorizationException
+     * @throws Exceptions\SamedayServerException
+     * @throws Exceptions\SamedayBadRequestException
+     */
+    public function putAwbCODAmount(SamedayPutAwbCODAmountRequest $request)
+    {
+        return new SamedayPutAwbCODAmountResponse($request, $this->client->sendRequest($request->buildRequest()));
     }
 }
