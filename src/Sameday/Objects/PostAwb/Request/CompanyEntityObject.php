@@ -43,7 +43,7 @@ class CompanyEntityObject
      * @param string $iban
      * @param string $bank
      */
-    public function __construct($name, $cui, $onrcNumber, $iban, $bank)
+    public function __construct($name, $cui = '', $onrcNumber = '', $iban = '', $bank = '')
     {
         $this->name = $name;
         $this->cui = $cui;
