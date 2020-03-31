@@ -59,6 +59,9 @@ try {
     var_dump($e->getErrors());
     exit;
 } // Other exceptions may be thrown, see https://github.com/sameday-courier/php-sdk/blob/master/docs/reference.md#core-exceptions
+
+$pdf = $sameday->getAwbPdf(new \Sameday\Requests\SamedayGetAwbPdfRequest($awb->getAwbNumber(), new \Sameday\Objects\Types\AwbPdfType(\Sameday\Objects\Types\AwbPdfType::A6)));
+echo $pdf->getPdf();
 ```
 
 Complete documentation, installation instructions, and examples are available [here](docs/).
