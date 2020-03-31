@@ -18,27 +18,47 @@ $ composer require sameday-courier/php-sdk
 
 > **Note:** This version of the Sameday SDK for PHP requires PHP 5.4 or greater.
 
-Simple GET example of a client's available services.
+Simple example to get available pickup points and services for a client, request a new AWB and download the PDF for it.
 
 ```php
 require_once __DIR__ . '/vendor/autoload.php'; // Change path as needed.
 
-// Initialization.
-$samedayClient = new \Sameday\SamedayClient('user', 'password'); // Change user and password as needed for your account.
+// Initialization. Change user and password as needed for your account. For testing purposes (also implies different user/password) set a third parameter to 'https://sameday-api.demo.zitec.com'.
+$samedayClient = new \Sameday\SamedayClient('user', 'password');
 $sameday = new \Sameday\Sameday($samedayClient);
 
+// Get list of available pickup points for client.
+$pickupPoints = $sameday->getPickupPoints(new \Sameday\Requests\SamedayGetPickupPointsRequest());
+// Use first found pickup point id. These ids are different for DEMO and PROD environments. This id can be cached on your application.
+$pickupPointId = $pickupPoints->getPickupPoints()[0]->getId();
+
+// Get list of available services for client.
+$services = $sameday->getServices(new \Sameday\Requests\SamedayGetServicesRequest());
+// Use first service id. These ids are different for DEMO and PROD environments. This id can be cached on your application.
+$serviceId = $services->getServices()[0]->getId();
+
 try {
-    // Get services for delivery.
-    $sameday->getServices(new \Sameday\Requests\SamedayGetServicesRequest());
-} catch (\Sameday\Exceptions\SamedayServerException $e) {
-    // When server returns an error.
-    echo 'Server returned an error: ' . $e->getMessage();
+    $awb = $sameday->postAwb(new \Sameday\Requests\SamedayPostAwbRequest(
+        $pickupPointId,
+        null, // Contact person id can be left to NULL and default will be used.
+        new \Sameday\Objects\Types\PackageType(\Sameday\Objects\Types\PackageType::PARCEL),
+        [
+            // This will generate an AWB expedition with 2 parcels (packages). Only the $weight is mandatory.
+            new \Sameday\Objects\ParcelDimensionsObject(0.5),
+            new \Sameday\Objects\ParcelDimensionsObject(3, 15, 28, 67)
+        ],
+        $serviceId,
+        new \Sameday\Objects\Types\AwbPaymentType(\Sameday\Objects\Types\AwbPaymentType::CLIENT), // Who pays for the AWB. CLIENT is the only allowed value.
+        new \Sameday\Objects\PostAwb\Request\AwbRecipientEntityObject('Huedin', 'Cluj', 'str. Otesani', 'Nume Destinatar', '0700111111', 'destinatar.colet@gmail.com', new \Sameday\Objects\PostAwb\Request\CompanyEntityObject('nume companie SRL')), // AWB recipient. Please note that CompanyEntityObject is optional if the recipient is not company.
+        0, // Insured value.
+        100 // Cash on delivery value. Can be 0 if the payment was made online.
+        // Other parameters may follow, see https://github.com/sameday-courier/php-sdk/blob/master/docs/reference/SamedayPostAwbRequest.md
+    ));
+} catch (\Sameday\Exceptions\SamedayBadRequestException $e) {
+    // When request fails validation.
+    var_dump($e->getErrors());
     exit;
-} catch (\Sameday\Exceptions\SamedaySDKException $e) {
-    // When validation fails or other local issues.
-    echo 'Sameday SDK returned an error: ' . $e->getMessage();
-    exit;
-}
+} // Other exceptions may be thrown, see https://github.com/sameday-courier/php-sdk/blob/master/docs/reference.md#core-exceptions
 ```
 
 Complete documentation, installation instructions, and examples are available [here](docs/).
