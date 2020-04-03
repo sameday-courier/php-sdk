@@ -27,7 +27,7 @@ use Sameday\Responses\SamedayAuthenticateResponse;
  */
 class SamedayClient implements SamedayClientInterface
 {
-    const VERSION = '1.8.0';
+    const VERSION = '1.8.2';
     const API_HOST = 'https://api.sameday.ro';
     const KEY_TOKEN = 'token';
     const KEY_TOKEN_EXPIRES = 'expires_at';
