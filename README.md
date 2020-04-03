@@ -35,6 +35,8 @@ $pickupPointId = $pickupPoints->getPickupPoints()[0]->getId();
 // Get list of available services for client.
 $services = $sameday->getServices(new \Sameday\Requests\SamedayGetServicesRequest());
 // Use first service id. These ids are different for DEMO and PROD environments. This id can be cached on your application.
+// This is just for example purpose. Choose the right service for your app.
+// For instance if requesting with 2H service (delivery in 2 hours) and cities are different (pickup point city and recipient city) then the validation will fail.
 $serviceId = $services->getServices()[0]->getId();
 
 try {
@@ -55,7 +57,7 @@ try {
         // Other parameters may follow, see https://github.com/sameday-courier/php-sdk/blob/master/docs/reference/SamedayPostAwbRequest.md
     ));
 } catch (\Sameday\Exceptions\SamedayBadRequestException $e) {
-    // When request fails validation.
+    // When request fails validation. Show the list of validation errors.
     var_dump($e->getErrors());
     exit;
 } // Other exceptions may be thrown, see https://github.com/sameday-courier/php-sdk/blob/master/docs/reference.md#core-exceptions
