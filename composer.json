@@ -20,7 +20,7 @@
         "phpunit/phpunit": "~4.0",
         "mockery/mockery": "~0.8",
         "guzzlehttp/guzzle": "~5.0",
-        "squizlabs/php_codesniffer": "^3.3"
+        "squizlabs/php_codesniffer": "^3.5"
     },
     "suggest": {
         "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client"
