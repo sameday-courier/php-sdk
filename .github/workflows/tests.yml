@@ -17,11 +17,11 @@ jobs:
           php-version: ${{ matrix.php-versions }}
           tools: composer:v1, phpunit:4.0
       - name: Install PHP == 8
-          if: ${{ matrix.php-versions == '8.0' }}
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: ${{ matrix.php-versions }}
-            tools: composer:v2, phpunit:8.5
+        if: ${{ matrix.php-versions == '8.0' }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+          tools: composer:v2, phpunit:8.5
       - name: Install composer packages
         run: composer install --prefer-dist --no-interaction
       - name: Run phpcs
