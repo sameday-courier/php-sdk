@@ -41,8 +41,9 @@ class SamedayAuthenticateResponse implements SamedayResponseInterface
         $this->rawResponse = $rawResponse;
 
         $json = json_decode($this->rawResponse->getBody(), true);
-        $this->token = $json['token'];
-        $expiresAt = DateTime::createFromFormat('Y-m-d H:i', $json['expire_at']);
+        $this->token = $json['token'] ?? null;
+        $expiresAt = DateTime::createFromFormat('Y-m-d H:i',
+            $json['expire_at'] ?? (new DateTime('tomorrow')));
 
         if ($expiresAt instanceof DateTime) {
             $this->expiresAt = $expiresAt;
