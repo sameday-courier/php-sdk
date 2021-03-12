@@ -15,13 +15,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          tools: composer:v1, phpunit:5.4
+          tools: composer:v1, phpunit:5.4.8
       - name: Install PHP 8
         if: ${{ matrix.php-versions == '8.0' }}
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php-versions }}
-          tools: composer:v2, phpunit:9.5
+          tools: composer:v2, phpunit:9.5.2
       - name: Install composer packages
         run: composer install --prefer-dist --no-interaction
       - name: Run phpcs
