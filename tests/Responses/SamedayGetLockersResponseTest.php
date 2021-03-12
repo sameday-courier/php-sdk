@@ -2,7 +2,7 @@
 
 namespace Sameday\Tests\Responses;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\Locker\BoxObject;
 use Sameday\Objects\Locker\LockerObject;
@@ -10,7 +10,7 @@ use Sameday\Objects\Locker\ScheduleObject;
 use Sameday\Requests\SamedayGetLockersRequest;
 use Sameday\Responses\SamedayGetLockersResponse;
 
-class SamedayGetLockersResponseTest extends PHPUnit_Framework_TestCase
+class SamedayGetLockersResponseTest extends TestCase
 {
     public function testConstructorParameters()
     {

@@ -2,8 +2,7 @@
 
 namespace Sameday\Tests\HttpClients;
 
-use Mockery;
-use Mockery\MockInterface;
+use PHPUnit\Framework\TestCase;
 use Sameday\Exceptions\SamedaySDKException;
 use Sameday\HttpClients\SamedayCurl;
 use Sameday\HttpClients\SamedayCurlHttpClient;
@@ -11,7 +10,7 @@ use Sameday\HttpClients\SamedayCurlHttpClient;
 class SamedayCurlHttpClientTest extends AbstractTestHttpClient
 {
     /**
-     * @var MockInterface|SamedayCurl
+     * @var SamedayCurl
      */
     protected $curl;
 
@@ -20,25 +19,27 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
      */
     protected $client;
 
-    protected function setUp()
+    private function setUpRequirements()
     {
         if (!extension_loaded('curl')) {
             $this->markTestSkipped('cURL must be installed to test cURL client handler.');
         }
 
-        $this->curl = Mockery::mock('Sameday\HttpClients\SamedayCurl');
+        $this->curl = $this->createMock('Sameday\HttpClients\SamedayCurl');
         $this->client = new SamedayCurlHttpClient($this->curl);
     }
 
     public function testCanOpenGetCurlConnection()
     {
+        $this->setUpRequirements();
         $this->curl
-            ->shouldReceive('init')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('init')
+            ->willReturn(null);
         $this->curl
-            ->shouldReceive('setoptArray')
-            ->with(Mockery::on(static function ($arg) {
+            ->expects($this->once())
+            ->method('setoptArray')
+            ->will($this->returnCallback(static function ($arg) {
                 // array_diff() will sometimes trigger error on child-arrays
                 if (['X-Foo-Header: X-Bar'] !== $arg[CURLOPT_HTTPHEADER]) {
                     return false;
@@ -58,21 +59,22 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
 
                 return count($diff) === 0;
             }))
-            ->once()
-            ->andReturn(null);
+            ->willReturn(null);
 
         $this->client->openConnection('http://foo.com', 'GET', 'foo_body', ['X-Foo-Header' => 'X-Bar'], 123);
     }
 
     public function testCanOpenCurlConnectionWithPostBody()
     {
+        $this->setUpRequirements();
         $this->curl
-            ->shouldReceive('init')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('init')
+            ->willReturn(null);
         $this->curl
-            ->shouldReceive('setoptArray')
-            ->with(Mockery::on(static function ($arg) {
+            ->expects($this->once())
+            ->method('setoptArray')
+            ->will($this->returnCallback(static function ($arg) {
                 // array_diff() will sometimes trigger error on child-arrays
                 if ([] !== $arg[CURLOPT_HTTPHEADER]) {
                     return false;
@@ -93,28 +95,29 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
 
                 return count($diff) === 0;
             }))
-            ->once()
-            ->andReturn(null);
+            ->willReturn(null);
 
         $this->client->openConnection('http://bar.com', 'POST', 'baz=bar', [], 60);
     }
 
     public function testCanCloseConnection()
     {
+        $this->setUpRequirements();
         $this->curl
-            ->shouldReceive('close')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('close')
+            ->willReturn(null);
 
         $this->client->closeConnection();
     }
 
     public function testIsolatesTheHeaderAndBody()
     {
+        $this->setUpRequirements();
         $this->curl
-            ->shouldReceive('exec')
-            ->once()
-            ->andReturn($this->fakeRawHeader . $this->fakeRawBody);
+            ->expects($this->once())
+            ->method('exec')
+            ->willReturn($this->fakeRawHeader . $this->fakeRawBody);
 
         $this->client->sendRequest();
         list($rawHeader, $rawBody) = $this->client->extractResponseHeadersAndBody();
@@ -125,11 +128,12 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
 
     public function testProperlyHandlesProxyHeaders()
     {
+        $this->setUpRequirements();
         $rawHeader = $this->fakeRawProxyHeader . $this->fakeRawHeader;
         $this->curl
-            ->shouldReceive('exec')
-            ->once()
-            ->andReturn($rawHeader . $this->fakeRawBody);
+            ->expects($this->once())
+            ->method('exec')
+            ->willReturn($rawHeader . $this->fakeRawBody);
 
         $this->client->sendRequest();
         list($rawHeaders, $rawBody) = $this->client->extractResponseHeadersAndBody();
@@ -140,11 +144,12 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
 
     public function testProperlyHandlesProxyHeadersWithCurlBug2()
     {
+        $this->setUpRequirements();
         $rawHeader = $this->fakeRawProxyHeader2 . $this->fakeRawHeader;
         $this->curl
-            ->shouldReceive('exec')
-            ->once()
-            ->andReturn($rawHeader . $this->fakeRawBody);
+            ->expects($this->once())
+            ->method('exec')
+            ->willReturn($rawHeader . $this->fakeRawBody);
 
         $this->client->sendRequest();
         list($rawHeaders, $rawBody) = $this->client->extractResponseHeadersAndBody();
@@ -155,11 +160,12 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
 
     public function testProperlyHandlesRedirectHeaders()
     {
+        $this->setUpRequirements();
         $rawHeader = $this->fakeRawRedirectHeader . $this->fakeRawHeader;
         $this->curl
-            ->shouldReceive('exec')
-            ->once()
-            ->andReturn($rawHeader . $this->fakeRawBody);
+            ->expects($this->once())
+            ->method('exec')
+            ->willReturn($rawHeader . $this->fakeRawBody);
 
         $this->client->sendRequest();
         list($rawHeaders, $rawBody) = $this->client->extractResponseHeadersAndBody();
@@ -173,29 +179,29 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
      */
     public function testCanSendNormalRequest()
     {
+        $this->setUpRequirements();
         $this->curl
-            ->shouldReceive('init')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('init')
+            ->willReturn(null);
         $this->curl
-            ->shouldReceive('setoptArray')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('setoptArray')
+            ->willReturn(null);
         $this->curl
-            ->shouldReceive('exec')
-            ->once()
-            ->andReturn($this->fakeRawHeader . $this->fakeRawBody);
+            ->expects($this->once())
+            ->method('exec')
+            ->willReturn($this->fakeRawHeader . $this->fakeRawBody);
         $this->curl
-            ->shouldReceive('errno')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('errno')
+            ->willReturn(null);
         $this->curl
-            ->shouldReceive('close')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('close')
+            ->willReturn(null);
 
         $response = $this->client->send('http://foo.com/', 'GET', '', [], 60);
-
         $this->assertInstanceOf('Sameday\Http\SamedayRawResponse', $response);
         $this->assertEquals($this->fakeRawBody, $response->getBody());
         $this->assertEquals($this->fakeHeadersAsArray, $response->getHeaders());
@@ -207,26 +213,28 @@ class SamedayCurlHttpClientTest extends AbstractTestHttpClient
      */
     public function testThrowsExceptionOnClientError()
     {
+        $this->expectException(SamedaySDKException::class);
+        $this->setUpRequirements();
         $this->curl
-            ->shouldReceive('init')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('init')
+            ->willReturn(null);
         $this->curl
-            ->shouldReceive('setoptArray')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('setoptArray')
+            ->willReturn(null);
         $this->curl
-            ->shouldReceive('exec')
-            ->once()
-            ->andReturn(false);
+            ->expects($this->once())
+            ->method('exec')
+            ->willReturn(false);
         $this->curl
-            ->shouldReceive('errno')
-            ->once()
-            ->andReturn(123);
+            ->expects($this->once())
+            ->method('errno')
+            ->willReturn(123);
         $this->curl
-            ->shouldReceive('error')
-            ->once()
-            ->andReturn('Foo error');
+            ->expects($this->once())
+            ->method('error')
+            ->willReturn('Foo error');
 
         $this->client->send('http://foo.com/', 'GET', '', [], 60);
     }

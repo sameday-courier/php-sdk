@@ -17,8 +17,7 @@
     },
     "require-dev": {
         "ext-curl": "*",
-        "phpunit/phpunit": "~4.0",
-        "mockery/mockery": "~0.8",
+        "phpunit/phpunit": "~5.4",
         "guzzlehttp/guzzle": "~5.0",
         "squizlabs/php_codesniffer": "^3.5"
     },

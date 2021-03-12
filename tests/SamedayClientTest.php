@@ -4,8 +4,7 @@ namespace Sameday\Tests;
 
 use DateTime;
 use Exception;
-use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Exceptions\SamedayAuthenticationException;
 use Sameday\Exceptions\SamedayAuthorizationException;
 use Sameday\Exceptions\SamedayBadRequestException;
@@ -18,7 +17,7 @@ use Sameday\Http\SamedayRequest;
 use Sameday\PersistentData\SamedayMemoryPersistentDataHandler;
 use Sameday\SamedayClient;
 
-class SamedayClientTest extends PHPUnit_Framework_TestCase
+class SamedayClientTest extends TestCase
 {
     /**
      * @throws SamedayAuthenticationException
@@ -28,7 +27,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testAddAuthToken()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -66,7 +65,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testAddPlatformHeader()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -96,7 +95,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testAddQueryString()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->exactly(2))
             ->method('send')
@@ -142,7 +141,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testRawResult()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -168,7 +167,8 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testThrowsServerException()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $this->expectException(SamedayServerException::class);
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -192,7 +192,8 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testThrowsAuthorizationException()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $this->expectException(SamedayAuthorizationException::class);
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -215,7 +216,8 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testThrowsAuthenticationException()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $this->expectException(SamedayAuthenticationException::class);
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -238,7 +240,8 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testThrowsBadRequestException()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $this->expectException(SamedayBadRequestException::class);
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -261,7 +264,8 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testThrowsNotFoundException()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $this->expectException(SamedayNotFoundException::class);
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -284,7 +288,8 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testThrowsOtherException()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $this->expectException(SamedayOtherException::class);
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -309,10 +314,16 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testAuthBeforeRequestWithoutUsernamePassword()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $this->expectException(SamedaySDKException::class);
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->never())
             ->method('send');
+
+        $client = $this->getMockBuilder(SamedayClient::class)
+            ->setConstructorArgs(['', '', 'https://foo.com', null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler()])
+            ->getMock();
+
 
         $client = new SamedayClient('', '', 'https://foo.com', null, null, $httpClientHandler, new SamedayMemoryPersistentDataHandler());
         $client->sendRequest(new SamedayRequest(
@@ -330,7 +341,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testAuthBeforeRequest()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->exactly(2))
             ->method('send')
@@ -372,7 +383,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testRetryInvalidAuth()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->exactly(3))
             ->method('send')
@@ -428,7 +439,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testRetryExpiredAuth()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->exactly(2))
             ->method('send')
@@ -472,7 +483,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testLoginValid()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -482,9 +493,9 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
             )
             ->willReturn(new SamedayRawResponse([], '{"token":"bar","expire_at":"'. (new DateTime('+1 day'))->format('Y-m-d H:i') .'"}', 200));
 
-        $persistentDataHandler = Mockery::mock('Sameday\PersistentData\SamedayPersistentDataInterface');
-        $persistentDataHandler->shouldNotReceive('get');
-        $persistentDataHandler->shouldNotReceive('set');
+        $persistentDataHandler = $this->createMock('Sameday\PersistentData\SamedayPersistentDataInterface');
+        $persistentDataHandler->expects($this->never())->method('get');
+        $persistentDataHandler->expects($this->never())->method('set');
 
         $client = new SamedayClient('username', 'password', 'https://foo.com', null, null, $httpClientHandler, $persistentDataHandler);
         $this->assertTrue($client->login());
@@ -496,7 +507,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testLoginInvalid()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->once())
             ->method('send')
@@ -512,7 +523,7 @@ class SamedayClientTest extends PHPUnit_Framework_TestCase
      */
     public function testLogout()
     {
-        $httpClientHandler = $this->getMock('Sameday\HttpClients\SamedayHttpClientInterface');
+        $httpClientHandler = $this->createMock('Sameday\HttpClients\SamedayHttpClientInterface');
         $httpClientHandler
             ->expects($this->never())
             ->method('send');

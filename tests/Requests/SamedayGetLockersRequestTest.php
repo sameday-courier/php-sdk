@@ -2,10 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Requests\SamedayGetLockersRequest;
 
-class SamedayGetLockersRequestTest extends PHPUnit_Framework_TestCase
+class SamedayGetLockersRequestTest extends TestCase
 {
     public function testConstructor()
     {

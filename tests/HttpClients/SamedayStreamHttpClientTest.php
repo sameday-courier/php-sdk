@@ -2,15 +2,13 @@
 
 namespace Sameday\Tests\HttpClients;
 
-use Mockery;
-use Mockery\MockInterface;
 use Sameday\Exceptions\SamedaySDKException;
 use Sameday\HttpClients\SamedayStreamHttpClient;
 
 class SamedayStreamHttpClientTest extends AbstractTestHttpClient
 {
     /**
-     * @var MockInterface|\Sameday\HttpClients\SamedayStream
+     * @var \Sameday\HttpClients\SamedayStream
      */
     protected $stream;
 
@@ -19,14 +17,16 @@ class SamedayStreamHttpClientTest extends AbstractTestHttpClient
      */
     protected $client;
 
-    protected function setUp()
+    private function setUpRequirements()
     {
-        $this->stream = Mockery::mock('Sameday\HttpClients\SamedayStream');
+        $this->stream = $this->createMock('Sameday\HttpClients\SamedayStream');
         $this->client = new SamedayStreamHttpClient($this->stream);
     }
 
     public function testCanCompileHeader()
     {
+        $this->setUpRequirements();
+
         $headers = [
             'X-foo' => 'bar',
             'X-bar' => 'faz',
@@ -41,10 +41,11 @@ class SamedayStreamHttpClientTest extends AbstractTestHttpClient
      */
     public function testCanSendNormalRequest()
     {
+        $this->setUpRequirements();
         $this->stream
-            ->shouldReceive('streamContextCreate')
-            ->once()
-            ->with(Mockery::on(function ($arg) {
+            ->expects($this->once())
+            ->method('streamContextCreate')
+            ->with($this->callback(function ($arg) {
                 if (!isset($arg['http'], $arg['ssl'])) {
                     return false;
                 }
@@ -68,16 +69,16 @@ class SamedayStreamHttpClientTest extends AbstractTestHttpClient
 
                 return count($diff) === 0;
             }))
-            ->andReturn(null);
+            ->willReturn(null);
         $this->stream
-            ->shouldReceive('getResponseHeaders')
-            ->once()
-            ->andReturn(explode("\n", trim($this->fakeRawHeader)));
+            ->expects($this->once())
+            ->method('getResponseHeaders')
+            ->willReturn(explode("\n", trim($this->fakeRawHeader)));
         $this->stream
-            ->shouldReceive('fileGetContents')
-            ->once()
+            ->expects($this->once())
+            ->method('fileGetContents')
             ->with('http://foo.com/')
-            ->andReturn($this->fakeRawBody);
+            ->willReturn($this->fakeRawBody);
 
         $response = $this->client->send('http://foo.com/', 'GET', 'foo_body', ['X-foo' => 'bar'], 123);
 
@@ -92,19 +93,21 @@ class SamedayStreamHttpClientTest extends AbstractTestHttpClient
      */
     public function testThrowsExceptionOnClientError()
     {
+        $this->expectException(SamedaySDKException::class);
+        $this->setUpRequirements();
         $this->stream
-            ->shouldReceive('streamContextCreate')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('streamContextCreate')
+            ->willReturn(null);
         $this->stream
-            ->shouldReceive('getResponseHeaders')
-            ->once()
-            ->andReturn(null);
+            ->expects($this->once())
+            ->method('getResponseHeaders')
+            ->willReturn(null);
         $this->stream
-            ->shouldReceive('fileGetContents')
-            ->once()
+            ->expects($this->once())
+            ->method('fileGetContents')
             ->with('http://foo.com/')
-            ->andReturn(false);
+            ->willReturn(false);
 
         $this->client->send('http://foo.com/', 'GET', 'foo_body', [], 60);
     }

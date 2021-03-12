@@ -2,8 +2,6 @@
 
 namespace Sameday\Tests\HttpClients;
 
-use Mockery;
-use Mockery\MockInterface;
 use Sameday\Exceptions\SamedaySDKException;
 use Sameday\HttpClients\SamedayGuzzleHttpClient;
 use GuzzleHttp\Message\Request;
@@ -14,7 +12,7 @@ use GuzzleHttp\Exception\RequestException;
 class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
 {
     /**
-     * @var MockInterface|\GuzzleHttp\Client
+     * @var \GuzzleHttp\Client
      */
     protected $guzzle;
 
@@ -23,9 +21,9 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
      */
     protected $client;
 
-    protected function setUp()
+    private function setUpRequirements()
     {
-        $this->guzzle = Mockery::mock('GuzzleHttp\Client');
+        $this->guzzle = $this->createMock('GuzzleHttp\Client');
         $this->client = new SamedayGuzzleHttpClient($this->guzzle);
     }
 
@@ -34,15 +32,16 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
      */
     public function testCanSendNormalRequest()
     {
+        $this->setUpRequirements();
         $request = new Request('GET', 'http://foo.com');
 
         $body = Stream::factory($this->fakeRawBody);
         $response = new Response(200, $this->fakeHeadersAsArray, $body);
 
         $this->guzzle
-            ->shouldReceive('createRequest')
-            ->once()
-            ->with('GET', 'http://foo.com/', Mockery::on(function ($arg) {
+            ->expects($this->once())
+            ->method('createRequest')
+            ->with('GET', 'http://foo.com/', $this->callback(function ($arg) {
                 // array_diff_assoc() will sometimes trigger error on child-arrays
                 if (['X-foo' => 'bar'] !== $arg['headers']) {
                     return false;
@@ -57,12 +56,13 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
 
                 return count($diff) === 0;
             }))
-            ->andReturn($request);
+            ->willReturn($request);
+
         $this->guzzle
-            ->shouldReceive('send')
-            ->once()
+            ->expects($this->once())
+            ->method('send')
             ->with($request)
-            ->andReturn($response);
+            ->willReturn($response);
 
         $response = $this->client->send('http://foo.com/', 'GET', 'foo_body', ['X-foo' => 'bar'], 123);
 
@@ -77,12 +77,14 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
      */
     public function testThrowsExceptionOnClientError()
     {
+        $this->expectException(SamedaySDKException::class);
+        $this->setUpRequirements();
         $request = new Request('GET', 'http://foo.com');
 
         $this->guzzle
-            ->shouldReceive('createRequest')
-            ->once()
-            ->with('GET', 'http://foo.com/', Mockery::on(static function ($arg) {
+            ->expects($this->once())
+            ->method('createRequest')
+            ->with('GET', 'http://foo.com/', $this->callback(static function ($arg) {
                 // array_diff_assoc() will sometimes trigger error on child-arrays
                 if ([] !== $arg['headers']) {
                     return false;
@@ -97,12 +99,12 @@ class SamedayGuzzleHttpClientTest extends AbstractTestHttpClient
 
                 return count($diff) === 0;
             }))
-            ->andReturn($request);
+            ->willReturn($request);
         $this->guzzle
-            ->shouldReceive('send')
-            ->once()
+            ->expects($this->once())
+            ->method('send')
             ->with($request)
-            ->andThrow(new RequestException('Foo', $request));
+            ->willThrowException(new RequestException('Foo', $request));
 
         $this->client->send('http://foo.com/', 'GET', 'foo_body', [], 60);
     }

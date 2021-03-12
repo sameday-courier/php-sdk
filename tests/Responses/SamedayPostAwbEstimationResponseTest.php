@@ -2,16 +2,15 @@
 
 namespace Sameday\Tests\Responses;
 
-use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Responses\SamedayPostAwbEstimationResponse;
 
-class SamedayPostAwbEstimationResponseTest extends PHPUnit_Framework_TestCase
+class SamedayPostAwbEstimationResponseTest extends TestCase
 {
     public function testConstructorParameters()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayPostAwbEstimationRequest');
+        $request = $this->createMock('Sameday\Requests\SamedayPostAwbEstimationRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayPostAwbEstimationResponse($request, $rawResponse);
 
@@ -21,7 +20,7 @@ class SamedayPostAwbEstimationResponseTest extends PHPUnit_Framework_TestCase
 
     public function testResponse()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayPostAwbEstimationRequest');
+        $request = $this->createMock('Sameday\Requests\SamedayPostAwbEstimationRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "amount": 12.34,

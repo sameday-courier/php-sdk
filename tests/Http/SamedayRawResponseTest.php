@@ -2,10 +2,10 @@
 
 namespace Sameday\Tests\Http;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 
-class SamedayRawResponseTest extends PHPUnit_Framework_TestCase
+class SamedayRawResponseTest extends TestCase
 {
     protected $fakeRawProxyHeader = "HTTP/1.0 200 Connection established
 Proxy-agent: Kerio Control/7.1.1 build 1971\r\n\r\n";

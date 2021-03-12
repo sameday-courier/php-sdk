@@ -2,12 +2,12 @@
 
 namespace Sameday\Tests\PersistentData;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\PersistentData\SamedayMemoryPersistentDataHandler;
 use Sameday\PersistentData\SamedaySessionPersistentDataHandler;
 use Sameday\PersistentData\PersistentDataFactory;
 
-class PersistentDataFactoryTest extends PHPUnit_Framework_TestCase
+class PersistentDataFactoryTest extends TestCase
 {
     const COMMON_NAMESPACE = 'Sameday\PersistentData\\';
     const COMMON_INTERFACE = 'Sameday\PersistentData\SamedayPersistentDataInterface';

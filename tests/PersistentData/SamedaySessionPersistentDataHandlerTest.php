@@ -2,16 +2,18 @@
 
 namespace Sameday\Tests\PersistentData;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
+use Sameday\Exceptions\SamedaySDKException;
 use Sameday\PersistentData\SamedaySessionPersistentDataHandler;
 
-class SamedaySessionPersistentDataHandlerTest extends PHPUnit_Framework_TestCase
+class SamedaySessionPersistentDataHandlerTest extends TestCase
 {
     /**
      * @expectedException \Sameday\Exceptions\SamedaySDKException
      */
     public function testInactiveSessionsWillThrow()
     {
+        $this->expectException(SamedaySDKException::class);
         new SamedaySessionPersistentDataHandler();
     }
 

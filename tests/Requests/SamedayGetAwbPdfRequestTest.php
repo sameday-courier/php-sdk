@@ -2,11 +2,11 @@
 
 namespace Sameday\Tests\Requests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Objects\Types\AwbPdfType;
 use Sameday\Requests\SamedayGetAwbPdfRequest;
 
-class SamedayGetAwbPdfRequestTest extends PHPUnit_Framework_TestCase
+class SamedayGetAwbPdfRequestTest extends TestCase
 {
     public function testConstructor()
     {

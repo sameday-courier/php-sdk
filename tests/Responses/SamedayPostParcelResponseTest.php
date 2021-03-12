@@ -2,16 +2,15 @@
 
 namespace Sameday\Tests\Responses;
 
-use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Responses\SamedayPostParcelResponse;
 
-class SamedayPostParcelResponseTest extends PHPUnit_Framework_TestCase
+class SamedayPostParcelResponseTest extends TestCase
 {
     public function testConstructorParameters()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayPostParcelRequest');
-        $rawResponse = Mockery::mock('Sameday\Http\SamedayRawResponse');
+        $request = $this->createMock('Sameday\Requests\SamedayPostParcelRequest');
+        $rawResponse = $this->createMock('Sameday\Http\SamedayRawResponse');
         $response = new SamedayPostParcelResponse($request, $rawResponse, 'foo');
 
         $this->assertEquals($request, $response->getRequest());
