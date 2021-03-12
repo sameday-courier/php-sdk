@@ -2,10 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Requests\SamedayPutParcelSizeRequest;
 
-class SamedayPutParcelSizeRequestTest extends PHPUnit_Framework_TestCase
+class SamedayPutParcelSizeRequestTest extends TestCase
 {
     public function testConstructor()
     {

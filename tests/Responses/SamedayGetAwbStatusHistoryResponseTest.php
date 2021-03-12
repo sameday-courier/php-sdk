@@ -3,8 +3,7 @@
 namespace Sameday\Tests\Responses;
 
 use DateTime;
-use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\AwbStatusHistory\ExpeditionObject;
 use Sameday\Objects\AwbStatusHistory\HistoryObject;
@@ -12,14 +11,14 @@ use Sameday\Objects\AwbStatusHistory\ParcelObject;
 use Sameday\Objects\AwbStatusHistory\SummaryObject;
 use Sameday\Responses\SamedayGetAwbStatusHistoryResponse;
 
-class SamedayGetAwbStatusHistoryResponseTest extends PHPUnit_Framework_TestCase
+class SamedayGetAwbStatusHistoryResponseTest extends TestCase
 {
     /**
      * @throws \Exception
      */
     public function testConstructorParameters()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
+        $request = $this->createMock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayGetAwbStatusHistoryResponse($request, $rawResponse);
 
@@ -32,7 +31,7 @@ class SamedayGetAwbStatusHistoryResponseTest extends PHPUnit_Framework_TestCase
      */
     public function testResponse()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
+        $request = $this->createMock('Sameday\Requests\SamedayGetAwbStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "expeditionSummary": {

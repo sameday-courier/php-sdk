@@ -2,16 +2,15 @@
 
 namespace Sameday\Tests\Responses;
 
-use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Responses\SamedayPutAwbCODAmountResponse;
 
-class SamedayPutAwbCODAmountResponseTest extends PHPUnit_Framework_TestCase
+class SamedayPutAwbCODAmountResponseTest extends TestCase
 {
     public function testConstructorParameters()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayPutAwbCODAmountRequest');
-        $rawResponse = Mockery::mock('Sameday\Http\SamedayRawResponse');
+        $request = $this->createMock('Sameday\Requests\SamedayPutAwbCODAmountRequest');
+        $rawResponse = $this->createMock('Sameday\Http\SamedayRawResponse');
         $response = new SamedayPutAwbCODAmountResponse($request, $rawResponse);
 
         $this->assertEquals($request, $response->getRequest());

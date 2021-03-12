@@ -2,13 +2,13 @@
 
 namespace Sameday\Tests\Responses;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\CountyObject;
 use Sameday\Requests\SamedayGetCountiesRequest;
 use Sameday\Responses\SamedayGetCountiesResponse;
 
-class SamedayGetCountiesResponseTest extends PHPUnit_Framework_TestCase
+class SamedayGetCountiesResponseTest extends TestCase
 {
     public function testConstructorParameters()
     {

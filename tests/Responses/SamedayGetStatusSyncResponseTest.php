@@ -3,13 +3,13 @@
 namespace Sameday\Tests\Responses;
 
 use DateTime;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\StatusSync\StatusObject;
 use Sameday\Requests\SamedayGetStatusSyncRequest;
 use Sameday\Responses\SamedayGetStatusSyncResponse;
 
-class SamedayGetStatusSyncResponseTest extends PHPUnit_Framework_TestCase
+class SamedayGetStatusSyncResponseTest extends TestCase
 {
     /**
      * @throws \Exception

@@ -2,16 +2,15 @@
 
 namespace Sameday\Tests\Responses;
 
-use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Responses\SamedayDeleteAwbResponse;
 
-class SamedayDeleteAwbResponseTest extends PHPUnit_Framework_TestCase
+class SamedayDeleteAwbResponseTest extends TestCase
 {
     public function testConstructorParameters()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayDeleteAwbRequest');
+        $request = $this->createMock('Sameday\Requests\SamedayDeleteAwbRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayDeleteAwbResponse($request, $rawResponse);
 

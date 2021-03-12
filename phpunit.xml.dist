@@ -1,22 +1,13 @@
-<phpunit
-        colors="true"
-        stderr="true"
-        convertErrorsToExceptions="true"
-        convertNoticesToExceptions="true"
-        convertWarningsToExceptions="true"
-        stopOnFailure="false"
-        bootstrap="tests/bootstrap.php">
-    <testsuites>
-        <testsuite name="Sameday PHP SDK Test Suite">
-            <directory>./tests</directory>
-        </testsuite>
-    </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">./src/Sameday</directory>
-        </whitelist>
-    </filter>
-    <listeners>
-        <listener class="\Mockery\Adapter\Phpunit\TestListener"/>
-    </listeners>
+<?xml version="1.0"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" colors="true" stderr="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" stopOnFailure="false" bootstrap="tests/bootstrap.php" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+  <coverage>
+    <include>
+      <directory suffix=".php">./src/Sameday</directory>
+    </include>
+  </coverage>
+  <testsuites>
+    <testsuite name="Sameday PHP SDK Test Suite">
+      <directory>./tests</directory>
+    </testsuite>
+  </testsuites>
 </phpunit>

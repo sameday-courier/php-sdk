@@ -2,10 +2,10 @@
 
 namespace Sameday\Tests\Http;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\RequestBodyUrlEncoded;
 
-class RequestBodyUrlEncodedTest extends PHPUnit_Framework_TestCase
+class RequestBodyUrlEncodedTest extends TestCase
 {
     public function testCanProperlyEncodeAnArrayOfParams()
     {

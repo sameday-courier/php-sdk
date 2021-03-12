@@ -2,10 +2,10 @@
 
 namespace Sameday\Tests\Requests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Requests\SamedayPutAwbCODAmountRequest;
 
-class SamedayPutAwbCODAmountRequestTest extends PHPUnit_Framework_TestCase
+class SamedayPutAwbCODAmountRequestTest extends TestCase
 {
     public function testConstructor()
     {

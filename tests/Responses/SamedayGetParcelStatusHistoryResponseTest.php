@@ -3,22 +3,21 @@
 namespace Sameday\Tests\Responses;
 
 use DateTime;
-use Mockery;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\ParcelStatusHistory\ExpeditionObject;
 use Sameday\Objects\ParcelStatusHistory\HistoryObject;
 use Sameday\Objects\ParcelStatusHistory\SummaryObject;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 
-class SamedayGetParcelStatusHistoryResponseTest extends PHPUnit_Framework_TestCase
+class SamedayGetParcelStatusHistoryResponseTest extends TestCase
 {
     /**
      * @throws \Exception
      */
     public function testConstructorParameters()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
+        $request = $this->createMock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], '');
         $response = new SamedayGetParcelStatusHistoryResponse($request, $rawResponse);
 
@@ -31,7 +30,7 @@ class SamedayGetParcelStatusHistoryResponseTest extends PHPUnit_Framework_TestCa
      */
     public function testResponse()
     {
-        $request = Mockery::mock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
+        $request = $this->createMock('Sameday\Requests\SamedayGetParcelStatusHistoryRequest');
         $rawResponse = new SamedayRawResponse([], <<<JSON
 {
     "parcelSummary": {
