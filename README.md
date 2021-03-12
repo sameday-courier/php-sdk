@@ -1,6 +1,6 @@
 # Sameday Courier SDK for PHP
 
-[![Build Status](https://github.com/sameday-courier/php-sdk/actions/workflows/tests.yml/badge.svg)](https://github.com/sameday-courier/php-sdk/actions/workflows/tests.yml/badge.svg)
+[![Build Status](https://github.com/sameday-courier/php-sdk/actions/workflows/tests.yml/badge.svg)](https://github.com/sameday-courier/php-sdk/actions/workflows/tests.yml)
 [![Latest Stable Version](https://img.shields.io/packagist/v/sameday-courier/php-sdk.svg)](https://packagist.org/packages/sameday-courier/php-sdk)
 
 This repository contains the open source PHP SDK that allows you to access the Sameday Courier Platform from your PHP app. It was inspired by Facebook PHP-SDK.
