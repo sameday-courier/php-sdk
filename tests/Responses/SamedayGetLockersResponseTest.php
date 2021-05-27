@@ -52,6 +52,8 @@ class SamedayGetLockersResponseTest extends TestCase
             }
         ],
         "lockerId": 2,
+        "supportedPayment": 1,
+        "clientVisible": 1,
         "schedule": [
             {
                 "day": 1,
@@ -115,6 +117,8 @@ class SamedayGetLockersResponseTest extends TestCase
             }
         ],
         "lockerId": 1,
+        "supportedPayment": 0,
+        "clientVisible": 0,
         "schedule": [
             {
                 "day": 1,
@@ -173,6 +177,8 @@ JSON
                 '26.098118',
                 '1234567890',
                 'foo@bar.com',
+                1,
+                1,
                 [
                     new BoxObject('S', 15),
                     new BoxObject('M', 9),
@@ -203,6 +209,8 @@ JSON
                 '26.124641',
                 '0987654321',
                 'bar@foo.com',
+                0,
+                0,
                 [
                     new BoxObject('S', 20),
                     new BoxObject('M', 14),
