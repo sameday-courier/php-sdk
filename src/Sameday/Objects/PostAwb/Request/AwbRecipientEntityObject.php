@@ -15,14 +15,13 @@ class AwbRecipientEntityObject extends EntityObject
     protected $email;
 
     /**
-     * AwbRecipientEntityObject constructor.
-     *
-     * @param string|int $city
-     * @param string|int $county
-     * @param string $address
-     * @param string $name
-     * @param string $phone
-     * @param string $email
+     * @param $city
+     * @param $county
+     * @param $address
+     * @param $name
+     * @param $phone
+     * @param $email
+     * @param $postalCode
      * @param CompanyEntityObject|null $company
      */
     public function __construct(
@@ -32,9 +31,10 @@ class AwbRecipientEntityObject extends EntityObject
         $name,
         $phone,
         $email,
+        $postalCode,
         CompanyEntityObject $company = null
     ) {
-        parent::__construct($city, $county, $address, $name, $phone, $company);
+        parent::__construct($city, $county, $address, $name, $phone, $postalCode, $company);
 
         $this->email = $email;
     }
