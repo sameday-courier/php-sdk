@@ -53,8 +53,8 @@ class EntityObject
      * @param string $county
      * @param string $address
      * @param string $name
-     * @param string $phone
      * @param CompanyEntityObject|null $company
+     * @param string $phone
      */
     public function __construct(
         $city,
@@ -62,16 +62,16 @@ class EntityObject
         $address,
         $name,
         $phone,
-        $postalCode = null,
-        CompanyEntityObject $company = null
+        CompanyEntityObject $company = null,
+        $postalCode = null
     ) {
         $this->city = $city;
         $this->county = $county;
         $this->address = $address;
         $this->name = $name;
         $this->phone = $phone;
-        $this->postalCode = $postalCode;
         $this->company = $company;
+        $this->postalCode = $postalCode;
     }
 
     /**

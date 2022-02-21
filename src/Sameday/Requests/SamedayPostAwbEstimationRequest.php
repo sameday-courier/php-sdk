@@ -147,6 +147,7 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
             $body = array_merge($body, ['thirdParty' => $this->thirdPartyPickup->getFields()]);
         }
 
+
         $body = array_merge($body, [
             'serviceTaxes' => $this->serviceTaxIds,
             'awbRecipient' => $this->awbRecipient->getFields(),
@@ -163,7 +164,6 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
                 $this->parcelsDimensions
             )
         ]);
-
         return new SamedayRequest(
             true,
             'POST',

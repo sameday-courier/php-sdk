@@ -21,8 +21,8 @@ class AwbRecipientEntityObject extends EntityObject
      * @param $name
      * @param $phone
      * @param $email
-     * @param $postalCode
      * @param CompanyEntityObject|null $company
+     * @param string|null $postalCode
      */
     public function __construct(
         $city,
@@ -31,10 +31,10 @@ class AwbRecipientEntityObject extends EntityObject
         $name,
         $phone,
         $email,
-        $postalCode,
-        CompanyEntityObject $company = null
+        CompanyEntityObject $company = null,
+        $postalCode = null
     ) {
-        parent::__construct($city, $county, $address, $name, $phone, $postalCode, $company);
+        parent::__construct($city, $county, $address, $name, $phone, $company, $postalCode);
 
         $this->email = $email;
     }
