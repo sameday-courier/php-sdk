@@ -17,7 +17,7 @@ class SamedayPostAwbEstimationRequestTest extends TestCase
     {
         $packageType = new PackageType(PackageType::LARGE);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
-        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', null,'postalCode');
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', null, 'postalCode');
         $thirdPartyEntity = new ThirdPartyPickupEntityObject('city', 'county', 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
 
         $request = new SamedayPostAwbEstimationRequest(
@@ -59,7 +59,7 @@ class SamedayPostAwbEstimationRequestTest extends TestCase
             [new ParcelDimensionsObject(1)],
             3,
             new AwbPaymentType(AwbPaymentType::CLIENT),
-            new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', null,'postalCode'),
+            new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', null, 'postalCode'),
             100
         );
 
@@ -97,7 +97,7 @@ class SamedayPostAwbEstimationRequestTest extends TestCase
     {
         $packageType = new PackageType(PackageType::LARGE);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
-        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', null,'postalCode');
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', null, 'postalCode');
         $thirdPartyEntity = new ThirdPartyPickupEntityObject(1, 2, 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
 
         $request = new SamedayPostAwbEstimationRequest(
