@@ -53,8 +53,9 @@ class EntityObject
      * @param string $county
      * @param string $address
      * @param string $name
-     * @param CompanyEntityObject|null $company
      * @param string $phone
+     * @param CompanyEntityObject|null $company
+     * @param string|null $postalCode
      */
     public function __construct(
         $city,
