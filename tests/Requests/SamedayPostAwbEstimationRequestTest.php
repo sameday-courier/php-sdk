@@ -65,7 +65,7 @@ class SamedayPostAwbEstimationRequestTest extends TestCase
 
         $packageType = new PackageType(PackageType::PARCEL);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
-        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email',null, 'postalCode');
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', null, 'postalCode');
         $thirdPartyEntity = new ThirdPartyPickupEntityObject('city', 'county', 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
 
         $request->setPickupPointId(10);
