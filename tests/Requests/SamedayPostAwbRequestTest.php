@@ -19,7 +19,7 @@ class SamedayPostAwbRequestTest extends TestCase
     {
         $packageType = new PackageType(PackageType::LARGE);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
-        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email');
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', 'postalCode');
         $codCollectorType = new CodCollectorType(CodCollectorType::CLIENT);
         $thirdPartyEntity = new ThirdPartyPickupEntityObject('city', 'county', 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
         $deliveryIntervalServiceType = new DeliveryIntervalServiceType(1000);
@@ -77,13 +77,13 @@ class SamedayPostAwbRequestTest extends TestCase
             [new ParcelDimensionsObject(1)],
             3,
             new AwbPaymentType(AwbPaymentType::CLIENT),
-            new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email'),
+            new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', 'postalCode'),
             100
         );
 
         $packageType = new PackageType(PackageType::PARCEL);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
-        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email');
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', 'postalCode');
         $codCollectorType = new CodCollectorType(CodCollectorType::CLIENT);
         $thirdPartyEntity = new ThirdPartyPickupEntityObject('city', 'county', 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
         $deliveryIntervalServiceType = new DeliveryIntervalServiceType(1000);
@@ -131,7 +131,7 @@ class SamedayPostAwbRequestTest extends TestCase
     {
         $packageType = new PackageType(PackageType::LARGE);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
-        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email');
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', 'postalCode');
         $codCollectorType = new CodCollectorType(CodCollectorType::CLIENT);
         $thirdPartyEntity = new ThirdPartyPickupEntityObject(1, 2, 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
         $deliveryIntervalServiceType = new DeliveryIntervalServiceType(1000);
@@ -171,7 +171,7 @@ class SamedayPostAwbRequestTest extends TestCase
     {
         $packageType = new PackageType(PackageType::LARGE);
         $awbPaymentType = new AwbPaymentType(AwbPaymentType::CLIENT);
-        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email');
+        $awbRecipient = new AwbRecipientEntityObject('city', 'county', 'address', 'name', 'phone', 'email', 'postalCode');
         $codCollectorType = new CodCollectorType(CodCollectorType::CLIENT);
         $thirdPartyEntity = new ThirdPartyPickupEntityObject(1, 2, 'address', 'name', 'phone', new CompanyEntityObject('name', 'cui', 'onrc', 'iban', 'bank'));
         $deliveryIntervalServiceType = new DeliveryIntervalServiceType(1000);
