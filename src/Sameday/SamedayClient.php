@@ -116,7 +116,7 @@ class SamedayClient implements SamedayClientInterface
 
         $url = $this->host . $request->getEndpoint();
         if ($request->getQueryParams()) {
-            $params = http_build_query($request->getQueryParams(), null, '&');
+            $params = http_build_query($request->getQueryParams(), '', '&');
             if ($params !== '') {
                 $url .= '?' . $params;
             }
