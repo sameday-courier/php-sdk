@@ -52,7 +52,7 @@ class SamedayPostAwbResponse implements SamedayResponseInterface
         $this->cost = $json['awbCost'];
 
         $this->parcels = array_map(
-            function (array $parcel) {
+            static function (array $parcel) {
                 return new ParcelObject($parcel['position'], $parcel['awbNumber']);
             },
             $json['parcels']

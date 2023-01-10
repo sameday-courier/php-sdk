@@ -107,29 +107,33 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     /**
      * @var int|null
      */
-    protected $lockerId;
+    protected $lockerFirstMile;
 
     /**
-     * SamedayPostAwbRequest constructor.
-     *
-     * @param int $pickupPointId
-     * @param int|null $contactPersonId
+     * @var int|null
+     */
+    protected $lockerLastMile;
+
+    /**
+     * @param $pickupPointId
+     * @param $contactPersonId
      * @param PackageType $packageType
-     * @param ParcelDimensionsObject[] $parcelsDimensions
-     * @param int $serviceId
+     * @param array $parcelsDimensions
+     * @param $serviceId
      * @param AwbPaymentType $awbPayment
      * @param AwbRecipientEntityObject $awbRecipient
-     * @param float $insuredValue
-     * @param float $cashOnDeliveryAmount
+     * @param $insuredValue
+     * @param $cashOnDeliveryAmount
      * @param CodCollectorType|null $cashOnDeliveryCollector
      * @param ThirdPartyPickupEntityObject|null $thirdPartyPickup
-     * @param int[] $serviceTaxIds
+     * @param array $serviceTaxIds
      * @param DeliveryIntervalServiceType|null $deliveryIntervalServiceType
-     * @param string|null $reference
-     * @param string|null $observation
-     * @param string|null $priceObservation
-     * @param string|null $clientObservation
-     * @param int|null $lockerId
+     * @param $reference
+     * @param $observation
+     * @param $priceObservation
+     * @param $clientObservation
+     * @param $lockerFirstMile
+     * @param $lockerLastMile
      */
     public function __construct(
         $pickupPointId,
@@ -149,7 +153,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $observation = null,
         $priceObservation = null,
         $clientObservation = null,
-        $lockerId = null
+        $lockerFirstMile = null,
+        $lockerLastMile = null
     ) {
         $this->pickupPointId = $pickupPointId;
         $this->contactPersonId = $contactPersonId;
@@ -168,7 +173,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $this->observation = $observation;
         $this->priceObservation = $priceObservation;
         $this->clientObservation = $clientObservation;
-        $this->lockerId = $lockerId;
+        $this->lockerFirstMile = $lockerFirstMile;
+        $this->lockerLastMile = $lockerLastMile;
     }
 
     /**
@@ -179,7 +185,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         // Calculate weight for all parcels.
         $weight = 0;
         array_map(
-            function (ParcelDimensionsObject $parcelDimensions) use (&$weight) {
+            static function (ParcelDimensionsObject $parcelDimensions) use (&$weight) {
                 $weight += $parcelDimensions->getWeight();
             },
             $this->parcelsDimensions
@@ -210,7 +216,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
             'awbRecipient' => $this->awbRecipient->getFields(),
             'parcels' => array_map(
                 // Build parcel fields from ParcelDimensionsObject.
-                function (ParcelDimensionsObject $parcelDimensions) {
+                static function (ParcelDimensionsObject $parcelDimensions) {
                     return [
                         'weight' => $parcelDimensions->getWeight(),
                         'width' => $parcelDimensions->getWidth(),
@@ -226,8 +232,12 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
             'clientObservation' => $this->clientObservation,
         ]);
 
-        if ($this->lockerId !== null) {
-            $body = array_merge($body, ['lockerId' => $this->lockerId]);
+        if ($this->lockerFirstMile !== null) {
+            $body = array_merge($body, ['lockerFirstMile' => $this->lockerFirstMile]);
+        }
+
+        if ($this->lockerLastMile !== null) {
+            $body = array_merge($body, ['lockerLastMile' => $this->lockerLastMile]);
         }
 
         return new SamedayRequest(
@@ -582,19 +592,39 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     /**
      * @return int|null
      */
-    public function getLockerId()
+    public function getLockerFirstMile()
     {
-        return $this->lockerId;
+        return $this->lockerFirstMile;
     }
 
     /**
-     * @param int|null $lockerId
+     * @param $lockerFirstMile
      *
      * @return $this
      */
-    public function setLockerId($lockerId)
+    public function setLockerFirstMile($lockerFirstMile)
     {
-        $this->lockerId = $lockerId;
+        $this->lockerFirstMile = $lockerFirstMile;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getLockerLastMile()
+    {
+        return $this->lockerLastMile;
+    }
+
+    /**
+     * @param $lockerLastMile
+     *
+     * @return $this
+     */
+    public function setLockerLastMile($lockerLastMile)
+    {
+        $this->lockerLastMile = $lockerLastMile;
 
         return $this;
     }
