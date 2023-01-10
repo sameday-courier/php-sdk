@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.0](https://github.com/sameday-courier/php-sdk/compare/v1.7.0...v2.1.0)
+
+### Added
+
+- Bug fix. Modify obsolete syntax for http_build_query() function.
+- Replace obsolete lockerId param. with lockerLastMile param. and add lockerFirstMile param.
+
 ## [1.7.0](https://github.com/sameday-courier/php-sdk/compare/v1.6.0...v1.7.0)
 
 ### Added
