@@ -56,6 +56,16 @@ class LockerObject
     protected $email;
 
     /**
+     * @var int 0 = doesn't support payment, 1 = supports payment
+     */
+    protected $supportedPayment;
+
+    /**
+     * @var int 0 = not visible, 1 = visible
+     */
+    protected $clientVisible;
+
+    /**
      * @var BoxObject[]
      */
     protected $boxes;
@@ -78,6 +88,8 @@ class LockerObject
      * @param string $long
      * @param string $phone
      * @param string $email
+     * @param int $supportedPayment
+     * @param int $clientVisible
      * @param BoxObject[] $boxes
      * @param ScheduleObject[] $schedule
      */
@@ -92,6 +104,8 @@ class LockerObject
         $long,
         $phone,
         $email,
+        $supportedPayment,
+        $clientVisible,
         array $boxes,
         array $schedule
     ) {
@@ -105,6 +119,8 @@ class LockerObject
         $this->long = $long;
         $this->phone = $phone;
         $this->email = $email;
+        $this->supportedPayment = $supportedPayment;
+        $this->clientVisible = $clientVisible;
         $this->boxes = $boxes;
         $this->schedule = $schedule;
     }
@@ -171,6 +187,22 @@ class LockerObject
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSupportedPayment()
+    {
+        return $this->supportedPayment;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientVisible()
+    {
+        return $this->clientVisible;
     }
 
     /**

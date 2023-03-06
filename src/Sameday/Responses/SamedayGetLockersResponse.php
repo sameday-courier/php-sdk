@@ -52,6 +52,8 @@ class SamedayGetLockersResponse implements SamedayResponseInterface
                 $locker['lng'],
                 $locker['phone'],
                 $locker['email'],
+                $locker['supportedPayment'],
+                $locker['clientVisible'],
                 array_map(
                     function ($entry) {
                         return new BoxObject(
