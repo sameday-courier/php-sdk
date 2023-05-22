@@ -34,7 +34,7 @@ class SamedayGetLockersRequestTest extends TestCase
         $this->assertInstanceOf('Sameday\Http\SamedayRequest', $samedayRequest);
         $this->assertTrue($samedayRequest->isNeedAuth());
         $this->assertEquals('GET', $samedayRequest->getMethod());
-        $this->assertEquals('/api/locker/lockers', $samedayRequest->getEndpoint());
+        $this->assertEquals('/api/client/lockers', $samedayRequest->getEndpoint());
         $this->assertEmpty($samedayRequest->getQueryParams());
     }
 
@@ -46,7 +46,7 @@ class SamedayGetLockersRequestTest extends TestCase
         $this->assertInstanceOf('Sameday\Http\SamedayRequest', $samedayRequest);
         $this->assertTrue($samedayRequest->isNeedAuth());
         $this->assertEquals('GET', $samedayRequest->getMethod());
-        $this->assertEquals('/api/locker/lockers', $samedayRequest->getEndpoint());
+        $this->assertEquals('/api/client/lockers', $samedayRequest->getEndpoint());
         $this->assertEquals(['lockersList' => '1,2'], $samedayRequest->getQueryParams());
     }
 }
