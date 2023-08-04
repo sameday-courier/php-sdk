@@ -7,6 +7,7 @@ use Sameday\Objects\Locker\BoxObject;
 use Sameday\Objects\Locker\LockerObject;
 use Sameday\Objects\Locker\ScheduleObject;
 use Sameday\Requests\SamedayGetLockersRequest;
+use Sameday\Responses\Traits\SamedayResponsePaginationTrait;
 use Sameday\Responses\Traits\SamedayResponseTrait;
 
 /**
@@ -14,8 +15,9 @@ use Sameday\Responses\Traits\SamedayResponseTrait;
  *
  * @package Sameday
  */
-class SamedayGetLockersResponse implements SamedayResponseInterface
+class SamedayGetLockersResponse implements SamedayPaginatedResponseInterface
 {
+    use SamedayResponsePaginationTrait;
     use SamedayResponseTrait;
 
     /**
@@ -35,6 +37,7 @@ class SamedayGetLockersResponse implements SamedayResponseInterface
         $this->rawResponse = $rawResponse;
 
         $json = json_decode($this->rawResponse->getBody(), true);
+        $this->parsePagination($this->request, $json);
         if (!$json) {
             // Empty response.
             return;
