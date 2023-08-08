@@ -115,6 +115,11 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     protected $lockerLastMile;
 
     /**
+     * @var string|null
+     */
+    protected $currency;
+
+    /**
      * @param $pickupPointId
      * @param $contactPersonId
      * @param PackageType $packageType
@@ -123,7 +128,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
      * @param AwbPaymentType $awbPayment
      * @param AwbRecipientEntityObject $awbRecipient
      * @param $insuredValue
-     * @param $cashOnDeliveryAmount
+     * @param float $cashOnDeliveryAmount
      * @param CodCollectorType|null $cashOnDeliveryCollector
      * @param ThirdPartyPickupEntityObject|null $thirdPartyPickup
      * @param array $serviceTaxIds
@@ -154,7 +159,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $priceObservation = null,
         $clientObservation = null,
         $lockerFirstMile = null,
-        $lockerLastMile = null
+        $lockerLastMile = null,
+        $currency = null
     ) {
         $this->pickupPointId = $pickupPointId;
         $this->contactPersonId = $contactPersonId;
@@ -175,6 +181,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $this->clientObservation = $clientObservation;
         $this->lockerFirstMile = $lockerFirstMile;
         $this->lockerLastMile = $lockerLastMile;
+        $this->currency = $currency;
     }
 
     /**
@@ -238,6 +245,10 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
 
         if ($this->lockerLastMile !== null) {
             $body = array_merge($body, ['lockerLastMile' => $this->lockerLastMile]);
+        }
+
+        if ($this->currency !== null) {
+            $body = array_merge($body, ['currency' => $this->currency]);
         }
 
         return new SamedayRequest(
@@ -625,6 +636,18 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     public function setLockerLastMile($lockerLastMile)
     {
         $this->lockerLastMile = $lockerLastMile;
+
+        return $this;
+    }
+
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
 
         return $this;
     }
