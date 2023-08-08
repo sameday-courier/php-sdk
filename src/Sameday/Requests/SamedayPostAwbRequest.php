@@ -128,7 +128,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
      * @param AwbPaymentType $awbPayment
      * @param AwbRecipientEntityObject $awbRecipient
      * @param $insuredValue
-     * @param float $cashOnDeliveryAmount
+     * @param $cashOnDeliveryAmount
      * @param CodCollectorType|null $cashOnDeliveryCollector
      * @param ThirdPartyPickupEntityObject|null $thirdPartyPickup
      * @param array $serviceTaxIds
@@ -139,6 +139,7 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
      * @param $clientObservation
      * @param $lockerFirstMile
      * @param $lockerLastMile
+     * @param $currency
      */
     public function __construct(
         $pickupPointId,
