@@ -4,6 +4,7 @@ namespace Sameday\Tests\Requests;
 
 use PHPUnit\Framework\TestCase;
 use Sameday\Requests\SamedayGetLockersRequest;
+use Sameday\Http\SamedayRequest;
 
 class SamedayGetLockersRequestTest extends TestCase
 {
@@ -31,22 +32,35 @@ class SamedayGetLockersRequestTest extends TestCase
         $request = new SamedayGetLockersRequest();
         $samedayRequest = $request->buildRequest();
 
-        $this->assertInstanceOf('Sameday\Http\SamedayRequest', $samedayRequest);
+        $this->assertInstanceOf(SamedayRequest::class, $samedayRequest);
         $this->assertTrue($samedayRequest->isNeedAuth());
         $this->assertEquals('GET', $samedayRequest->getMethod());
         $this->assertEquals('/api/client/lockers', $samedayRequest->getEndpoint());
-        $this->assertEmpty($samedayRequest->getQueryParams());
+        $this->assertEquals(
+            [
+                'page' => 1,
+                'countPerPage' => 50,
+            ],
+            $samedayRequest->getQueryParams()
+        );
     }
 
     public function testBuildRequestWithLockerIds()
     {
-        $request = new SamedayGetLockersRequest([1, 2]);
+        $request = new SamedayGetLockersRequest([1001, 2001]);
         $samedayRequest = $request->buildRequest();
 
-        $this->assertInstanceOf('Sameday\Http\SamedayRequest', $samedayRequest);
+        $this->assertInstanceOf(SamedayRequest::class, $samedayRequest);
         $this->assertTrue($samedayRequest->isNeedAuth());
         $this->assertEquals('GET', $samedayRequest->getMethod());
         $this->assertEquals('/api/client/lockers', $samedayRequest->getEndpoint());
-        $this->assertEquals(['lockersList' => '1,2'], $samedayRequest->getQueryParams());
+        $this->assertEquals(
+            [
+                'lockersList' => '1001,2001',
+                'page' => 1,
+                'countPerPage' => 50,
+            ],
+            $samedayRequest->getQueryParams()
+        );
     }
 }
