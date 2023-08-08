@@ -75,19 +75,23 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
     protected $serviceTaxIds;
 
     /**
-     * SamedayPostAwbEstimationRequest constructor.
-     *
-     * @param int $pickupPointId
-     * @param int|null $contactPersonId
+     * @var string|null
+     */
+    protected $currency;
+
+    /**
+     * @param $pickupPointId
+     * @param $contactPersonId
      * @param PackageType $packageType
-     * @param ParcelDimensionsObject[] $parcelsDimensions
-     * @param int $serviceId
+     * @param array $parcelsDimensions
+     * @param $serviceId
      * @param AwbPaymentType $awbPayment
      * @param AwbRecipientEntityObject $awbRecipient
-     * @param float $insuredValue
-     * @param float $cashOnDeliveryAmount
+     * @param $insuredValue
+     * @param $cashOnDeliveryAmount
      * @param ThirdPartyPickupEntityObject|null $thirdPartyPickup
-     * @param int[] $serviceTaxIds
+     * @param array $serviceTaxIds
+     * @param $currency
      */
     public function __construct(
         $pickupPointId,
@@ -100,7 +104,8 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
         $insuredValue,
         $cashOnDeliveryAmount = .0,
         ThirdPartyPickupEntityObject $thirdPartyPickup = null,
-        array $serviceTaxIds = []
+        array $serviceTaxIds = [],
+        $currency = null
     ) {
         $this->pickupPointId = $pickupPointId;
         $this->contactPersonId = $contactPersonId;
@@ -113,6 +118,7 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
         $this->cashOnDeliveryAmount = $cashOnDeliveryAmount;
         $this->thirdPartyPickup = $thirdPartyPickup;
         $this->serviceTaxIds = $serviceTaxIds;
+        $this->currency = $currency;
     }
 
     /**
@@ -163,6 +169,11 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
                 $this->parcelsDimensions
             )
         ]);
+
+        if ($this->currency !== null) {
+            $body = array_merge($body, ['currency' => $this->currency]);
+        }
+
         return new SamedayRequest(
             true,
             'POST',
@@ -388,6 +399,26 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
     public function setServiceTaxIds($serviceTaxIds)
     {
         $this->serviceTaxIds = $serviceTaxIds;
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
+
+    /**
+     * @param $currency
+     *
+     * @return $this
+     */
+    public function setCurrency($currency)
+    {
+        $this->currency = $currency;
 
         return $this;
     }
