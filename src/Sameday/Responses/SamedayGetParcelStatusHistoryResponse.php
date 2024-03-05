@@ -60,9 +60,15 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             $json['parcelSummary']['parcelAwbNumber'],
             $json['parcelSummary']['parcelWeight'],
             $json['parcelSummary']['isPickedUp'],
-            $json['parcelSummary']['deliveredAt'] ? new DateTime($json['parcelSummary']['deliveredAt']) : null,
-            $json['parcelSummary']['lastDeliveryAttempt'] ? new DateTime($json['parcelSummary']['lastDeliveryAttempt']) : null,
-            $json['parcelSummary']['isPickedUp'] && $json['parcelSummary']['pickedUpAt'] ? new DateTime($json['parcelSummary']['pickedUpAt']) : null
+            isset($json['parcelSummary']['deliveredAt'])
+                ? new DateTime($json['parcelSummary']['deliveredAt'])
+                : null,
+            isset($json['parcelSummary']['lastDeliveryAttempt'])
+                ? new DateTime($json['parcelSummary']['lastDeliveryAttempt'])
+                : null,
+            isset($json['parcelSummary']['isPickedUp'], $json['parcelSummary']['pickedUpAt'])
+                ? new DateTime($json['parcelSummary']['pickedUpAt'])
+                : null
         );
 
         foreach ($json['parcelHistory'] as $history) {
@@ -108,10 +114,10 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
         return new HistoryObject(
             $json['statusId'],
             $json['status'],
-            $json['statusLabel'],
-            $json['statusState'],
+            isset($json['statusLabel']) ? $json['statusLabel'] : null,
+            isset($json['statusState']) ? $json['statusState'] : null,
             new DateTime($json['statusDate']),
-            $json['county'] ?: null,
+            isset($json['county']) ? $json['county'] : null,
             $json['reason'],
             $json['transitLocation']
         );
@@ -130,9 +136,9 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             $json['statusId'],
             $json['status'],
             $json['statusLabel'],
-            $json['statusState'],
+            isset($json['statusState']) ? $json['statusState'] : null,
             new DateTime($json['statusDate']),
-            $json['county'] ?: null,
+            isset($json['county']) ? $json['county'] : null,
             $json['reason'],
             $json['transitLocation'],
             $json['expeditionDetails']
