@@ -111,7 +111,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             $json['statusLabel'],
             $json['statusState'],
             new DateTime($json['statusDate']),
-            $json['county'],
+            $json['county'] ?: null,
             $json['reason'],
             $json['transitLocation']
         );
@@ -132,7 +132,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             $json['statusLabel'],
             $json['statusState'],
             new DateTime($json['statusDate']),
-            $json['county'],
+            $json['county'] ?: null,
             $json['reason'],
             $json['transitLocation'],
             $json['expeditionDetails']
