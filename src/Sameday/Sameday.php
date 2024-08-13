@@ -10,6 +10,7 @@ use Sameday\Requests\SamedayGetAwbStatusHistoryRequest;
 use Sameday\Requests\SamedayGetCitiesRequest;
 use Sameday\Requests\SamedayGetCountiesRequest;
 use Sameday\Requests\SamedayGetLockersRequest;
+use Sameday\Requests\SamedayGetOohLocationsRequest;
 use Sameday\Requests\SamedayGetParcelStatusHistoryRequest;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
 use Sameday\Requests\SamedayGetStatusSyncRequest;
@@ -25,6 +26,7 @@ use Sameday\Responses\SamedayGetAwbStatusHistoryResponse;
 use Sameday\Responses\SamedayGetCitiesResponse;
 use Sameday\Responses\SamedayGetCountiesResponse;
 use Sameday\Responses\SamedayGetLockersResponse;
+use Sameday\Responses\SamedayGetOohLocationsResponse;
 use Sameday\Responses\SamedayGetParcelStatusHistoryResponse;
 use Sameday\Responses\SamedayGetPickupPointsResponse;
 use Sameday\Responses\SamedayGetStatusSyncResponse;
@@ -325,6 +327,22 @@ class Sameday
     public function getLockers(SamedayGetLockersRequest $request)
     {
         return new SamedayGetLockersResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayGetOohLocationsRequest $request
+     * @return SamedayGetOohLocationsResponse
+     * @throws Exceptions\SamedayAuthenticationException
+     * @throws Exceptions\SamedayAuthorizationException
+     * @throws Exceptions\SamedayBadRequestException
+     * @throws Exceptions\SamedayNotFoundException
+     * @throws Exceptions\SamedayOtherException
+     * @throws Exceptions\SamedaySDKException
+     * @throws Exceptions\SamedayServerException
+     */
+    public function getOohLocations(SamedayGetOohLocationsRequest $request)
+    {
+        return new SamedayGetOohLocationsResponse($request, $this->client->sendRequest($request->buildRequest()));
     }
 
     /**

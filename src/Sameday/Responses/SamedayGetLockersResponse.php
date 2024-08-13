@@ -3,9 +3,9 @@
 namespace Sameday\Responses;
 
 use Sameday\Http\SamedayRawResponse;
-use Sameday\Objects\Locker\BoxObject;
+use Sameday\Objects\BoxObject;
 use Sameday\Objects\Locker\LockerObject;
-use Sameday\Objects\Locker\ScheduleObject;
+use Sameday\Objects\ScheduleObject;
 use Sameday\Requests\SamedayGetLockersRequest;
 use Sameday\Responses\Traits\SamedayResponsePaginationTrait;
 use Sameday\Responses\Traits\SamedayResponseTrait;
