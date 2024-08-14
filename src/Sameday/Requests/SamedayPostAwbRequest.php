@@ -115,6 +115,16 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     protected $lockerLastMile;
 
     /**
+     * @var int|null
+     */
+    protected $oohFirstMile;
+
+    /**
+     * @var int|null
+     */
+    protected $oohLastMile;
+
+    /**
      * @var string|null
      */
     protected $currency;
@@ -139,6 +149,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
      * @param $clientObservation
      * @param $lockerFirstMile
      * @param $lockerLastMile
+     * @param $oohFirstMile
+     * @param $oohLastMile
      * @param $currency
      */
     public function __construct(
@@ -161,6 +173,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $clientObservation = null,
         $lockerFirstMile = null,
         $lockerLastMile = null,
+        $oohFirstMile = null,
+        $oohLastMile = null,
         $currency = null
     ) {
         $this->pickupPointId = $pickupPointId;
@@ -182,6 +196,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $this->clientObservation = $clientObservation;
         $this->lockerFirstMile = $lockerFirstMile;
         $this->lockerLastMile = $lockerLastMile;
+        $this->oohFirstMile = $oohFirstMile;
+        $this->oohLastMile = $oohLastMile;
         $this->currency = $currency;
     }
 
@@ -246,6 +262,14 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
 
         if ($this->lockerLastMile !== null) {
             $body = array_merge($body, ['lockerLastMile' => $this->lockerLastMile]);
+        }
+
+        if ($this->oohFirstMile !== null) {
+            $body = array_merge($body, ['oohFirstMile' => $this->oohFirstMile]);
+        }
+
+        if ($this->oohLastMile !== null) {
+            $body = array_merge($body, ['oohLastMile' => $this->oohLastMile]);
         }
 
         if ($this->currency !== null) {
@@ -637,6 +661,46 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
     public function setLockerLastMile($lockerLastMile)
     {
         $this->lockerLastMile = $lockerLastMile;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getOohFirstMile()
+    {
+        return $this->oohFirstMile;
+    }
+
+    /**
+     * @param $oohFirstMile
+     *
+     * @return $this
+     */
+    public function setOohFirstMile($oohFirstMile)
+    {
+        $this->oohFirstMile = $oohFirstMile;
+
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getOohLastMile()
+    {
+        return $this->oohLastMile;
+    }
+
+    /**
+     * @param $oohLastMile
+     *
+     * @return $this
+     */
+    public function setOohLastMile($oohLastMile)
+    {
+        $this->oohLastMile = $oohLastMile;
 
         return $this;
     }

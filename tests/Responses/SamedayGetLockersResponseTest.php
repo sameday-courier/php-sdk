@@ -4,9 +4,6 @@ namespace Sameday\Tests\Responses;
 
 use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
-use Sameday\Objects\Locker\BoxObject;
-use Sameday\Objects\Locker\LockerObject;
-use Sameday\Objects\Locker\ScheduleObject;
 use Sameday\Requests\SamedayGetLockersRequest;
 use Sameday\Responses\SamedayGetLockersResponse;
 

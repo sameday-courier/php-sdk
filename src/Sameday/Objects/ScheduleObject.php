@@ -1,6 +1,6 @@
 <?php
 
-namespace Sameday\Objects\Locker;
+namespace Sameday\Objects;
 
 /**
  * Locker schedule.

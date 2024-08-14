@@ -30,6 +30,8 @@ jobs:
           tools: composer:v2, phpunit:9.5.2
       - name: Install composer packages
         run: composer install --prefer-dist --no-interaction
+      - name: Run Composer fund
+        run: composer fund
       - name: Run phpcs
         run: vendor/bin/phpcs
       - name: Run phpunit

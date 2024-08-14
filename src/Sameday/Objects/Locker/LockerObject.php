@@ -2,6 +2,9 @@
 
 namespace Sameday\Objects\Locker;
 
+use Sameday\Objects\BoxObject;
+use Sameday\Objects\ScheduleObject;
+use Sameday\Objects\Traits\LocationObjectTrait;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
 
@@ -14,56 +17,12 @@ class LockerObject
 {
     use SamedayObjectIdTrait;
     use SamedayObjectNameTrait;
-
-    /**
-     * @var string
-     */
-    protected $county;
-
-    /**
-     * @var string
-     */
-    protected $city;
-
-    /**
-     * @var string
-     */
-    protected $address;
-
-    /**
-     * @var string
-     */
-    protected $postalCode;
-
-    /**
-     * @var string
-     */
-    protected $lat;
-
-    /**
-     * @var string
-     */
-    protected $long;
-
-    /**
-     * @var string
-     */
-    protected $phone;
-
-    /**
-     * @var string
-     */
-    protected $email;
+    use LocationObjectTrait;
 
     /**
      * @var BoxObject[]
      */
     protected $boxes;
-
-    /**
-     * @var ScheduleObject[]
-     */
-    protected $schedule;
 
     /**
      * LockerObject constructor.
@@ -110,82 +69,10 @@ class LockerObject
     }
 
     /**
-     * @return string
-     */
-    public function getCounty()
-    {
-        return $this->county;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress()
-    {
-        return $this->address;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLat()
-    {
-        return $this->lat;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLong()
-    {
-        return $this->long;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
      * @return BoxObject[]
      */
     public function getBoxes()
     {
         return $this->boxes;
-    }
-
-    /**
-     * @return ScheduleObject[]
-     */
-    public function getSchedule()
-    {
-        return $this->schedule;
     }
 }
