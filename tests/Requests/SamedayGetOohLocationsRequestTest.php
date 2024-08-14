@@ -65,4 +65,3 @@ class SamedayGetOohLocationsRequestTest extends TestCase
         );
     }
 }
-
