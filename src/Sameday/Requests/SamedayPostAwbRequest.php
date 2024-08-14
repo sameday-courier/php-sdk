@@ -196,6 +196,8 @@ class SamedayPostAwbRequest implements SamedayRequestInterface
         $this->clientObservation = $clientObservation;
         $this->lockerFirstMile = $lockerFirstMile;
         $this->lockerLastMile = $lockerLastMile;
+        $this->oohFirstMile = $oohFirstMile;
+        $this->oohLastMile = $oohLastMile;
         $this->currency = $currency;
     }
 
