@@ -50,7 +50,7 @@ class SamedayGetOohLocationsResponse implements SamedayPaginatedResponseInterfac
                 $location['address'],
                 $location['postalCode'],
                 $location['lat'],
-                $location['long'],
+                $location['lng'],
                 $location['phone'],
                 $location['email'],
                 array_map(
@@ -74,15 +74,5 @@ class SamedayGetOohLocationsResponse implements SamedayPaginatedResponseInterfac
     public function getLocations()
     {
         return $this->locations;
-    }
-
-    /**
-     * @param $locationId
-     *
-     * @return array
-     */
-    public function getLocationById($locationId)
-    {
-        return isset($this->locations[$locationId]) ? $this->locations[$locationId] : [];
     }
 }
