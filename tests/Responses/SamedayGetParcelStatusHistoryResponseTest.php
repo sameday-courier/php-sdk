@@ -53,7 +53,8 @@ class SamedayGetParcelStatusHistoryResponseTest extends TestCase
             "statusDate": "2018-10-23T18:46:44+0300",
             "county": "Bucuresti",
             "reason": "reason",
-            "transitLocation": "location1"
+            "transitLocation": "location1",
+            "inReturn": false
         },
         {
             "statusId": 33,
@@ -63,7 +64,8 @@ class SamedayGetParcelStatusHistoryResponseTest extends TestCase
             "statusDate": "2018-10-23T18:46:58+0300",
             "county": "Bucuresti",
             "reason": "reason",
-            "transitLocation": "location2"
+            "transitLocation": "location2",
+            "inReturn": true
         }
     ],
     "expeditionStatus": {
@@ -108,7 +110,8 @@ JSON
                 new DateTime('2018-10-23T18:46:44+0300'),
                 'Bucuresti',
                 'reason',
-                'location1'
+                'location1',
+                false
             ),
             $history[0]
         );
@@ -121,7 +124,8 @@ JSON
                 new DateTime('2018-10-23T18:46:58+0300'),
                 'Bucuresti',
                 'reason',
-                'location2'
+                'location2',
+                true
             ),
             $history[1]
         );
