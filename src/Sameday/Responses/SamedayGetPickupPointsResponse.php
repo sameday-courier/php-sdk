@@ -48,6 +48,11 @@ class SamedayGetPickupPointsResponse implements SamedayPaginatedResponseInterfac
             $this->pickupPoints[] = new PickupPointObject(
                 $data['id'],
                 new CountyObject(
+                    $data['country']['id'],
+                    $data['country']['name'],
+                    $data['country']['code']
+                ),
+                new CountyObject(
                     $data['county']['id'],
                     $data['county']['name'],
                     $data['county']['code']

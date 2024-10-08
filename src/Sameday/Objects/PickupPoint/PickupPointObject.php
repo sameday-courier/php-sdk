@@ -3,6 +3,7 @@
 namespace Sameday\Objects\PickupPoint;
 
 use Sameday\Objects\CountyObject;
+use Sameday\Objects\CountryObject;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 
 /**
@@ -15,6 +16,11 @@ class PickupPointObject
     use SamedayObjectIdTrait;
 
     /**
+     * @var CountryObject $country
+     */
+    protected $country;
+
+    /**
      * @var CountyObject
      */
     protected $county;
@@ -25,9 +31,14 @@ class PickupPointObject
     protected $city;
 
     /**
-     * @var string
+     * @var string $address
      */
     protected $address;
+
+    /**
+     * @var string $postalCode
+     */
+    protected $postalCode;
 
     /**
      * @var bool
@@ -45,32 +56,45 @@ class PickupPointObject
     protected $alias;
 
     /**
-     * PickupPointObject constructor.
+     * PickupPoint Constructor
      *
-     * @param int $id
+     * @param $id
      * @param CountyObject $county
      * @param CityObject $city
-     * @param string $address
-     * @param bool $default
-     * @param ContactPersonObject[] $contactPersons
-     * @param string $alias
+     * @param $address
+     * @param $postalCode
+     * @param $default
+     * @param array $contactPersons
+     * @param $alias
      */
     public function __construct(
         $id,
+        CountyObject $countryObject,
         CountyObject $county,
         CityObject $city,
         $address,
         $default,
         array $contactPersons,
-        $alias
+        $alias,
+        $postalCode = null
     ) {
         $this->id = $id;
+        $this->country = $countryObject;
         $this->county = $county;
         $this->city = $city;
         $this->address = $address;
         $this->default = $default;
         $this->contactPersons = $contactPersons;
         $this->alias = $alias;
+        $this->postalCode = $postalCode;
+    }
+
+    /**
+     * @return CountryObject
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**
@@ -119,5 +143,13 @@ class PickupPointObject
     public function getAlias()
     {
         return $this->alias;
+    }
+
+    /**
+     * @return ?string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
     }
 }
