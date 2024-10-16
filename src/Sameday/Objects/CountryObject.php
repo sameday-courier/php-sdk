@@ -11,7 +11,7 @@ use Sameday\Objects\Traits\SamedayObjectNameTrait;
  *
  * @package Sameday
  */
-class CountryObject extends \Sameday\Objects\CountyObject
+class CountryObject
 {
     use SamedayObjectIdTrait;
     use SamedayObjectNameTrait;

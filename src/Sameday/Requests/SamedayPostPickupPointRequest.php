@@ -4,18 +4,81 @@ namespace Sameday\Requests;
 
 use Sameday\Http\RequestBodyUrlEncoded;
 use Sameday\Http\SamedayRequest;
-use Sameday\Objects\PickupPoint\PickupPointObject;
+use Sameday\Objects\PickupPoint\ContactPersonObject;
 
 class SamedayPostPickupPointRequest implements SamedayRequestInterface
 {
     /**
-     * @var PickupPointObject $pickupPoint
+     * @var int $countryId
      */
-    public $pickupPoint;
+    protected $countryId;
 
-    public function __construct(PickupPointObject $pickupPoint)
+    /**
+     * @var int $countyId
+     */
+    protected $countyId;
+
+    /**
+     * @var string $city
+     */
+    protected $city;
+
+    /**
+     * @var string $address
+     */
+    protected $address;
+
+    /**
+     * @var string $postalCode
+     */
+    protected $postalCode;
+
+    /**
+     * @var string $alias
+     */
+    protected $alias;
+
+    /**
+     * @var ContactPersonObject $contactPerson
+     */
+    protected $contactPerson;
+
+    /**
+     * @var bool $defaultPickupPoint
+     */
+    protected $defaultPickupPoint;
+
+    /**
+     * PostPickupPointRequest Constructor
+     *
+     * @param $countryId
+     * @param $countyId
+     * @param $city
+     * @param $address
+     * @param $postalCode
+     * @param $alias
+     * @param ContactPersonObject $contactPerson
+     * @param $defaultPickupPoint
+     */
+    public function __construct(
+        $countryId,
+        $countyId,
+        $city,
+        $address,
+        $postalCode,
+        $alias,
+        ContactPersonObject $contactPerson,
+        $defaultPickupPoint
+    )
     {
-        $this->pickupPoint = $pickupPoint;
+        $this->countryId = $countryId;
+        $this->countyId = $countyId;
+        $this->city = $city;
+        $this->address = $address;
+        $this->postalCode = $postalCode;
+        $this->alias = $alias;
+        $this->contactPerson = $contactPerson;
+        $this->defaultPickupPoint = $defaultPickupPoint;
     }
 
     public function buildRequest()
@@ -27,16 +90,80 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
             [],
             new RequestBodyUrlEncoded(
                 [
-                    'country' => $this->pickupPoint->getCountry()->getId(),
-                    'county' => $this->pickupPoint->getCounty()->getId(),
-                    'city' => $this->pickupPoint->getCity()->getId(),
-                    'address' => $this->pickupPoint->getAddress(),
-                    'postalCode' => $this->pickupPoint->getPostalCode(),
-                    'alias' => $this->pickupPoint->getAlias(),
-                    'contactPerson' => $this->pickupPoint->getContactPersons(),
-                    'defaultPickupPoint' => $this->pickupPoint->isDefault(),
+                    'country' => $this->getCountryId(),
+                    'county' => $this->getCountyId(),
+                    'city' => $this->getCity(),
+                    'address' => $this->getAddress(),
+                    'postalCode' => $this->getPostalCode(),
+                    'alias' => $this->getAlias(),
+                    'contactPerson' => $this->getContactPerson(),
+                    'defaultPickupPoint' => $this->isDefaultPickupPoint(),
                 ]
             )
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @return ContactPersonObject
+     */
+    public function getContactPerson()
+    {
+        return $this->contactPerson;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCountryId()
+    {
+        return $this->countryId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getCountyId()
+    {
+        return $this->countyId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPostalCode()
+    {
+        return $this->postalCode;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDefaultPickupPoint()
+    {
+        return $this->defaultPickupPoint;
     }
 }

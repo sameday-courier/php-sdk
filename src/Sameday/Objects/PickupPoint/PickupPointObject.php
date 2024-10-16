@@ -56,22 +56,21 @@ class PickupPointObject
     protected $alias;
 
     /**
-     * PickupPoint Constructor
-     *
      * @param $id
-     * @param CountyObject $county
-     * @param CityObject $city
+     * @param CountryObject $countryObject
+     * @param CountyObject $countyObject
+     * @param CityObject $cityObject
      * @param $address
-     * @param $postalCode
      * @param $default
      * @param array $contactPersons
      * @param $alias
+     * @param $postalCode
      */
     public function __construct(
         $id,
-        CountyObject $countryObject,
-        CountyObject $county,
-        CityObject $city,
+        CountryObject $countryObject,
+        CountyObject $countyObject,
+        CityObject $cityObject,
         $address,
         $default,
         array $contactPersons,
@@ -80,8 +79,8 @@ class PickupPointObject
     ) {
         $this->id = $id;
         $this->country = $countryObject;
-        $this->county = $county;
-        $this->city = $city;
+        $this->county = $countyObject;
+        $this->city = $cityObject;
         $this->address = $address;
         $this->default = $default;
         $this->contactPersons = $contactPersons;
