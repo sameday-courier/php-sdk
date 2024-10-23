@@ -54,9 +54,9 @@ class SamedayGetPickupPointsResponse implements SamedayPaginatedResponseInterfac
                     $data['country']['code']
                 ),
                 new CountyObject(
-                    $data['country']['id'],
-                    $data['country']['name'],
-                    $data['country']['code']
+                    $data['county']['id'],
+                    $data['county']['name'],
+                    $data['county']['code']
                 ),
                 new CityObject(
                     $data['city']['id'],

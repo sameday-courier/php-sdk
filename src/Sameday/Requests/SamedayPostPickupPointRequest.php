@@ -39,9 +39,9 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     protected $alias;
 
     /**
-     * @var ContactPersonObject $contactPerson
+     * @var ContactPersonObject[] $contactPersons
      */
-    protected $contactPerson;
+    protected $contactPersons;
 
     /**
      * @var bool $defaultPickupPoint
@@ -57,7 +57,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
      * @param $address
      * @param $postalCode
      * @param $alias
-     * @param ContactPersonObject $contactPerson
+     * @param ContactPersonObject[] $contactPerson
      * @param $defaultPickupPoint
      */
     public function __construct(
@@ -67,7 +67,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
         $address,
         $postalCode,
         $alias,
-        ContactPersonObject $contactPerson,
+        array $contactPerson,
         $defaultPickupPoint
     )
     {
@@ -77,7 +77,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
         $this->address = $address;
         $this->postalCode = $postalCode;
         $this->alias = $alias;
-        $this->contactPerson = $contactPerson;
+        $this->contactPersons = $contactPerson;
         $this->defaultPickupPoint = $defaultPickupPoint;
     }
 
@@ -96,7 +96,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
                     'address' => $this->getAddress(),
                     'postalCode' => $this->getPostalCode(),
                     'alias' => $this->getAlias(),
-                    'contactPerson' => $this->getContactPerson(),
+                    'contactPerson' => $this->getContactPersons(),
                     'defaultPickupPoint' => $this->isDefaultPickupPoint(),
                 ]
             )
@@ -128,11 +128,11 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     }
 
     /**
-     * @return ContactPersonObject
+     * @return ContactPersonObject[]
      */
-    public function getContactPerson()
+    public function getContactPersons()
     {
-        return $this->contactPerson;
+        return $this->contactPersons;
     }
 
     /**

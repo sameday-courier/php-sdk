@@ -3,11 +3,7 @@
 namespace Sameday\Tests\Requests;
 
 use PHPUnit\Framework\TestCase;
-use Sameday\Objects\CountryObject;
-use Sameday\Objects\CountyObject;
-use Sameday\Objects\PickupPoint\CityObject;
 use Sameday\Objects\PickupPoint\ContactPersonObject;
-use Sameday\Objects\PickupPoint\PickupPointObject;
 use Sameday\Requests\SamedayPostPickupPointRequest;
 
 class SamedayPostPickupPointRequestTest extends TestCase
@@ -29,36 +25,23 @@ class SamedayPostPickupPointRequestTest extends TestCase
         );
 
         $pickupPointRequest = new SamedayPostPickupPointRequest(
-            new PickupPointObject(
-                123,
-                new CountryObject(
-                    187,
-                    'Romania',
-                    'RO'
-                ),
-                new CountyObject(
-                    '',
-                    '',
-                    ''
-                ),
-                new CityObject(
-                    11,
-                    '',
-                    '',
-                    '',
-                    ''
-                ),
-                'Test address',
-                1,
-                $contactPersons,
-                'My Warehouse',
-                '014123'
-            )
+            '187',
+            '1',
+            'Bucuresti',
+            'Address',
+            '123',
+            'Warehouse',
+            $contactPersons,
+            true
         );
 
-        $this->assertEquals('123', $pickupPointRequest->pickupPoint->getId());
-        $this->assertEquals('RO', $pickupPointRequest->pickupPoint->getCountry()->getCode());
-        $this->assertEquals('Romania', $pickupPointRequest->pickupPoint->getCountry()->getName());
-        $this->assertEquals($contactPersons, $pickupPointRequest->pickupPoint->getContactPersons());
+        $this->assertEquals('187', $pickupPointRequest->getCountryId());
+        $this->assertEquals('1', $pickupPointRequest->getCountyId());
+        $this->assertEquals('Bucuresti', $pickupPointRequest->getCity());
+        $this->assertEquals('Address', $pickupPointRequest->getAddress());
+        $this->assertEquals('123', $pickupPointRequest->getPostalCode());
+        $this->assertEquals('Warehouse', $pickupPointRequest->getAlias());
+        $this->assertEquals($contactPersons, $pickupPointRequest->getContactPersons());
+        $this->assertTrue($pickupPointRequest->isDefaultPickupPoint());
     }
 }
