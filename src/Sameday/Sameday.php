@@ -3,8 +3,16 @@
 namespace Sameday;
 
 use Exception;
+use Sameday\Exceptions\SamedayAuthenticationException;
+use Sameday\Exceptions\SamedayAuthorizationException;
+use Sameday\Exceptions\SamedayBadRequestException;
+use Sameday\Exceptions\SamedayNotFoundException;
+use Sameday\Exceptions\SamedayOtherException;
+use Sameday\Exceptions\SamedaySDKException;
+use Sameday\Exceptions\SamedayServerException;
 use Sameday\Objects\AwbStatusHistory\ParcelObject;
 use Sameday\Requests\SamedayDeleteAwbRequest;
+use Sameday\Requests\SamedayDeletePickupPointRequest;
 use Sameday\Requests\SamedayGetAwbPdfRequest;
 use Sameday\Requests\SamedayGetAwbStatusHistoryRequest;
 use Sameday\Requests\SamedayGetCitiesRequest;
@@ -17,10 +25,12 @@ use Sameday\Requests\SamedayGetStatusSyncRequest;
 use Sameday\Requests\SamedayPostAwbRequest;
 use Sameday\Requests\SamedayPostAwbEstimationRequest;
 use Sameday\Requests\SamedayPostParcelRequest;
+use Sameday\Requests\SamedayPostPickupPointRequest;
 use Sameday\Requests\SamedayPutAwbCODAmountRequest;
 use Sameday\Requests\SamedayPutParcelSizeRequest;
 use Sameday\Requests\SamedayGetServicesRequest;
 use Sameday\Responses\SamedayDeleteAwbResponse;
+use Sameday\Responses\SamedayDeletePickupPointResponse;
 use Sameday\Responses\SamedayGetAwbPdfResponse;
 use Sameday\Responses\SamedayGetAwbStatusHistoryResponse;
 use Sameday\Responses\SamedayGetCitiesResponse;
@@ -33,6 +43,7 @@ use Sameday\Responses\SamedayGetStatusSyncResponse;
 use Sameday\Responses\SamedayPostAwbEstimationResponse;
 use Sameday\Responses\SamedayPostAwbResponse;
 use Sameday\Responses\SamedayPostParcelResponse;
+use Sameday\Responses\SamedayPostPickupPointResponse;
 use Sameday\Responses\SamedayPutAwbCODAmountResponse;
 use Sameday\Responses\SamedayPutParcelSizeResponse;
 use Sameday\Responses\SamedayGetServicesResponse;
@@ -95,6 +106,40 @@ class Sameday
     public function getPickupPoints(SamedayGetPickupPointsRequest $request)
     {
         return new SamedayGetPickupPointsResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayPostPickupPointRequest $request
+     *
+     * @return SamedayPostPickupPointResponse
+     *
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
+    public function postPickupPoint(SamedayPostPickupPointRequest $request)
+    {
+        return new SamedayPostPickupPointResponse($request, $this->client->sendRequest($request->buildRequest()));
+    }
+
+    /**
+     * @param SamedayDeletePickupPointRequest $request
+     * @return SamedayDeletePickupPointResponse
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
+    public function deletePickupPoint(SamedayDeletePickupPointRequest $request)
+    {
+        return new SamedayDeletePickupPointResponse($request, $this->client->sendRequest($request->buildRequest()));
     }
 
     /**

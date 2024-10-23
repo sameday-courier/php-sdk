@@ -3,6 +3,7 @@
 namespace Sameday\Responses;
 
 use Sameday\Http\SamedayRawResponse;
+use Sameday\Objects\CountryObject;
 use Sameday\Objects\CountyObject;
 use Sameday\Objects\PickupPoint\CityObject;
 use Sameday\Objects\PickupPoint\ContactPersonObject;
@@ -47,6 +48,11 @@ class SamedayGetPickupPointsResponse implements SamedayPaginatedResponseInterfac
         foreach ($json['data'] as $data) {
             $this->pickupPoints[] = new PickupPointObject(
                 $data['id'],
+                new CountryObject(
+                    $data['country']['id'],
+                    $data['country']['name'],
+                    $data['country']['code']
+                ),
                 new CountyObject(
                     $data['county']['id'],
                     $data['county']['name'],
