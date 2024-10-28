@@ -19,8 +19,7 @@ class PickupPointContactPersonObject
         $name,
         $phone,
         $default
-    )
-    {
+    ) {
         $this->name = $name;
         $this->phone = $phone;
         $this->default = $default;

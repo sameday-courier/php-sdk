@@ -24,8 +24,7 @@ class SamedayPostPickupPointResponse implements SamedayResponseInterface
     public function __construct(
         SamedayPostPickupPointRequest $request,
         SamedayRawResponse $rawResponse
-    )
-    {
+    ) {
         $this->request = $request;
         $this->rawResponse = $rawResponse;
 

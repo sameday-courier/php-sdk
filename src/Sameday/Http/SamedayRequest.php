@@ -68,8 +68,7 @@ class SamedayRequest
         RequestBodyInterface $body = null,
         array $headers = [],
         $timeout = self::TIMEOUT
-    )
-    {
+    ) {
         $this->needAuth = $needAuth;
         $this->method = $method;
         $this->endpoint = $endpoint;

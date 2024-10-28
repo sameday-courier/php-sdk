@@ -70,8 +70,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
         $alias,
         array $contactPerson,
         $defaultPickupPoint
-    )
-    {
+    ) {
         $this->countryId = $countryId;
         $this->countyId = $countyId;
         $this->cityId = $cityId;
