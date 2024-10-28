@@ -98,7 +98,16 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
                     'address' => $this->getAddress(),
                     'postalCode' => $this->getPostalCode(),
                     'alias' => $this->getAlias(),
-                    'pickupPointContactPerson' => $this->getContactPersons(),
+                    'pickupPointContactPerson' => array_map(
+                        static function (PickupPointContactPersonObject $contactPerson) {
+                            return [
+                                'name' => $contactPerson->getName(),
+                                'phone' => $contactPerson->getPhone(),
+                                'default' => $contactPerson->isDefault()
+                            ];
+                        },
+                        $this->getContactPersons()
+                    ),
                     'defaultPickupPoint' => $this->isDefaultPickupPoint(),
                 ]
             )
