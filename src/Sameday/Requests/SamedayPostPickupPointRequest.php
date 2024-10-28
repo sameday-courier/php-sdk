@@ -4,7 +4,6 @@ namespace Sameday\Requests;
 
 use Sameday\Http\RequestBodyUrlEncoded;
 use Sameday\Http\SamedayRequest;
-use Sameday\Objects\ContactPersonObject;
 use Sameday\Objects\PickupPoint\PickupPointContactPersonObject;
 
 class SamedayPostPickupPointRequest implements SamedayRequestInterface
@@ -77,10 +76,13 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
         $this->address = $address;
         $this->postalCode = $postalCode;
         $this->alias = $alias;
-        $this->contactPersons = $contactPerson;
+        $this->contactPerson = $contactPerson;
         $this->defaultPickupPoint = $defaultPickupPoint;
     }
 
+    /**
+     * @return SamedayRequest
+     */
     public function buildRequest()
     {
         return new SamedayRequest(
@@ -133,7 +135,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
 
     public function getContactPersons()
     {
-        return $this->contactPersons;
+        return $this->contactPerson;
     }
 
     /**
