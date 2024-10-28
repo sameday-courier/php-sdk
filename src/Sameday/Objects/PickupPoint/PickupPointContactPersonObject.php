@@ -3,13 +3,11 @@
 namespace Sameday\Objects\PickupPoint;
 
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
-use Sameday\Objects\Traits\SamedayObjectPhoneNumberTrait;
 use Sameday\Objects\Traits\SamedayObjectDefaultTrait;
 
 class PickupPointContactPersonObject
 {
     use SamedayObjectNameTrait;
-    use SamedayObjectPhoneNumberTrait;
     use SamedayObjectDefaultTrait;
 
     /**
