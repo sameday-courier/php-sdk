@@ -26,7 +26,7 @@ class SamedayPostPickupPointRequestTest extends TestCase
         $pickupPointRequest = new SamedayPostPickupPointRequest(
             '187',
             '1',
-            'Bucuresti',
+            '1',
             'Address',
             '123',
             'Warehouse',
@@ -36,11 +36,32 @@ class SamedayPostPickupPointRequestTest extends TestCase
 
         $this->assertEquals('187', $pickupPointRequest->getCountryId());
         $this->assertEquals('1', $pickupPointRequest->getCountyId());
-        $this->assertEquals('Bucuresti', $pickupPointRequest->getCityId());
+        $this->assertEquals('1', $pickupPointRequest->getCityId());
         $this->assertEquals('Address', $pickupPointRequest->getAddress());
         $this->assertEquals('123', $pickupPointRequest->getPostalCode());
         $this->assertEquals('Warehouse', $pickupPointRequest->getAlias());
         $this->assertEquals($contactPersons, $pickupPointRequest->getContactPersons());
         $this->assertTrue($pickupPointRequest->isDefaultPickupPoint());
+    }
+
+    public function testBuildRequest()
+    {
+        $request = new SamedayPostPickupPointRequest(
+            '187',
+            '1',
+            '1',
+            'street 1',
+            '012345',
+            'Warehouse',
+            [new PickupPointContactPersonObject('', '', true)],
+            true
+        );
+
+        $pickupPointRequest = $request->buildRequest();
+
+        $this->assertInstanceOf('Sameday\Http\SamedayRequest', $pickupPointRequest);
+        $this->assertTrue($pickupPointRequest->isNeedAuth());
+        $this->assertEquals('POST', $pickupPointRequest->getMethod());
+        $this->assertEquals('/api/client/pickup-points', $pickupPointRequest->getEndpoint());
     }
 }

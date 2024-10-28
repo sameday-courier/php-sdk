@@ -40,9 +40,9 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     protected $alias;
 
     /**
-     * @var PickupPointContactPersonObject[] $contactPersons
+     * @var PickupPointContactPersonObject[] $contactPerson
      */
-    protected $contactPersons;
+    protected $contactPerson;
 
     /**
      * @var bool $defaultPickupPoint
@@ -128,8 +128,9 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     }
 
     /**
-     * @return ContactPersonObject[]
+     * @return PickupPointContactPersonObject[]
      */
+
     public function getContactPersons()
     {
         return $this->contactPersons;
