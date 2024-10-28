@@ -41,6 +41,7 @@ class SamedayPostPickupPointRequestTest extends TestCase
         $this->assertEquals('123', $pickupPointRequest->getPostalCode());
         $this->assertEquals('Warehouse', $pickupPointRequest->getAlias());
         $this->assertEquals($contactPersons, $pickupPointRequest->getContactPersons());
+        $this->assertEquals($contactPersons[0]->getPhoneNumber(), $pickupPointRequest->getContactPersons()[0]->getPhoneNumber());
         $this->assertTrue($pickupPointRequest->isDefaultPickupPoint());
     }
 
@@ -53,7 +54,7 @@ class SamedayPostPickupPointRequestTest extends TestCase
             'street 1',
             '012345',
             'Warehouse',
-            [new PickupPointContactPersonObject('', '', true)],
+            [new PickupPointContactPersonObject('Test', '123', true)],
             true
         );
 

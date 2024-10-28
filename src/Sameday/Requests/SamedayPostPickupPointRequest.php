@@ -102,7 +102,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
                         static function (PickupPointContactPersonObject $contactPerson) {
                             return [
                                 'name' => $contactPerson->getName(),
-                                'phone' => $contactPerson->getPhone(),
+                                'phoneNumber' => $contactPerson->getPhoneNumber(),
                                 'default' => $contactPerson->isDefault()
                             ];
                         },

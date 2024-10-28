@@ -3,13 +3,13 @@
 namespace Sameday\Objects\PickupPoint;
 
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
-use Sameday\Objects\Traits\SamedayObjectPhoneTrait;
+use Sameday\Objects\Traits\SamedayObjectPhoneNumberTrait;
 use Sameday\Objects\Traits\SamedayObjectDefaultTrait;
 
 class PickupPointContactPersonObject
 {
     use SamedayObjectNameTrait;
-    use SamedayObjectPhoneTrait;
+    use SamedayObjectPhoneNumberTrait;
     use SamedayObjectDefaultTrait;
 
     /**
@@ -17,11 +17,11 @@ class PickupPointContactPersonObject
      */
     public function __construct(
         $name,
-        $phone,
+        $phoneNumber,
         $default
     ) {
         $this->name = $name;
-        $this->phone = $phone;
+        $this->phoneNumber = $phoneNumber;
         $this->default = $default;
     }
 }
