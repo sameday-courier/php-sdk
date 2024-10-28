@@ -4,23 +4,22 @@ namespace Sameday\Tests\Requests;
 
 use PHPUnit\Framework\TestCase;
 use Sameday\Objects\ContactPersonObject;
+use Sameday\Objects\PickupPoint\PickupPointContactPersonObject;
 use Sameday\Requests\SamedayPostPickupPointRequest;
 
 class SamedayPostPickupPointRequestTest extends TestCase
 {
     public function testConstructor()
     {
-        $contactPersons[] = new ContactPersonObject(
-            123,
-            'Person One',
-            '123',
+        $contactPersons[] = new PickupPointContactPersonObject(
+            'John One',
+            '0701234567',
             true
         );
 
-        $contactPersons[] = new ContactPersonObject(
-            123,
-            'Person Two',
-            '123',
+        $contactPersons[] = new PickupPointContactPersonObject(
+            'John Two',
+            '0702345678',
             true
         );
 
