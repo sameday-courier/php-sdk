@@ -1,9 +1,11 @@
 <?php
 
-namespace Sameday\Objects\PickupPoint;
+namespace Sameday\Objects;
 
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
+use Sameday\Objects\Traits\SamedayObjectPhoneTrait;
+use Sameday\Objects\Traits\SamedayObjectDefaultTrait;
 
 /**
  * Contact person for pickup point.
@@ -14,16 +16,8 @@ class ContactPersonObject
 {
     use SamedayObjectIdTrait;
     use SamedayObjectNameTrait;
-
-    /**
-     * @var string
-     */
-    protected $phone;
-
-    /**
-     * @var bool
-     */
-    protected $default;
+    use SamedayObjectPhoneTrait;
+    use SamedayObjectDefaultTrait;
 
     /**
      * ContactPersonObject constructor.
@@ -43,21 +37,5 @@ class ContactPersonObject
         $this->name = $name;
         $this->phone = $phone;
         $this->default = $default;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isDefault()
-    {
-        return $this->default;
     }
 }

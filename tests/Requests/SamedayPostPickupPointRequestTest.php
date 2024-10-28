@@ -3,7 +3,7 @@
 namespace Sameday\Tests\Requests;
 
 use PHPUnit\Framework\TestCase;
-use Sameday\Objects\PickupPoint\ContactPersonObject;
+use Sameday\Objects\ContactPersonObject;
 use Sameday\Requests\SamedayPostPickupPointRequest;
 
 class SamedayPostPickupPointRequestTest extends TestCase
@@ -37,7 +37,7 @@ class SamedayPostPickupPointRequestTest extends TestCase
 
         $this->assertEquals('187', $pickupPointRequest->getCountryId());
         $this->assertEquals('1', $pickupPointRequest->getCountyId());
-        $this->assertEquals('Bucuresti', $pickupPointRequest->getCity());
+        $this->assertEquals('Bucuresti', $pickupPointRequest->getCityId());
         $this->assertEquals('Address', $pickupPointRequest->getAddress());
         $this->assertEquals('123', $pickupPointRequest->getPostalCode());
         $this->assertEquals('Warehouse', $pickupPointRequest->getAlias());

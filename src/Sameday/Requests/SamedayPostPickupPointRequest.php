@@ -4,7 +4,8 @@ namespace Sameday\Requests;
 
 use Sameday\Http\RequestBodyUrlEncoded;
 use Sameday\Http\SamedayRequest;
-use Sameday\Objects\PickupPoint\ContactPersonObject;
+use Sameday\Objects\ContactPersonObject;
+use Sameday\Objects\PickupPoint\PickupPointContactPersonObject;
 
 class SamedayPostPickupPointRequest implements SamedayRequestInterface
 {
@@ -19,9 +20,9 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     protected $countyId;
 
     /**
-     * @var string $city
+     * @var string $cityId
      */
-    protected $city;
+    protected $cityId;
 
     /**
      * @var string $address
@@ -39,7 +40,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     protected $alias;
 
     /**
-     * @var ContactPersonObject[] $contactPersons
+     * @var PickupPointContactPersonObject[] $contactPersons
      */
     protected $contactPersons;
 
@@ -53,17 +54,17 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
      *
      * @param $countryId
      * @param $countyId
-     * @param $city
+     * @param $cityId
      * @param $address
      * @param $postalCode
      * @param $alias
-     * @param ContactPersonObject[] $contactPerson
+     * @param PickupPointContactPersonObject[] $contactPerson
      * @param $defaultPickupPoint
      */
     public function __construct(
         $countryId,
         $countyId,
-        $city,
+        $cityId,
         $address,
         $postalCode,
         $alias,
@@ -73,7 +74,7 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     {
         $this->countryId = $countryId;
         $this->countyId = $countyId;
-        $this->city = $city;
+        $this->cityId = $cityId;
         $this->address = $address;
         $this->postalCode = $postalCode;
         $this->alias = $alias;
@@ -92,11 +93,11 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
                 [
                     'country' => $this->getCountryId(),
                     'county' => $this->getCountyId(),
-                    'city' => $this->getCity(),
+                    'city' => $this->getCityId(),
                     'address' => $this->getAddress(),
                     'postalCode' => $this->getPostalCode(),
                     'alias' => $this->getAlias(),
-                    'contactPerson' => $this->getContactPersons(),
+                    'pickupPointContactPerson' => $this->getContactPersons(),
                     'defaultPickupPoint' => $this->isDefaultPickupPoint(),
                 ]
             )
@@ -122,9 +123,9 @@ class SamedayPostPickupPointRequest implements SamedayRequestInterface
     /**
      * @return string
      */
-    public function getCity()
+    public function getCityId()
     {
-        return $this->city;
+        return $this->cityId;
     }
 
     /**

@@ -2,10 +2,10 @@
 
 namespace Sameday\Responses;
 
-use Sameday\Objects\PickupPoint\ContactPersonObject;
-use Sameday\Responses\Traits\SamedayResponseTrait;
-use Sameday\Requests\SamedayPostPickupPointRequest;
 use Sameday\Http\SamedayRawResponse;
+use Sameday\Objects\ContactPersonObject;
+use Sameday\Requests\SamedayPostPickupPointRequest;
+use Sameday\Responses\Traits\SamedayResponseTrait;
 
 class SamedayPostPickupPointResponse implements SamedayResponseInterface
 {
@@ -42,7 +42,7 @@ class SamedayPostPickupPointResponse implements SamedayResponseInterface
                     $contactPerson['id'],
                     $contactPerson['name'],
                     $contactPerson['phoneNumber'],
-                    false
+                    $contactPerson['default']
                 );
             },
             $json['contact_persons']
