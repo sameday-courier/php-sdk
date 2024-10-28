@@ -13,7 +13,14 @@ class PickupPointContactPersonObject
     use SamedayObjectDefaultTrait;
 
     /**
-     * @param string $name
+     * @var string $phoneNumber
+     */
+    protected $phoneNumber;
+
+    /**
+     * @param $name
+     * @param $phoneNumber
+     * @param $default
      */
     public function __construct(
         $name,
@@ -23,5 +30,13 @@ class PickupPointContactPersonObject
         $this->name = $name;
         $this->phoneNumber = $phoneNumber;
         $this->default = $default;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
     }
 }

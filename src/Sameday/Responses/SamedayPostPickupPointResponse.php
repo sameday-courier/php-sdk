@@ -44,7 +44,7 @@ class SamedayPostPickupPointResponse implements SamedayResponseInterface
                     $contactPerson['default']
                 );
             },
-            $json['contact_persons']
+            $json['contactPersons']
         );
     }
 

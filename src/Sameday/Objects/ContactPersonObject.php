@@ -4,7 +4,6 @@ namespace Sameday\Objects;
 
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
-use Sameday\Objects\Traits\SamedayObjectPhoneNumberTrait;
 use Sameday\Objects\Traits\SamedayObjectDefaultTrait;
 
 /**
@@ -16,26 +15,35 @@ class ContactPersonObject
 {
     use SamedayObjectIdTrait;
     use SamedayObjectNameTrait;
-    use SamedayObjectPhoneNumberTrait;
     use SamedayObjectDefaultTrait;
+
+    /**
+     * @var string $phone
+     */
+    protected $phone;
 
     /**
      * ContactPersonObject constructor.
      *
      * @param int $id
      * @param string $name
-     * @param string $phoneNumber
+     * @param string $phone
      * @param bool $default
      */
     public function __construct(
         $id,
         $name,
-        $phoneNumber,
+        $phone,
         $default
     ) {
         $this->id = $id;
         $this->name = $name;
-        $this->phoneNumber = $phoneNumber;
+        $this->phone = $phone;
         $this->default = $default;
+    }
+
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }
