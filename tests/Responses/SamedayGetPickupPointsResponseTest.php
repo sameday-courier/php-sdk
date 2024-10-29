@@ -4,9 +4,10 @@ namespace Sameday\Tests\Responses;
 
 use PHPUnit\Framework\TestCase;
 use Sameday\Http\SamedayRawResponse;
+use Sameday\Objects\ContactPersonObject;
+use Sameday\Objects\CountryObject;
 use Sameday\Objects\CountyObject;
 use Sameday\Objects\PickupPoint\CityObject;
-use Sameday\Objects\PickupPoint\ContactPersonObject;
 use Sameday\Objects\PickupPoint\PickupPointObject;
 use Sameday\Requests\SamedayGetPickupPointsRequest;
 use Sameday\Responses\SamedayGetPickupPointsResponse;
@@ -35,6 +36,11 @@ class SamedayGetPickupPointsResponseTest extends TestCase
     "data": [
         {
             "id": 139,
+            "country": {
+                "id": 187,
+                "name": "Romania",
+                "code": "RO"
+            },
             "county": {
                 "id": 1,
                 "name": "Bucuresti",
@@ -68,6 +74,11 @@ class SamedayGetPickupPointsResponseTest extends TestCase
         },
         {
             "id": 1641,
+            "country": {
+                "id": 187,
+                "name": "Romania",
+                "code": "RO"
+            },
             "county": {
                 "id": 1,
                 "name": "Bucuresti",
@@ -110,6 +121,7 @@ JSON
         $this->assertEquals(
             new PickupPointObject(
                 139,
+                new CountryObject(187, 'Romania', 'RO'),
                 new CountyObject(1, 'Bucuresti', 'B'),
                 new CityObject(6, 'Sectorul 6', 'B_SEMA_A03', 'B_SEMA_A03', 0),
                 'Splaiul Independentei 319, OB17C',
@@ -126,6 +138,7 @@ JSON
         $this->assertEquals(
             new PickupPointObject(
                 1641,
+                new CountryObject(187, 'Romania', 'RO'),
                 new CountyObject(1, 'Bucuresti', 'B'),
                 new CityObject(6, 'Sectorul 6', 'B_SEMA_A03', 'B_SEMA_A03', 10),
                 'Splaiul Independentei 319, OB17C',

@@ -20,7 +20,7 @@ class SamedayRequest
     protected $needAuth;
 
     /**
-     * @var string The HTTP method to use (eg. GET, POST, PUT, DELETE).
+     * @var string The HTTP method to use (egs. GET, POST, PUT, DELETE).
      */
     protected $method;
 
@@ -60,8 +60,15 @@ class SamedayRequest
      * @param array $headers HTTP headers to send with request.
      * @param int $timeout Timeout for request in seconds.
      */
-    public function __construct($needAuth, $method, $endpoint, array $queryParams = [], RequestBodyInterface $body = null, array $headers = [], $timeout = self::TIMEOUT)
-    {
+    public function __construct(
+        $needAuth,
+        $method,
+        $endpoint,
+        array $queryParams = [],
+        RequestBodyInterface $body = null,
+        array $headers = [],
+        $timeout = self::TIMEOUT
+    ) {
         $this->needAuth = $needAuth;
         $this->method = $method;
         $this->endpoint = $endpoint;
