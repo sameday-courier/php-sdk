@@ -119,7 +119,8 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             new DateTime($json['statusDate']),
             isset($json['county']) ? $json['county'] : null,
             $json['reason'],
-            $json['transitLocation']
+            $json['transitLocation'],
+            isset($json['inReturn']) ? $json['inReturn'] : null
         );
     }
 
