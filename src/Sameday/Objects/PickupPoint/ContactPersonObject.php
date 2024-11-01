@@ -1,10 +1,10 @@
 <?php
 
-namespace Sameday\Objects;
+namespace Sameday\Objects\PickupPoint;
 
+use Sameday\Objects\Traits\SamedayObjectDefaultTrait;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;
 use Sameday\Objects\Traits\SamedayObjectNameTrait;
-use Sameday\Objects\Traits\SamedayObjectDefaultTrait;
 
 /**
  * Contact person for pickup point.
@@ -42,6 +42,9 @@ class ContactPersonObject
         $this->default = $default;
     }
 
+    /**
+     * @return string
+     */
     public function getPhone()
     {
         return $this->phone;

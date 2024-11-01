@@ -2,7 +2,6 @@
 
 namespace Sameday\Objects\PickupPoint;
 
-use Sameday\Objects\ContactPersonObject;
 use Sameday\Objects\CountryObject;
 use Sameday\Objects\CountyObject;
 use Sameday\Objects\Traits\SamedayObjectIdTrait;

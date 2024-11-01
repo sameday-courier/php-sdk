@@ -55,6 +55,8 @@ class SamedayGetLockersResponse implements SamedayPaginatedResponseInterface
                 $locker['lng'],
                 $locker['phone'],
                 $locker['email'],
+                isset($locker['supportedPayment']) ? $locker['supportedPayment'] : '',
+                isset($locker['clientVisible']) ? $locker['clientVisible'] : '',
                 array_map(
                     static function ($entry) {
                         return new BoxObject(

@@ -25,6 +25,20 @@ class LockerObject
     protected $boxes;
 
     /**
+     * 0 = doesn't support payment, 1 = supports payment
+     *
+     * @var int $supportedPayment
+     */
+    protected $supportedPayment;
+
+    /**
+     * 0 = not visible, 1 = visible
+     *
+     * @var int
+     */
+    protected $clientVisible;
+
+    /**
      * LockerObject constructor.
      *
      * @param int $id
@@ -51,6 +65,8 @@ class LockerObject
         $long,
         $phone,
         $email,
+        $supportedPayment,
+        $clientVisible,
         array $boxes,
         array $schedule
     ) {
@@ -66,6 +82,8 @@ class LockerObject
         $this->email = $email;
         $this->boxes = $boxes;
         $this->schedule = $schedule;
+        $this->supportedPayment = $supportedPayment;
+        $this->clientVisible = $clientVisible;
     }
 
     /**
@@ -74,5 +92,64 @@ class LockerObject
     public function getBoxes()
     {
         return $this->boxes;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return LockerObject
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSupportedPayment()
+    {
+        return $this->supportedPayment;
+    }
+
+    /**
+     * @param int $supportedPayment
+     *
+     * @return LockerObject
+     */
+    public function setSupportedPayment($supportedPayment)
+    {
+        $this->supportedPayment = $supportedPayment;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getClientVisible()
+    {
+        return $this->clientVisible;
+    }
+
+    /**
+     * @param int $clientVisible
+     *
+     * @return LockerObject
+     */
+    public function setClientVisible($clientVisible)
+    {
+        $this->clientVisible = $clientVisible;
+
+        return $this;
     }
 }
