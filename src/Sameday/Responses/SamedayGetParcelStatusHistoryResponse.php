@@ -3,6 +3,7 @@
 namespace Sameday\Responses;
 
 use DateTime;
+use Exception;
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Objects\ParcelStatusHistory\ExpeditionObject;
 use Sameday\Objects\ParcelStatusHistory\HistoryObject;
@@ -40,7 +41,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
      * @param SamedayGetParcelStatusHistoryRequest $request
      * @param SamedayRawResponse $rawResponse
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct(SamedayGetParcelStatusHistoryRequest $request, SamedayRawResponse $rawResponse)
     {
@@ -107,7 +108,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
      *
      * @return HistoryObject
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function parseHistory(array $json)
     {
@@ -119,7 +120,8 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
             new DateTime($json['statusDate']),
             isset($json['county']) ? $json['county'] : null,
             $json['reason'],
-            $json['transitLocation']
+            $json['transitLocation'],
+            isset($json['inReturn']) ? $json['inReturn'] : null
         );
     }
 
@@ -128,7 +130,7 @@ class SamedayGetParcelStatusHistoryResponse implements SamedayResponseInterface
      *
      * @return ExpeditionObject
      *
-     * @throws \Exception
+     * @throws Exception
      */
     private function parseExpedition(array $json)
     {

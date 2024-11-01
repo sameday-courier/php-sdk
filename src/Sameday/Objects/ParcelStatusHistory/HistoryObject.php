@@ -47,6 +47,11 @@ class HistoryObject
     protected $transitLocation;
 
     /**
+     * @var bool $inReturn
+     */
+    protected $inReturn;
+
+    /**
      * HistoryObject constructor.
      *
      * @param int $id
@@ -57,6 +62,7 @@ class HistoryObject
      * @param string $county
      * @param string $reason
      * @param string $transitLocation
+     * @param bool|null $inReturn
      */
     public function __construct(
         $id,
@@ -66,7 +72,8 @@ class HistoryObject
         DateTime $date,
         $county,
         $reason,
-        $transitLocation
+        $transitLocation,
+        $inReturn = null
     ) {
         $this->id = $id;
         $this->name = $name;
@@ -76,6 +83,7 @@ class HistoryObject
         $this->county = $county;
         $this->reason = $reason;
         $this->transitLocation = $transitLocation;
+        $this->inReturn = $inReturn;
     }
 
     /**
@@ -124,5 +132,13 @@ class HistoryObject
     public function getTransitLocation()
     {
         return $this->transitLocation;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isInReturn()
+    {
+        return $this->inReturn;
     }
 }

@@ -3,7 +3,6 @@
 namespace Sameday\Tests\Requests;
 
 use PHPUnit\Framework\TestCase;
-use Sameday\Objects\ContactPersonObject;
 use Sameday\Objects\PickupPoint\PickupPointContactPersonObject;
 use Sameday\Requests\SamedayPostPickupPointRequest;
 

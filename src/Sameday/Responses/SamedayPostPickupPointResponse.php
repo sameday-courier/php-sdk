@@ -3,7 +3,7 @@
 namespace Sameday\Responses;
 
 use Sameday\Http\SamedayRawResponse;
-use Sameday\Objects\ContactPersonObject;
+use Sameday\Objects\PickupPoint\ContactPersonObject;
 use Sameday\Requests\SamedayPostPickupPointRequest;
 use Sameday\Responses\Traits\SamedayResponseTrait;
 
