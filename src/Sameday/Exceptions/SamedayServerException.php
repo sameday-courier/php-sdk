@@ -37,6 +37,11 @@ class SamedayServerException extends SamedaySDKException
         $this->request = $request;
         $this->rawResponse = $rawResponse;
 
+        if (empty($message)) {
+            $bodyJson = json_decode($rawResponse->getBody(), true);
+            $message = $bodyJson['error']['message'] ?? '';
+        }
+
         parent::__construct($message, $code, $previous);
     }
 
