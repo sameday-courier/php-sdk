@@ -1,0 +1,29 @@
+trigger: none
+
+pr:
+  branches:
+    include:
+      - master
+      - main
+
+variables:
+  - group: sonar-project-keys
+  - group: defectdojo-config
+  - name: projectKey
+    value: $(PROJECT_KEY_SD.Plugins-php-sdk)
+  - name: SONAR_PROJECT_KEY
+    value: $(PROJECT_KEY_SD.Plugins-php-sdk)
+
+resources:
+  repositories:
+    - repository: templates
+      type: git
+      name: SD.Plugins
+
+stages:
+- stage: Sonar
+  displayName: "SonarQube Scan"
+  jobs:
+    - template: templates/sonar-flexible-scan.yaml@templates
+      parameters:
+        projectKey: $(projectKey)
