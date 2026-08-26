@@ -27,7 +27,7 @@ class SamedayGuzzleHttpClient implements SamedayHttpClientInterface
      *
      * @param Client|null $client The Guzzle client.
      */
-    public function __construct(Client $client = null)
+    public function __construct(?Client $client = null)
     {
         $this->client = $client ?: new Client();
     }

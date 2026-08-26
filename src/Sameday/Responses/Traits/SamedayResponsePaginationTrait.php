@@ -69,7 +69,7 @@ trait SamedayResponsePaginationTrait
      * @param SamedayPaginatedRequestInterface $request
      * @param array|null $data
      */
-    protected function parsePagination(SamedayPaginatedRequestInterface $request, array $data = null)
+    protected function parsePagination(SamedayPaginatedRequestInterface $request, ?array $data = null)
     {
         $this->currentPage = $request->getPage();
         $this->perPage = $request->getCountPerPage();

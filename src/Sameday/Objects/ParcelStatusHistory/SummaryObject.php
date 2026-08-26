@@ -76,9 +76,9 @@ class SummaryObject
         $parcelAwbNumber,
         $parcelWeight,
         $pickedUp,
-        DateTime $deliveredAt = null,
-        DateTime $lastDeliveryAttempt = null,
-        DateTime $pickedUpAt = null
+        ?DateTime $deliveredAt = null,
+        ?DateTime $lastDeliveryAttempt = null,
+        ?DateTime $pickedUpAt = null
     ) {
         $this->delivered = $delivered;
         $this->canceled = $canceled;

@@ -22,7 +22,7 @@ class SamedayStreamHttpClient implements SamedayHttpClientInterface
      *
      * @param SamedayStream|null $stream Procedural stream wrapper as object.
      */
-    public function __construct(SamedayStream $stream = null)
+    public function __construct(?SamedayStream $stream = null)
     {
         $this->stream = $stream ?: new SamedayStream();
     }

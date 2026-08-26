@@ -48,8 +48,8 @@ class SamedayAuthenticateRequest implements SamedayRequestInterface
                 'remember_me' => true,
             ]),
             [
-                'X-Auth-Username' => $this->username,
-                'X-Auth-Password' => $this->password,
+                'X-AUTH-USERNAME' => $this->username,
+                'X-AUTH-PASSWORD' => $this->password,
             ]
         );
     }

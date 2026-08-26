@@ -63,7 +63,7 @@ class EntityObject
         $address,
         $name,
         $phone,
-        CompanyEntityObject $company = null,
+        ?CompanyEntityObject $company = null,
         $postalCode = null
     ) {
         $this->city = $city;

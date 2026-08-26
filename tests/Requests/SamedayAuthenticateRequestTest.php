@@ -20,8 +20,8 @@ class SamedayAuthenticateRequestTest extends TestCase
         $this->assertEquals('remember_me=1', $samedayRequest->getBody()->getBody());
         $this->assertEquals(
             [
-                'X-Auth-Username' => 'username',
-                'X-Auth-Password' => 'password',
+                'X-AUTH-USERNAME' => 'username',
+                'X-AUTH-PASSWORD' => 'password',
             ],
             $samedayRequest->getHeaders()
         );
