@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.2](https://github.com/sameday-courier/php-sdk/compare/v2.4.1...v2.4.2)
+
+### Fixed
+
+- PHP 8.4 compatibility: use explicit nullable types (`?Type $param = null`) instead of implicit nullable parameters
+- Align authenticate request headers with API docs (`X-AUTH-USERNAME`, `X-AUTH-PASSWORD`)
+
 ## [2.1.0](https://github.com/sameday-courier/php-sdk/compare/v1.7.0...v2.1.0)
 
 ### Added

@@ -103,7 +103,7 @@ class SamedayPostAwbEstimationRequest implements SamedayRequestInterface
         AwbRecipientEntityObject $awbRecipient,
         $insuredValue,
         $cashOnDeliveryAmount = .0,
-        ThirdPartyPickupEntityObject $thirdPartyPickup = null,
+        ?ThirdPartyPickupEntityObject $thirdPartyPickup = null,
         array $serviceTaxIds = [],
         $currency = null
     ) {

@@ -65,7 +65,7 @@ class SamedayRequest
         $method,
         $endpoint,
         array $queryParams = [],
-        RequestBodyInterface $body = null,
+        ?RequestBodyInterface $body = null,
         array $headers = [],
         $timeout = self::TIMEOUT
     ) {
@@ -191,7 +191,7 @@ class SamedayRequest
      *
      * @return SamedayRequest
      */
-    public function setBody(RequestBodyInterface $body = null)
+    public function setBody(?RequestBodyInterface $body = null)
     {
         $this->body = $body;
 

@@ -37,7 +37,7 @@ class SamedayCurlHttpClient implements SamedayHttpClientInterface
      *
      * @param SamedayCurl|null $curl Procedural curl as object.
      */
-    public function __construct(SamedayCurl $curl = null)
+    public function __construct(?SamedayCurl $curl = null)
     {
         $this->curl = $curl ?: new SamedayCurl();
     }
