@@ -35,7 +35,7 @@ $ ./vendor/bin/phpunit
 
 ## Running PHP Code Sniffer
 
-[PHP Code Sniffer](https://github.com/squizlabs/PHP_CodeSniffer) is already installed as `dev` requirement.
+[PHP Code Sniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) is already installed as `dev` requirement.
 
 Run the following command to check for coding standards.
 
