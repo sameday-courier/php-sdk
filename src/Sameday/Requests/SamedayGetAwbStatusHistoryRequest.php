@@ -34,7 +34,7 @@ class SamedayGetAwbStatusHistoryRequest implements SamedayRequestInterface
         return new SamedayRequest(
             true,
             'GET',
-            "/api/client/{$this->awb}/status-sync"
+            "/api/client/{$this->awb}/status"
         );
     }
 
