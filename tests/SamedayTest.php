@@ -427,6 +427,35 @@ class SamedayTest extends TestCase
      * @throws SamedayAuthenticationException
      * @throws SamedayAuthorizationException
      * @throws SamedayBadRequestException
+     * @throws SamedayNotFoundException
+     * @throws SamedayOtherException
+     * @throws SamedaySDKException
+     * @throws SamedayServerException
+     */
+    public function testGetAwbStatusSync()
+    {
+        $this->setUpClient();
+        $samedayRequest = $this->createMock('Sameday\Http\SamedayRequest');
+        $request = $this->mockRequest('Sameday\Requests\SamedayGetAwbStatusSyncRequest', $samedayRequest);
+
+        $rawResponse = new SamedayRawResponse([], '');
+        $this->client
+            ->expects($this->once())
+            ->method('sendRequest')
+            ->with($samedayRequest)
+            ->willReturn($rawResponse);
+
+        $response = $this->sameday->getAwbStatusSync($request);
+
+        $this->assertInstanceOf('Sameday\Responses\SamedayGetAwbStatusSyncResponse', $response);
+        $this->assertEquals($request, $response->getRequest());
+        $this->assertEquals($rawResponse, $response->getRawResponse());
+    }
+
+    /**
+     * @throws SamedayAuthenticationException
+     * @throws SamedayAuthorizationException
+     * @throws SamedayBadRequestException
      * @throws SamedaySDKException
      * @throws SamedayServerException
      */
