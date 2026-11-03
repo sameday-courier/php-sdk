@@ -6,9 +6,7 @@ use Sameday\Http\SamedayRequest;
 use Sameday\Requests\Traits\SamedayRequestPaginationTrait;
 
 /**
- * Request to get AWB status transitions between two timestamps.
- *
- * Maximum interval between start and end is 2 hours. Results are paginated.
+ * Request to get AWB status sync.
  *
  * @package Sameday
  */
