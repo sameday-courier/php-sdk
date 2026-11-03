@@ -31,7 +31,7 @@ class AwbRecipientEntityObject extends EntityObject
         $name,
         $phone,
         $email,
-        ?CompanyEntityObject $company = null,
+        $company = null,
         $postalCode = null
     ) {
         parent::__construct($city, $county, $address, $name, $phone, $company, $postalCode);

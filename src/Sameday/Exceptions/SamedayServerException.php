@@ -4,7 +4,6 @@ namespace Sameday\Exceptions;
 
 use Sameday\Http\SamedayRawResponse;
 use Sameday\Http\SamedayRequest;
-use Throwable;
 
 /**
  * Class SamedayServerException
