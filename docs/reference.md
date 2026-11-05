@@ -33,6 +33,7 @@ These classes are used as an API request.
 | [`Sameday\Requests\SamedayPutParcelSizeRequest`](reference/SamedayPutParcelSizeRequest.md) | An entity that represents a request to update size for an existing parcel. |
 | [`Sameday\Requests\SamedayGetAwbPdfRequest`](reference/SamedayGetAwbPdfRequest.md) | An entity that represents a request to get pdf for an awb. |
 | [`Sameday\Requests\SamedayGetAwbStatusHistoryRequest`](reference/SamedayGetAwbStatusHistoryRequest.md) | An entity that represents a request to get status history for an awb. |
+| [`Sameday\Requests\SamedayGetAwbStatusSyncRequest`](reference/SamedayGetAwbStatusSyncRequest.md) | An entity that represents a request to get AWB status transitions between two timestamps (paginated, max 2h). |
 
 # Responses
 
@@ -56,6 +57,7 @@ These classes are used as an API response.
 | [`Sameday\Responses\SamedayPutParcelSizeResponse`](reference/SamedayPutParcelSizeResponse.md) | An entity that represents a response to update size for an existing parcel. |
 | [`Sameday\Responses\SamedayGetAwbPdfResponse`](reference/SamedayGetAwbPdfResponse.md) | An entity that represents a response to get pdf for an awb. |
 | [`Sameday\Responses\SamedayGetAwbStatusHistoryResponse`](reference/SamedayGetAwbStatusHistoryResponse.md) | An entity that represents a response to get history for an awb. |
+| [`Sameday\Responses\SamedayGetAwbStatusSyncResponse`](reference/SamedayGetAwbStatusSyncResponse.md) | An entity that represents a response to get AWB status sync (paginated). |
 
 # Core Exceptions
 

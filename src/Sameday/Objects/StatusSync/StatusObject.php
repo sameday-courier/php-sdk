@@ -52,7 +52,7 @@ class StatusObject
     protected $details;
 
     /**
-     * StatusObject constructor.
+     * StatusSyncObject constructor.
      *
      * @param int $id
      * @param string $name

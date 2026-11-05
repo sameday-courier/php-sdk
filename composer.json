@@ -17,7 +17,7 @@
     },
     "require-dev": {
         "ext-curl": "*",
-        "phpunit/phpunit": "~5.4|>=9.5",
+        "phpunit/phpunit": "~5.4|~8.5|>=9.5",
         "guzzlehttp/guzzle": "~5.0",
         "squizlabs/php_codesniffer": "^3.5"
     },
@@ -32,6 +32,18 @@
     "autoload-dev": {
         "psr-4": {
             "Sameday\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "policy": {
+            "advisories": {
+                "ignore": {
+                    "guzzlehttp/guzzle": {
+                        "constraint": "~5.0",
+                        "reason": "The Guzzle HTTP client still uses the Guzzle 5 API, and the SDK still supports PHP 5.6. No patched 5.x release exists."
+                    }
+                }
+            }
         }
     }
 }

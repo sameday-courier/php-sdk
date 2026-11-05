@@ -84,8 +84,8 @@ class SummaryObject
         $servicePayment,
         $cashOnDelivery,
         $redirectionAttempts = 0,
-        ?DateTime $deliveredAt = null,
-        ?DateTime $lastDeliveryAttempt = null
+        $deliveredAt = null,
+        $lastDeliveryAttempt = null
     ) {
         $this->delivered = $delivered;
         $this->canceled = $canceled;
