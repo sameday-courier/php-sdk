@@ -1,0 +1,25 @@
+build:
+    nodes:
+        analysis:
+            project_setup:
+                override:
+                    - composer install --prefer-dist --no-interaction
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    - command: phpcs-run
+                      use_website_config: true
+        tests: true
+
+filter:
+    excluded_paths:
+        - 'tests/*'
+
+checks:
+    php: true
+
+coding_style:
+    php:
+        spaces:
+            around_operators:
+                concatenation: true
